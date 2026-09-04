@@ -1,0 +1,36 @@
+# Local credentials and environments; keep only explicitly authored examples.
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+.gcp-secrets/
+*.pem
+*.key
+
+# Python / frontend generated files.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+node_modules/
+.next/
+dist/
+build/
+coverage/
+.coverage
+test-results/
+playwright-report/
+
+# Local research assets are NOT implicitly approved for redistribution.
+# Share approved/synthetic fixtures only after an explicit rights review.
+/data/raw/
+/data/processed/
+/data/evaluation/
+/tmp/
+/output/
+*.log
+.DS_Store
+Thumbs.db

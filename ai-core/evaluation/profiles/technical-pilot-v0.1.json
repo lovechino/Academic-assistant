@@ -1,0 +1,57 @@
+{
+  "profile_id": "technical-pilot-v0.1",
+  "status": "design_only_not_executed",
+  "purpose": "Reference-only selection for the first grounded QA technical pilot; no copied answers or runtime configuration.",
+  "source_pack_id": "voer-silver-v0.1",
+  "source_pack_path": "data/evaluation/silver/voer-v0.1/pack.json",
+  "corpus_snapshot": "voer-2026-09-04-r1",
+  "candidate_course": "cau-truc-du-lieu-va-giai-thuat",
+  "candidate_corpus_policy": "All 16 course modules for research-reference experiments when permitted; not answer-document filtering and not production publication.",
+  "split": "dev",
+  "human_reviewed": false,
+  "metric_contract_path": "docs/evaluation/08-metric-contract-v0.2.md",
+  "groups": [
+    {
+      "id": "academic_answerable",
+      "source_path": "data/evaluation/silver/voer-v0.1/academic.jsonl",
+      "case_ids": ["VOER-ACA-001", "VOER-ACA-002", "VOER-ACA-003", "VOER-ACA-004", "VOER-ACA-005", "VOER-ACA-006", "VOER-ACA-007", "VOER-ACA-008", "VOER-ACA-009", "VOER-ACA-010"],
+      "expected_count": 10,
+      "scoring_use": "Provisional GAP and retrieval after claim-to-evidence-group mapping; never gold acceptance from unreviewed silver."
+    },
+    {
+      "id": "insufficient_evidence",
+      "source_path": "data/evaluation/silver/voer-v0.1/academic.jsonl",
+      "case_ids": ["VOER-ACA-012"],
+      "expected_count": 1,
+      "scoring_use": "Abstention behavior only; no answerable retrieval denominator despite supporting/background evidence entries."
+    },
+    {
+      "id": "policy_behavior",
+      "source_path": "data/evaluation/silver/voer-v0.1/safety.jsonl",
+      "case_ids": ["VOER-SAF-001", "VOER-SAF-004", "VOER-SAF-007"],
+      "expected_count": 3,
+      "scoring_use": "Behavior regression independent of GAP; does not establish backend RBAC enforcement."
+    }
+  ],
+  "selected_case_count": 14,
+  "deferred_cases": [
+    {
+      "id": "VOER-ACA-011",
+      "source_path": "data/evaluation/silver/voer-v0.1/academic.jsonl",
+      "reason": "Review visual dependence separately; the table_figure_formula reasoning tag alone is not proof that visual evidence is required."
+    }
+  ],
+  "baseline_route": "Manual Academic mode with mandatory policy handling; no smart-router score from this profile.",
+  "entry_gates_pending": [
+    "Review query/required-claim ambiguity including ACA-008 wording and ACA-012 answerability",
+    "Map required claims to evidence groups and stable locator alternatives",
+    "Define synthetic actors/private documents for WF-N authorization scenarios",
+    "Confirm permitted research execution environment and budget before any external model use"
+  ],
+  "excluded_from_serving_corpus": ["vn-pdf-pilot-2026-09-04-v0.1"],
+  "warnings": [
+    "No dataset labels, source snapshots or lifecycle states changed by creating this profile",
+    "No evaluation run performed; selection counts are not accuracy",
+    "No content-owner approval, production eligibility or external upload authorization implied"
+  ]
+}
