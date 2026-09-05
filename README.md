@@ -57,6 +57,8 @@ Cập nhật mới nhất: đã [chạy serializer bảo toàn nguồn trên 29 
 
 Đã [chạy R4 stability + comparison coverage + code-prologue](docs/evaluation/16-retrieval-r4-stability-coverage-dependency.md). F32 giữ nguyên ranking giữa batch 1/4 trên frozen probe, còn dynamic-int8 tạo 19 đảo cặp nên không dùng raw score làm threshold. Comparison route giữ đủ hai nhánh ở top 2 nhưng không cải thiện relevance tổng thể. X3 cứu `dep-03` và đạt 6/6 text dependencies; do match 62/216 chunks và chưa có negative-context gold, nó vẫn chỉ là candidate resolver. Visual path và generation chưa chạy.
 
+Theo quyết định tạm dừng đi sâu vào code, dự án đã chuyển sang [measurement architecture v0.1](docs/evaluation/17-measurement-architecture-v0.1.md): vẽ toàn pipeline, định nghĩa metric/mẫu số/gate cho source → parser → chunking → retrieval → packing → generation → citation → agents → delivery, và đặt RAGAS ở vai trò automated diagnostic cần calibration. Chưa cài RAGAS hoặc mở generation run.
+
 ## Nguyên tắc quyết định
 
 1. KPI nghiệm thu được đo trên tài liệu nội bộ và bộ test đóng băng.
