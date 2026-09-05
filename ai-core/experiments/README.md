@@ -19,3 +19,5 @@ Bổ sung [context review audit](context-review/README.md): kiểm tra annotatio
 Đã chạy [source-preserving serialization](source-serialization/README.md) trên 29 nhóm/188 roots: typed events + aligned review view, giữ sub/sup, ranh giới p, cells và image refs; 12 synthetic tests/14 mutations. Đây là R0 kỹ thuật, không phải chunker hoặc model-ready context.
 
 Đã chạy [chunking R1 boundary-only](chunking-r1/README.md): BGE-M3 tokenizer đã pin, cap 512/overlap 0, fixed và structure-aware nhìn cùng 4 module. Structure không cắt atom nhưng tạo nhiều chunks hơn và chưa giải quyết code/dependency; chưa retrieval/model.
+
+Đã chạy [retrieval R4 diagnostics](retrieval-r4/README.md): frozen F32/int8 stability probe, comparison branch coverage gate và source-only code-prologue expansion. F32 ổn định theo batch trên probe; int8 có 19 đảo cặp. X3 cứu 6/6 text dependencies nhưng match rộng và visual path vẫn chưa hỗ trợ; chưa generation/agent benchmark.

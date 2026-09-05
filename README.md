@@ -55,6 +55,8 @@ Cập nhật mới nhất: đã [chạy serializer bảo toàn nguồn trên 29 
 
 Đã [chạy R3 BM25 → RRF → BGE reranker → token-budget packing](docs/evaluation/15-retrieval-r3-hybrid-rerank-packing.md). Reranker int8 pool 40 đưa 25/25 groups vào top 5, nhưng packet 1.024 token chỉ giữ đủ 9/10 case; 2.048 giữ 10/10 trong dev run. Expansion heuristic không hơn child-only trên QA và còn thiếu `dep-03`; visual dependency vẫn unsupported. Audit 71/71 kèm warning batch-shape int8, nên chưa freeze production config.
 
+Đã [chạy R4 stability + comparison coverage + code-prologue](docs/evaluation/16-retrieval-r4-stability-coverage-dependency.md). F32 giữ nguyên ranking giữa batch 1/4 trên frozen probe, còn dynamic-int8 tạo 19 đảo cặp nên không dùng raw score làm threshold. Comparison route giữ đủ hai nhánh ở top 2 nhưng không cải thiện relevance tổng thể. X3 cứu `dep-03` và đạt 6/6 text dependencies; do match 62/216 chunks và chưa có negative-context gold, nó vẫn chỉ là candidate resolver. Visual path và generation chưa chạy.
+
 ## Nguyên tắc quyết định
 
 1. KPI nghiệm thu được đo trên tài liệu nội bộ và bộ test đóng băng.
