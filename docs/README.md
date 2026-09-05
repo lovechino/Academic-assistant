@@ -47,6 +47,7 @@ Tài liệu ở đây là nguồn quyết định/phương pháp. Source triển
 - [Protocol mất/ghép sai context: kế hoạch 30 probe, budget-matched ablation và thước đo](evaluation/10-context-preservation-protocol.md)
 - [Kết quả context review R0: 30 probe / 31 biến thể, 29 nhóm và 4 ảnh đã xem](evaluation/11-context-review-round0.md)
 - [Serializer R0 đã chạy: bảo toàn 29 nhóm, alignment, bảng/hình và trace từng bước](evaluation/12-source-serialization-round0.md)
+- [Chunking R1 boundary-only: fixed 512 so với structure-aware 512 trên cùng input](evaluation/13-chunking-boundary-r1.md)
 - [Layout và visual retrieval evaluation](evaluation/06-visual-pdf-evaluation.md)
 - [Parser diagnostic vòng 0 và 12 structural probes](evaluation/07-parser-diagnostic-round0.md)
 - [Evidence mapping CTDL: 10 câu, 30 claims, 22 locators](evaluation/09-evidence-mapping-voer-dsa.md)

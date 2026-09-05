@@ -1,0 +1,99 @@
+{
+  "experiment_id": "voer-dsa-boundary-r1-v0.1",
+  "created_on": "2026-09-05",
+  "corpus_snapshot": "voer-2026-09-04-r1",
+  "split": "dev",
+  "scope": {
+    "document_ids": [
+      "voer-module-a208ce0f",
+      "voer-module-387652b5",
+      "voer-module-9461a675",
+      "voer-module-578aa05e"
+    ],
+    "selection": "all serialized top-level source roots in the four reviewed modules; not only annotated groups",
+    "pdf_corpus": "excluded_quarantined"
+  },
+  "input": {
+    "profile": "source-event-tape-v0.1-review-projection",
+    "root_joiner": "\\n",
+    "retrieval_header": null,
+    "generated_context": null
+  },
+  "tokenizer": {
+    "model_id": "BAAI/bge-m3",
+    "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "file": "tokenizer.json",
+    "file_sha256": "21106b6d7dab2952c1d496fb21d5dc9db75c28ed361a05f5020bbba27810dd08",
+    "library": "tokenizers",
+    "library_version": "0.23.2",
+    "local_runtime_lock": [
+      "anyio==4.15.0",
+      "certifi==2026.7.22",
+      "click==8.5.0",
+      "colorama==0.4.6",
+      "filelock==3.32.5",
+      "fsspec==2026.7.0",
+      "h11==0.16.0",
+      "hf-xet==1.6.0",
+      "httpcore==1.0.9",
+      "httpx==0.28.1",
+      "huggingface_hub==1.30.0",
+      "idna==3.19",
+      "packaging==26.3",
+      "PyYAML==6.0.3",
+      "tokenizers==0.23.2",
+      "tqdm==4.70.0",
+      "typing_extensions==4.16.0"
+    ],
+    "add_special_tokens": true,
+    "truncation": false,
+    "padding": false,
+    "normalizer_and_post_processor": "as_pinned_tokenizer_json"
+  },
+  "budget": {
+    "hard_cap_tokens_including_special_tokens": 512,
+    "target": "greedy_up_to_hard_cap",
+    "special_token_overhead": 2,
+    "body_budget_tokens": 510,
+    "overlap_tokens": 0,
+    "header_tokens": 0
+  },
+  "variants": [
+    {
+      "id": "fixed-512-o0",
+      "algorithm": "fixed consecutive tokenizer offsets",
+      "split_policy": "hard cap only; may cut structural/semantic units"
+    },
+    {
+      "id": "structure-512-o0",
+      "algorithm": "greedy source-order atoms within source section",
+      "atoms": [
+        "heading",
+        "paragraph",
+        "list_item",
+        "table_row",
+        "figure"
+      ],
+      "nested_atom_policy": "outermost",
+      "split_policy": "never split an atom; flush on section change; atomic overflow is retained whole but ineligible"
+    }
+  ],
+  "evaluator": {
+    "enrichment": "data/processed/voer-dsa-enrichment-v0.1/enrichment.json",
+    "usage": "post-hoc only; not read to build inputs or boundaries",
+    "review_level": "assistant_silver_not_human_gold"
+  },
+  "restrictions": {
+    "usage": "local_research_reference",
+    "serving_authorized": false,
+    "external_processing_authorized": false,
+    "training_authorized": false
+  },
+  "claims_not_tested": [
+    "retrieval accuracy",
+    "answer accuracy",
+    "hallucination resistance",
+    "academic correctness",
+    "production readiness"
+  ]
+}
