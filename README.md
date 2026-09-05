@@ -53,6 +53,8 @@ Cập nhật mới nhất: đã [chạy serializer bảo toàn nguồn trên 29 
 
 Đã [chạy R2 BGE-M3 dense retrieval local](docs/evaluation/14-dense-retrieval-r2-bge-m3.md) trên đủ 16 module: 216 text chunks, 10 câu/25 evidence groups silver. All-evidence success đạt 80%@5 và 80%@10; hai câu so sánh vẫn thiếu vế đến rank 14/17, nên chưa được phép coi any-hit/MRR là đủ bằng chứng. Đây là experiment index local, chưa phải product index hoặc answer/agent benchmark.
 
+Đã [chạy R3 BM25 → RRF → BGE reranker → token-budget packing](docs/evaluation/15-retrieval-r3-hybrid-rerank-packing.md). Reranker int8 pool 40 đưa 25/25 groups vào top 5, nhưng packet 1.024 token chỉ giữ đủ 9/10 case; 2.048 giữ 10/10 trong dev run. Expansion heuristic không hơn child-only trên QA và còn thiếu `dep-03`; visual dependency vẫn unsupported. Audit 71/71 kèm warning batch-shape int8, nên chưa freeze production config.
+
 ## Nguyên tắc quyết định
 
 1. KPI nghiệm thu được đo trên tài liệu nội bộ và bộ test đóng băng.

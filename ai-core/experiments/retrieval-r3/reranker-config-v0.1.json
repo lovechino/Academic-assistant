@@ -1,0 +1,46 @@
+{
+  "experiment_id": "voer-dsa-retrieval-r3-reranker-v0.1",
+  "created_on": "2026-09-05",
+  "candidate_source": {
+    "artifact": "data/processed/voer-dsa-retrieval-r3-v0.1/hybrid-results.json",
+    "stage": "rrf_depth_80",
+    "nested_pool_sizes": [20, 40, 80],
+    "selection_uses_qrels": false
+  },
+  "model": {
+    "model_id": "BAAI/bge-reranker-v2-m3",
+    "model_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "weights_file": "model.safetensors",
+    "weights_size": 2271071852,
+    "weights_sha256": "d9e3e081faff1eefb84019509b2f5558fd74c1a05a2c7db22f74174fcedb5286",
+    "config_file_sha256": "13dcd6c31d9fec9d1d8e158702072f62d7fa7d312a64b9fe057bec9a08cfe41a",
+    "tokenizer_file_sha256": "69564b696052886ed0ac63fa393e928384e0f8caada38c1f4864a9bfbf379c15",
+    "source_precision": "float32",
+    "runtime_precision": "dynamic_int8_linear_weights_float_activations",
+    "quantized": true,
+    "quantization": "torch.ao.quantization.quantize_dynamic on torch.nn.Linear; runtime-only, no derived weights persisted",
+    "score": "raw_single_class_logit_higher_is_better",
+    "sigmoid_for_ranking": false,
+    "max_pair_tokens": 512,
+    "truncation": "only_second",
+    "batch_size": 4
+  },
+  "runtime": {
+    "torch": "2.9.1",
+    "transformers": "4.57.6",
+    "tokenizers": "0.22.2",
+    "device": "cpu",
+    "threads": 4
+  },
+  "evaluation": {
+    "cutoffs": [1, 3, 5, 10, 20],
+    "qrels_usage": "after_all_scores_and_rankings_exist",
+    "qrel_level": "assistant_checked_silver_not_gold"
+  },
+  "restrictions": {
+    "usage": "local_research_reference",
+    "serving_authorized": false,
+    "external_processing_authorized": false,
+    "training_authorized": false
+  }
+}

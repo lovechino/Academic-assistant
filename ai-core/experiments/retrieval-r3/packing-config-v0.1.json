@@ -1,0 +1,52 @@
+{
+  "experiment_id": "voer-dsa-retrieval-r3-packing-v0.1",
+  "created_on": "2026-09-05",
+  "ranking": {
+    "artifact": "data/processed/voer-dsa-retrieval-r3-v0.1/reranker-results.json",
+    "stage": "reranker_pool_40",
+    "candidate_limit": 40,
+    "selection_uses_qrels": false
+  },
+  "tokenizer": {
+    "model_id": "BAAI/bge-m3",
+    "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "file_sha256": "21106b6d7dab2952c1d496fb21d5dc9db75c28ed361a05f5020bbba27810dd08",
+    "library": "tokenizers",
+    "library_version": "0.23.2"
+  },
+  "packet": {
+    "budgets_tokens_including_special_tokens": [1024, 2048, 4096],
+    "separator": "\n\n",
+    "whole_chunk_only": true,
+    "overflow_policy": "skip_candidate_and_continue",
+    "duplicate_chunk_policy": "keep_first",
+    "visual_empty_text_policy": "unsupported_not_silently_counted"
+  },
+  "policies": [
+    {
+      "id": "x0-child-only",
+      "expansion": "none"
+    },
+    {
+      "id": "x1-section-lead",
+      "expansion": "after each retained anchor, attempt the first text chunk in the same source section"
+    },
+    {
+      "id": "x2-cue-neighbors",
+      "expansion": "query/source cue rules may add section lead and immediate same-section neighbors",
+      "query_cues": ["comparison", "difference", "explanation"],
+      "source_cues": ["back_reference", "forward_reference", "table_or_figure_reference"]
+    }
+  ],
+  "dependency_evaluator": {
+    "artifact": "data/processed/voer-dsa-enrichment-v0.1/enrichment.json",
+    "usage": "post-hoc only; never provided to expansion policies",
+    "runtime_ready": false
+  },
+  "restrictions": {
+    "usage": "local_research_reference",
+    "serving_authorized": false,
+    "external_processing_authorized": false,
+    "training_authorized": false
+  }
+}

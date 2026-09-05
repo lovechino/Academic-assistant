@@ -49,6 +49,7 @@ Tài liệu ở đây là nguồn quyết định/phương pháp. Source triển
 - [Serializer R0 đã chạy: bảo toàn 29 nhóm, alignment, bảng/hình và trace từng bước](evaluation/12-source-serialization-round0.md)
 - [Chunking R1 boundary-only: fixed 512 so với structure-aware 512 trên cùng input](evaluation/13-chunking-boundary-r1.md)
 - [Dense retrieval R2: BGE-M3 local trên 16 module/216 text chunks](evaluation/14-dense-retrieval-r2-bge-m3.md)
+- [Retrieval R3: BM25, RRF, BGE reranker và context packing](evaluation/15-retrieval-r3-hybrid-rerank-packing.md)
 - [Layout và visual retrieval evaluation](evaluation/06-visual-pdf-evaluation.md)
 - [Parser diagnostic vòng 0 và 12 structural probes](evaluation/07-parser-diagnostic-round0.md)
 - [Evidence mapping CTDL: 10 câu, 30 claims, 22 locators](evaluation/09-evidence-mapping-voer-dsa.md)

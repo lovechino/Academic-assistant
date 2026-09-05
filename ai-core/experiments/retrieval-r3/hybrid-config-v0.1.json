@@ -1,0 +1,41 @@
+{
+  "experiment_id": "voer-dsa-retrieval-r3-hybrid-v0.1",
+  "created_on": "2026-09-05",
+  "input": {
+    "r2_corpus": "data/processed/voer-dsa-dense-r2-v0.1/corpus.json",
+    "r2_vectors": "data/processed/voer-dsa-dense-r2-v0.1/vectors.npz",
+    "r2_results": "data/processed/voer-dsa-dense-r2-v0.1/results.json",
+    "chunk_set": "216 dense-eligible structure-512-o0 text chunks",
+    "qrels_usage": "evaluator_only"
+  },
+  "bm25": {
+    "variant": "okapi_bm25_unicode_words_v0.1",
+    "unicode_normalization": "NFKC",
+    "case": "casefold",
+    "token_pattern": "unicode alphanumeric runs excluding underscore",
+    "stemming": false,
+    "stopwords": false,
+    "k1": 1.2,
+    "b": 0.75,
+    "idf": "log(1 + (N - df + 0.5) / (df + 0.5))",
+    "zero_score_prefetch": false
+  },
+  "fusion": {
+    "algorithm": "reciprocal_rank_fusion",
+    "rrf_k": 60,
+    "prefetch_depths_per_retriever": [20, 40, 80],
+    "raw_score_weighting": false,
+    "tie_break": ["dense_rank", "bm25_rank", "chunk_id"]
+  },
+  "evaluation": {
+    "cutoffs": [1, 3, 5, 10, 20],
+    "qrel_level": "assistant_checked_silver_not_gold",
+    "primary": ["evidence_group_recall", "all_evidence_success"]
+  },
+  "restrictions": {
+    "usage": "local_research_reference",
+    "serving_authorized": false,
+    "external_processing_authorized": false,
+    "training_authorized": false
+  }
+}
