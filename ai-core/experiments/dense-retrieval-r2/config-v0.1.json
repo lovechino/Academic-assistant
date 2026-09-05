@@ -1,0 +1,104 @@
+{
+  "experiment_id": "voer-dsa-dense-r2-v0.1",
+  "created_on": "2026-09-05",
+  "corpus_snapshot": "voer-2026-09-04-r1",
+  "split": "dev",
+  "scope": {
+    "document_ids": [
+      "voer-module-48de4a98",
+      "voer-module-6a29d1a3",
+      "voer-module-32569f6a",
+      "voer-module-a7204439",
+      "voer-module-9461a675",
+      "voer-module-578aa05e",
+      "voer-module-1038f94e",
+      "voer-module-a208ce0f",
+      "voer-module-387652b5",
+      "voer-module-27f6f7c3",
+      "voer-module-556b338a",
+      "voer-module-b1a9a363",
+      "voer-module-2ff63fcb",
+      "voer-module-a5c4789c",
+      "voer-module-58472201",
+      "voer-module-c00632bd"
+    ],
+    "selection": "all 16 serialized modules; 10 qrel-bearing documents plus 6 in-snapshot distractor documents",
+    "pdf_corpus": "excluded_quarantined"
+  },
+  "chunking": {
+    "variant": "structure-512-o0",
+    "implementation": "ai-core/experiments/chunking-r1/run_boundary_comparison.py",
+    "source_profile": "source-event-tape-v0.1-review-projection",
+    "embedding_text_projection": "voer-html-regex-space-v1 applied independently to each frozen chunk",
+    "hard_cap_tokens_including_special_tokens": 512,
+    "overlap_tokens": 0,
+    "generated_context": null,
+    "retrieval_header": null,
+    "empty_text_policy": "exclude_from_dense_index_and_report"
+  },
+  "tokenizer": {
+    "model_id": "BAAI/bge-m3",
+    "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "file": "tokenizer.json",
+    "file_sha256": "21106b6d7dab2952c1d496fb21d5dc9db75c28ed361a05f5020bbba27810dd08",
+    "library": "tokenizers",
+    "library_version": "0.23.2",
+    "add_special_tokens": true,
+    "truncation": false,
+    "padding": "dynamic_per_batch"
+  },
+  "encoder": {
+    "model_id": "BAAI/bge-m3",
+    "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "format": "upstream_onnx_external_data_float32",
+    "model_file": "onnx/model.onnx",
+    "model_file_size": 724923,
+    "model_file_sha256": "f84251230831afb359ab26d9fd37d5936d4d9bb5d1d5410e66442f630f24435b",
+    "model_data_file": "onnx/model.onnx_data",
+    "model_data_file_size": 2266820608,
+    "model_data_file_sha256": "1eebfb28493f67bba03ce0ef64bfdc7fc5a3bd9d7493f818bb1d78cd798416b4",
+    "pooling": "cls_token_as_declared_by_upstream_1_Pooling_config",
+    "normalization": "l2",
+    "embedding_dimensions": 1024,
+    "query_instruction": null,
+    "document_instruction": null,
+    "fine_tuned": false,
+    "runtime": "onnxruntime-cpu",
+    "runtime_version": "1.29.0",
+    "batch_size": 1
+  },
+  "index": {
+    "algorithm": "exact_cosine_via_normalized_dot_product",
+    "approximate_nearest_neighbor": false,
+    "vector_database": null
+  },
+  "evaluation": {
+    "qrels": "data/evaluation/silver/voer-dsa-evidence-map-v0.1/evidence-map.json",
+    "qrel_level": "assistant_checked_silver_not_gold",
+    "cutoffs": [1, 3, 5, 10, 20],
+    "primary_diagnostics": [
+      "evidence_group_recall",
+      "all_evidence_success",
+      "macro_qrel_chunk_recall"
+    ],
+    "secondary_diagnostics": [
+      "any_evidence_hit_rate",
+      "mean_reciprocal_rank_first_qrel_chunk",
+      "binary_ndcg"
+    ]
+  },
+  "restrictions": {
+    "usage": "local_research_reference",
+    "serving_authorized": false,
+    "external_processing_authorized": false,
+    "training_authorized": false
+  },
+  "claims_not_tested": [
+    "answer accuracy",
+    "hallucination resistance",
+    "academic correctness",
+    "citation correctness",
+    "production readiness",
+    "image understanding"
+  ]
+}

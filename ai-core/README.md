@@ -1,6 +1,6 @@
 # AI core
 
-Owner của xử lý học liệu và ba trợ lý Academic Assistant, Learning Assistant, Knowledge Hub. Hiện chỉ có **khung source**, hai script khảo sát đã có và tài liệu; chưa có agent/model/index chạy thật.
+Owner của xử lý học liệu và ba trợ lý Academic Assistant, Learning Assistant, Knowledge Hub. Hiện có **khung source và các experiment local**; đã chạy một BGE-M3 exact-index baseline trong `experiments/`, nhưng chưa có agent, product index hoặc service runtime.
 
 ## Bố trí
 

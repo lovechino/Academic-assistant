@@ -49,7 +49,9 @@ Vòng tiếp nối đã [tạo annotation cho 30 probe / 31 biến thể và rev
 
 Cập nhật mới nhất: đã [chạy serializer bảo toàn nguồn trên 29 nhóm / 188 roots](docs/evaluation/12-source-serialization-round0.md), có [trace và ví dụ đọc được](data/processed/voer-dsa-serialization-v0.1/review-examples.md), alignment giữ sub/sup/bảng/ảnh. Chưa đo token/chunking/retrieval; bước kế tiếp là freeze tokenizer/input/scope cho R1 boundary-only, giữ source issues và các case chưa đủ context.
 
-Đã [chạy R1 fixed 512 so với structure-aware 512](docs/evaluation/13-chunking-boundary-r1.md) trên cùng 4 module/tokenizer/budget. Structure loại bỏ cut xuyên atom/rich node trong run này nhưng tạo nhiều chunks hơn, chỉ cải thiện 1/29 group và chưa cứu 3 dependency edges; chưa phải retrieval hoặc answer benchmark.
+Đã [chạy R1 fixed 512 so với structure-aware 512](docs/evaluation/13-chunking-boundary-r1.md) trên cùng 4 module/tokenizer/budget. Structure loại bỏ cut xuyên atom/rich node trong run này nhưng tạo nhiều chunks hơn, chỉ cải thiện 1/29 group và chưa cứu 3 dependency edges.
+
+Đã [chạy R2 BGE-M3 dense retrieval local](docs/evaluation/14-dense-retrieval-r2-bge-m3.md) trên đủ 16 module: 216 text chunks, 10 câu/25 evidence groups silver. All-evidence success đạt 80%@5 và 80%@10; hai câu so sánh vẫn thiếu vế đến rank 14/17, nên chưa được phép coi any-hit/MRR là đủ bằng chứng. Đây là experiment index local, chưa phải product index hoặc answer/agent benchmark.
 
 ## Nguyên tắc quyết định
 
