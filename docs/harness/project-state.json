@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "stage": "pre_product_research",
+  "plan": "docs/roadmap/03-master-plan-v0.2.md",
+  "plan_sha256": "062e9216632341880e66104b9a2955ddc5c965f86b7c75b1bf7bd37950e67b04",
+  "next_work_package": "WP-04",
+  "astra": {"status": "pending_review_and_explicit_user_go"},
+  "read_first": [
+    "AGENTS.md",
+    "docs/roadmap/03-master-plan-v0.2.md",
+    "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md"
+  ],
+  "evidence_limits": [
+    "User accepted manual Academic text-first/visual-limited scope and WP04/Astra packet preparation, recorded 2026-09-07. Scope is not source approval or product GO; review findings and explicit GO remain pending.",
+    "WP-03 technical inventory/scorer specification verified; M0/human review, full semantic scorers and calibration remain pending.",
+    "WP-02 readiness/probe documentation and six-page local reinspection complete for review; OCR/parser comparison and broader PDF use NOT RUN/not authorized. Read latest handoff, do not recreate completed artifacts.",
+    "WP-01.1: corrected draft + bounded regression; no human sign-off or runtime acceptance.",
+    "23 regression methods are not the 21 RC acceptance cases: RC integration cases remain NOT RUN.",
+    "Silver/dev/oracle evidence is not human gold, hidden test, agent accuracy or academic acceptance.",
+    "PDF pilot and derivatives stay quarantined; no external OCR/VLM, publication, training or production indexing.",
+    "BGE-M3 is a research baseline, not a production winner. R2-R4 generation has not run.",
+    "R1 compared chunk boundaries, not paired end-to-end fixed versus structure-aware RAG.",
+    "No E0.10 expansion without a specific authorized design question. RAGAS cannot offset security failures."
+  ],
+  "sequence": ["WP-03", "WP-02", "WP-04", "ASTRA-01", "P6"],
+  "last_handoff": "docs/harness/WP02-WP04-reconciliation.md"
+}

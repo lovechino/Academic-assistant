@@ -1,0 +1,773 @@
+{
+  "schema_version": 1,
+  "registry_id": "evaluation-registry-v0.1",
+  "status": "technical_inventory_pending_human_review",
+  "recorded_date": "2026-09-06",
+  "current_run_scope": "metadata integrity and synthetic scorer arithmetic only",
+  "common": {
+    "split": "exposed_dev",
+    "human_reviewed": false,
+    "production_authorized": false,
+    "external_processing_authorized": false,
+    "official_gap_eligibility": "pending_review",
+    "scores_recomputed": false,
+    "hash_meaning": "local bytes at inventory time; not historical signature or label approval"
+  },
+  "packs": [
+    {
+      "id": "VOER-SEED",
+      "root": "data/evaluation/silver/voer-v0.1",
+      "label_authority": "assistant_silver",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "academic/learning/router/safety drafts; no reviewed GAP",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/evaluation/silver/voer-v0.1/academic.jsonl",
+          "sha256": "457c4287177970349fd7fc191cfd00dcfc03a82b6da30ae227f756871ff8f661",
+          "bytes": 39088
+        },
+        {
+          "path": "data/evaluation/silver/voer-v0.1/learning.jsonl",
+          "sha256": "46b50377a096ded0173d26e16a6343db8537dbd4e818bc36e8a13a7d4882d3cb",
+          "bytes": 12389
+        },
+        {
+          "path": "data/evaluation/silver/voer-v0.1/pack.json",
+          "sha256": "78fc2299f7009a764031f6017966286f3312ac348011dff38d3569f935b2abcd",
+          "bytes": 625
+        },
+        {
+          "path": "data/evaluation/silver/voer-v0.1/README.md",
+          "sha256": "ac96c5bf085e69aeeffe0603b402eab1b0b07d56b96cc7e4b8f09cb9ce2bb7d8",
+          "bytes": 3550
+        },
+        {
+          "path": "data/evaluation/silver/voer-v0.1/router.jsonl",
+          "sha256": "2436568d84272ddce1545b6796b29de784872de87aab041d556190aef1647897",
+          "bytes": 3812
+        },
+        {
+          "path": "data/evaluation/silver/voer-v0.1/safety.jsonl",
+          "sha256": "3d3488d8bd5fee1f78b2f76b899861989b4f8981a25250a664bf82dcc95aed45",
+          "bytes": 6182
+        }
+      ]
+    },
+    {
+      "id": "EVIDENCE-MAP",
+      "root": "data/evaluation/silver/voer-dsa-evidence-map-v0.1",
+      "label_authority": "assistant_silver",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "locator-based AND/OR retrieval diagnostics; no answer accuracy",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/evaluation/silver/voer-dsa-evidence-map-v0.1/evidence-map.json",
+          "sha256": "fff0f017e81e85e05fdfb24c01d1eb38cb1ad2a964a771c299b96b14ce1f1cb2",
+          "bytes": 55731
+        },
+        {
+          "path": "data/evaluation/silver/voer-dsa-evidence-map-v0.1/README.md",
+          "sha256": "2dee78ccd210fdb48be8d9ae66faba19466f8c4295e2254a88ade2e29c0d2fa1",
+          "bytes": 3278
+        },
+        {
+          "path": "data/evaluation/silver/voer-dsa-evidence-map-v0.1/review-issues.json",
+          "sha256": "5fc5a791bcf1735ceddda642d09b9bef918cfca6ee9a13550029c830cf7e1e3a",
+          "bytes": 4157
+        },
+        {
+          "path": "data/evaluation/silver/voer-dsa-evidence-map-v0.1/validation.json",
+          "sha256": "b89ec5fa4f26c8444799b8d766c940342570c39dfcda2e8938fd3c3a1035215a",
+          "bytes": 5026
+        }
+      ]
+    },
+    {
+      "id": "CONTEXT-PROBES",
+      "root": "data/evaluation/silver/voer-dsa-context-probes-v0.1",
+      "label_authority": "assistant_silver",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "30 probes/31 variants reported; semantic review pending",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/evaluation/silver/voer-dsa-context-probes-v0.1/probes.json",
+          "sha256": "54ee272f9e1dc86f8c95c92650eb86c9c93f35bd5b3b869647e0e3f7981feeaa",
+          "bytes": 92878
+        },
+        {
+          "path": "data/evaluation/silver/voer-dsa-context-probes-v0.1/README.md",
+          "sha256": "5c1d1072006d466399d0c1c45fd4978b2f01eb56eeb4d61e8d65bba736b04e46",
+          "bytes": 1553
+        },
+        {
+          "path": "data/evaluation/silver/voer-dsa-context-probes-v0.1/review-matrix.md",
+          "sha256": "51ae02d67813d04b90afe1ab75791b7639c46a0527c42c41f9aace34f58d2a84",
+          "bytes": 5202
+        },
+        {
+          "path": "data/evaluation/silver/voer-dsa-context-probes-v0.1/validation.json",
+          "sha256": "461d826dc4d344dc9398259ffa07ababa33a7c73e736daac18dcfd7e699cb230",
+          "bytes": 10346
+        }
+      ]
+    },
+    {
+      "id": "CONTRACT-EXAMPLES",
+      "root": "data/evaluation/silver/voer-dsa-contract-examples-v0.1",
+      "label_authority": "assistant_silver_manual_examples",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "illustrative packets/draft answers, not model output",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/evaluation/silver/voer-dsa-contract-examples-v0.1/evaluation-sidecar.json",
+          "sha256": "69b99c3b9aeff1d063da9785a1d65087bde7463254932ffe492eddcc6983c01a",
+          "bytes": 3630
+        },
+        {
+          "path": "data/evaluation/silver/voer-dsa-contract-examples-v0.1/examples.json",
+          "sha256": "0b965fa6ac46a7a2d9d7912a164f35d4e172bba1b1a754f84e2a9d1b0be1351e",
+          "bytes": 57899
+        },
+        {
+          "path": "data/evaluation/silver/voer-dsa-contract-examples-v0.1/README.md",
+          "sha256": "4616ddad4e2787b6c87ec4d9c8ef87eb86bf8579322ee0e3b4b536a2b0c26fc0",
+          "bytes": 2568
+        },
+        {
+          "path": "data/evaluation/silver/voer-dsa-contract-examples-v0.1/validation.json",
+          "sha256": "08bbc8870c8b6931c76881e66f0564e54d8d6746e373906912e1b773aadc91f2",
+          "bytes": 4832
+        }
+      ]
+    },
+    {
+      "id": "VISUAL-SEED",
+      "root": "data/evaluation/silver/vn-pdf-visual-v0.1",
+      "label_authority": "assistant_silver",
+      "source_snapshot": "vn-pdf-pilot-2026-09-04-v0.1",
+      "rights": "quarantine_local_inspection_only",
+      "permitted_claim": "13 page audits/8 QA reported; no multimodal accuracy",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/evaluation/silver/vn-pdf-visual-v0.1/page-audit.json",
+          "sha256": "526bd09ecb1455905887f1136eb02b8103312fa0b56152d69cd78eb9597dc849",
+          "bytes": 7649
+        },
+        {
+          "path": "data/evaluation/silver/vn-pdf-visual-v0.1/README.md",
+          "sha256": "c64a81e8f692115cd2186ddc21225a20c0eb633170835c6377641229d611ecdd",
+          "bytes": 2305
+        },
+        {
+          "path": "data/evaluation/silver/vn-pdf-visual-v0.1/visual-qa.json",
+          "sha256": "528f6388aab846dc2e4b9a762cebbec103e5b4692b1476fc733f5b6a327218f9",
+          "bytes": 6622
+        }
+      ]
+    },
+    {
+      "id": "TABLETOP",
+      "root": "data/evaluation/simulations/grounded-qa-tabletop-v0.1",
+      "label_authority": "synthetic_expected",
+      "source_snapshot": "grounded-qa-tabletop-v0.1",
+      "rights": "synthetic_local_dev_no_serving",
+      "permitted_claim": "11 scenarios reported; offline stub behavior only",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/evaluation/simulations/grounded-qa-tabletop-v0.1/fixtures.json",
+          "sha256": "d0875bcdbb052a3c6cb0a617ca1077810ad69c4146b2c0e5c10887cb3d7833b3",
+          "bytes": 7923
+        },
+        {
+          "path": "data/evaluation/simulations/grounded-qa-tabletop-v0.1/README.md",
+          "sha256": "28c51ea844d56709c8e1c07b4c0fb098a33ede7f82613defcc8f209f75f82240",
+          "bytes": 1439
+        },
+        {
+          "path": "data/evaluation/simulations/grounded-qa-tabletop-v0.1/results.json",
+          "sha256": "ae53f455255fce14a310b0b6cb9be2e67faf1b0b8cb9c47cc060cb1eb147f082",
+          "bytes": 216606
+        }
+      ]
+    },
+    {
+      "id": "AUTH-FIXTURES",
+      "root": "data/evaluation/synthetic/authorization-v0.1",
+      "label_authority": "synthetic_policy_draft",
+      "source_snapshot": "authorization-v0.1",
+      "rights": "synthetic_local_dev_no_serving",
+      "permitted_claim": "102 cases/110 checkpoints reported; no runtime enforcement",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/evaluation/synthetic/authorization-v0.1/cases.jsonl",
+          "sha256": "0b21a6bceca7c2b3bbb2da1aa1726971b3b5612657dd5de1c93f7dcbd2b6b4f0",
+          "bytes": 72465
+        },
+        {
+          "path": "data/evaluation/synthetic/authorization-v0.1/entities.json",
+          "sha256": "bf4bb5357682743f15ba6e1d3403b1909405ccf83150d6cbc5e7ec9f25717580",
+          "bytes": 8486
+        },
+        {
+          "path": "data/evaluation/synthetic/authorization-v0.1/manifest.json",
+          "sha256": "c8495ad5989baf0529700f98d98f9547a5e01e4aabafb82c10fd2d7394bcda2c",
+          "bytes": 1093
+        },
+        {
+          "path": "data/evaluation/synthetic/authorization-v0.1/README.md",
+          "sha256": "e9af22d78f7b164e14e1e826470e2016277dff6e35c48e9ab2c4604046e4a541",
+          "bytes": 2320
+        },
+        {
+          "path": "data/evaluation/synthetic/authorization-v0.1/validation-e0-52.json",
+          "sha256": "cc308e6fce7204126648928b00906c53399088a5c7e37244445b769c32887d03",
+          "bytes": 667
+        },
+        {
+          "path": "data/evaluation/synthetic/authorization-v0.1/validation-e01-84.json",
+          "sha256": "d51ebcaae63eec9b221ab2aec2f04d28fa79b1f535c3710a8c13a25ace244813",
+          "bytes": 730
+        },
+        {
+          "path": "data/evaluation/synthetic/authorization-v0.1/validation.json",
+          "sha256": "6ad71e394abc78b0ab31b05aa4db03791c4d9b07b6d27d06b5073a05debbb451",
+          "bytes": 1659
+        }
+      ]
+    },
+    {
+      "id": "DUPLICATE-FIXTURES",
+      "root": "data/evaluation/synthetic/duplicate-detection-v0.1",
+      "label_authority": "synthetic_provisional",
+      "source_snapshot": "duplicate-detection-v0.1",
+      "rights": "synthetic_quarantine_no_serving",
+      "permitted_claim": "E0.3-E0.9 correlated development snapshots; not independent test sets",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/e06-candidate-baseline-results.json",
+          "sha256": "ab1e72d345ad7ca6544a93327281fc97c0d38c95e2b4613903729cdec44821a9",
+          "bytes": 2483
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/e07-bge-m3-duplicate-results.json",
+          "sha256": "ab40c38123effa2f196626bdd67e94c9ab62cf7692bf94e8f5d804c4270f5c99",
+          "bytes": 5780
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/e08-hard-negative-pdf-manifest.json",
+          "sha256": "580b03012dbc019dcd666a4855a3d7940b59baec18b8e80bc01ab397042a89b4",
+          "bytes": 15160
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/e08-hard-negative-routing-results.json",
+          "sha256": "341cd48870068988d6bc3e17580d7e1860250bfd93afe4a924e117c189fabcef",
+          "bytes": 47801
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/e09-equivalence-triplet-pdf-manifest.json",
+          "sha256": "d7214346b736dbcf5ddb59ae833bb75ef4992c30e7c29b5013b7d7c3421fcf0f",
+          "bytes": 24982
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/e09-equivalence-triplet-results.json",
+          "sha256": "d8b21afb50ab5400897844cd4e9a811f14515b607433ee615734dc0e712c3e14",
+          "bytes": 53537
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/manifest.json",
+          "sha256": "6d26146976826dde6e973a731f398aee1c9de934de0b800113d6e8a0ff1c9313",
+          "bytes": 1793
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/pairs.jsonl",
+          "sha256": "314e28a98bb7cc0f9fde7961f6d701dcecf3c619adc80ad2139a663c7da1714f",
+          "bytes": 18144
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/pdf-fixtures-e05-manifest.json",
+          "sha256": "04299f4530bf62c4ab235aa3924817e9569b7696bd571bdc69bb7e3df43226a6",
+          "bytes": 7412
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/pdf-fixtures-e06-manifest.json",
+          "sha256": "5f7877e7b566559fe420d110e9bf154aa87070d501167e328c298203ee2e5d63",
+          "bytes": 2082
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/pdf-fixtures-manifest.json",
+          "sha256": "d3be92df68ddb934ebedbd4dd2ac2ea2a73f19a893bbb11901c11087597726c1",
+          "bytes": 6449
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/README.md",
+          "sha256": "9949c4d07ff7f361832e1e42d91a3d57468ca88142735ea057606d85a4c66609",
+          "bytes": 2989
+        },
+        {
+          "path": "data/evaluation/synthetic/duplicate-detection-v0.1/validation.json",
+          "sha256": "7e0545a79af07def39da7e5e993606cb3f8d316cc98b5fcb4545463f1339207d",
+          "bytes": 831
+        }
+      ]
+    },
+    {
+      "id": "PDF-AUDIT",
+      "root": "data/processed/pdf-pilot/audit-v0.1",
+      "label_authority": "diagnostic_measurements",
+      "source_snapshot": "vn-pdf-pilot-2026-09-04-v0.1",
+      "rights": "quarantine_local_inspection_only",
+      "permitted_claim": "object/text audit, not parser accuracy",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/processed/pdf-pilot/audit-v0.1/page-profile.json",
+          "sha256": "4febb4077b7ea69c40741b1acf30a8cb44c63b454ea5d238e377e8338dd8bc0d",
+          "bytes": 96129
+        },
+        {
+          "path": "data/processed/pdf-pilot/audit-v0.1/summary.json",
+          "sha256": "af78d7b1b483af1a251990c4f01042e59546fee70d85d9e1a1416fb5c3ec09a7",
+          "bytes": 890
+        },
+        {
+          "path": "data/processed/pdf-pilot/audit-v0.1/validation.json",
+          "sha256": "d6fc75ade8e95445272a4976855bff1ddc1e85658111a8183986801bfcbc2aea",
+          "bytes": 653
+        }
+      ]
+    },
+    {
+      "id": "PDF-LAYOUT",
+      "root": "data/processed/pdf-pilot/layout-diagnostic-v0.1",
+      "label_authority": "assistant_silver_oracle_regions",
+      "source_snapshot": "vn-pdf-pilot-2026-09-04-v0.1",
+      "rights": "quarantine_local_inspection_only",
+      "permitted_claim": "12 structural probe specifications; oracle crop not layout detector",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/processed/pdf-pilot/layout-diagnostic-v0.1/extractions.json",
+          "sha256": "2cc2cca2094e98e8f6e82b6f68ffb09c81efe7123c820632888e18ec2620a599",
+          "bytes": 95320
+        },
+        {
+          "path": "data/processed/pdf-pilot/layout-diagnostic-v0.1/review-issues.json",
+          "sha256": "60a994c437dc736b92e7b11e6f15ccf7d1231e656587c11b1148fe8deba7a82e",
+          "bytes": 1549
+        },
+        {
+          "path": "data/processed/pdf-pilot/layout-diagnostic-v0.1/structural-probes.json",
+          "sha256": "da18048cfae94a2a1f5864740745d527a617c54dd67ec5229bbb423dd7517dd4",
+          "bytes": 5934
+        },
+        {
+          "path": "data/processed/pdf-pilot/layout-diagnostic-v0.1/validation.json",
+          "sha256": "30680fa8911d3fa0dd6c5352c2dc1b988701c3936b63146b1db92cfc37c28103",
+          "bytes": 1568
+        }
+      ]
+    },
+    {
+      "id": "HTML-STRUCTURE",
+      "root": "data/processed/voer-dsa-structure-v0.1",
+      "label_authority": "source_derived_with_silver_sidecar",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "16 module representation traceability, not semantic correctness",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/1038f94e.json",
+          "sha256": "dc5faef9a03cd3e2ef9956a010f2e78b40258f7e2d5b446f12fabd6a35189bd9",
+          "bytes": 31284
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/27f6f7c3.json",
+          "sha256": "31c6e173a1935d475392553de7daee147ce9b871143b86800cc9d2aa1ed86948",
+          "bytes": 94226
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/2ff63fcb.json",
+          "sha256": "679516bdf854aeb30b2ffb73c3f2752a70c62f6de1ffe3d11e64eb9fd500a5b6",
+          "bytes": 308296
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/32569f6a.json",
+          "sha256": "54d93cf7ad45727e6c76f7a7b4223dcf8df6b2c8dd97363b8d2c8e15409ed3a5",
+          "bytes": 306777
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/387652b5.json",
+          "sha256": "3cbab473a3aaaa1de064f3beb7d9839b27bb837a9941e76be551d67b1dfbe710",
+          "bytes": 419024
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/48de4a98.json",
+          "sha256": "221e52457956ea2630d8d76334bcfabb61db4693cc261002ae8ba245d4ed9110",
+          "bytes": 27357
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/556b338a.json",
+          "sha256": "33519dcf00585cf23baa2691a0b52b287acda622ccbe6973981c62aece7d0168",
+          "bytes": 384009
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/578aa05e.json",
+          "sha256": "325f9b2eacc9702726ca25dad2d614d0116ff3aeb7916aebe7396a7c24acf36b",
+          "bytes": 336083
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/58472201.json",
+          "sha256": "c0c24ba420df3661d7b3c2a4b482465dfb5ec1c0d991effe031e592fae01b617",
+          "bytes": 268845
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/6a29d1a3.json",
+          "sha256": "0bd342b0685596863f8996362c48a6c6d3ac4a80019cd401c256ed74941802e1",
+          "bytes": 150319
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/9461a675.json",
+          "sha256": "4c12a83dca5449ea52d26106c0ec643fc75871ae2cae58989e0488b8a08c5006",
+          "bytes": 299312
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/a208ce0f.json",
+          "sha256": "95240469a2a133a1304482bdb6b7863c574500cca0729c0349e39fa78743fc91",
+          "bytes": 412712
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/a5c4789c.json",
+          "sha256": "156633d1d15ba871efa68a69f33b34cd7282dec15c6121dca8969f436b00c3c7",
+          "bytes": 13499
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/a7204439.json",
+          "sha256": "0397555cb63ce899a28a5ed3c639a4059d30daf38725b7a3e41c89f4912b501b",
+          "bytes": 182937
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/b1a9a363.json",
+          "sha256": "c00c1a124a1685d3b753b9e27046e3ce96ebe883d19aef1759a7a5df9add47f2",
+          "bytes": 22066
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/documents/c00632bd.json",
+          "sha256": "194e7678c40ee01a316df359718e0edc2bf705ba27a10aa092bac6fd2969c24b",
+          "bytes": 12679
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/manifest.json",
+          "sha256": "0baac2d32b4536840869389a3ee34b9e5d490877fa0a7f5a9019a782d052097d",
+          "bytes": 22853
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/README.md",
+          "sha256": "8ac15cdc78c645f16baa309235e86cb154f53bcd7906f6de473aeeed5e05c3be",
+          "bytes": 2454
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/review-issues.json",
+          "sha256": "5b7fac56cd38595714ec9f170494c4800bd1986c98e59115b0e9aa12537ffb67",
+          "bytes": 229774
+        },
+        {
+          "path": "data/processed/voer-dsa-structure-v0.1/validation.json",
+          "sha256": "7ba583d172255f0185f1539fed0f242a6b5b3dcb51c47efc1e7672917e2d1473",
+          "bytes": 18456
+        }
+      ]
+    },
+    {
+      "id": "HTML-ENRICHMENT",
+      "root": "data/processed/voer-dsa-enrichment-v0.1",
+      "label_authority": "assistant_silver",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "manual enrichment, not source author content",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/processed/voer-dsa-enrichment-v0.1/enrichment.json",
+          "sha256": "c63b23ad9abd88bd2a8deabd8bbda25d6c412f10c010480107b66bdfefc1b693",
+          "bytes": 93460
+        },
+        {
+          "path": "data/processed/voer-dsa-enrichment-v0.1/README.md",
+          "sha256": "eabcccf94d198bcab78b774ac478d56dad130e5109f2d2a0f84c5b9f29edca73",
+          "bytes": 1933
+        }
+      ]
+    },
+    {
+      "id": "SERIALIZATION-R0",
+      "root": "data/processed/voer-dsa-serialization-v0.1",
+      "label_authority": "assistant_silver_selected_groups",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "29 selected groups reported; source traceability only",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/processed/voer-dsa-serialization-v0.1/group-traces.json",
+          "sha256": "ca1783d93fda0fa0ffaa13b8b6b4046c42644af0d721d30c0c9daf7a502ea759",
+          "bytes": 72859
+        },
+        {
+          "path": "data/processed/voer-dsa-serialization-v0.1/README.md",
+          "sha256": "f50da2b7c0c0c57cc6e25ffe16c4d39909bdaa3b5c8a04bde29cc29be9eaef5b",
+          "bytes": 3332
+        },
+        {
+          "path": "data/processed/voer-dsa-serialization-v0.1/review-examples.md",
+          "sha256": "a3c33aef974253d084c3cb2cb08af7e374926595b566b76f5ce5bc595bf5e4ca",
+          "bytes": 17376
+        },
+        {
+          "path": "data/processed/voer-dsa-serialization-v0.1/serialization.json",
+          "sha256": "4d2e035f297692d591f3e1ef47bc2acbd65445f06eeb0d306935c220d2ee6f0e",
+          "bytes": 612117
+        },
+        {
+          "path": "data/processed/voer-dsa-serialization-v0.1/validation.json",
+          "sha256": "676d9b26dc5d5917aa36604554d7261513d5e0a68e41f9f41c5814ba978cbf5e",
+          "bytes": 5819
+        }
+      ]
+    },
+    {
+      "id": "CHUNKING-R1",
+      "root": "data/processed/voer-dsa-chunking-r1-v0.1",
+      "label_authority": "silver_boundary_diagnostic",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "fixed/structure boundary comparison, not paired E2E",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/processed/voer-dsa-chunking-r1-v0.1/boundary-report.md",
+          "sha256": "22283df8343fc3bfc7aea14352002f824e297f0022b498a392f11ab41a97c6a7",
+          "bytes": 39816
+        },
+        {
+          "path": "data/processed/voer-dsa-chunking-r1-v0.1/README.md",
+          "sha256": "cb99fe61d40945a703360ecea0020f9381619899da140a197c2a1f8849ad9ed7",
+          "bytes": 1114
+        },
+        {
+          "path": "data/processed/voer-dsa-chunking-r1-v0.1/run.json",
+          "sha256": "c6a86f2336c90cfaf3af910af1b1b1188c3a3bcba9f86537d899723b77b40989",
+          "bytes": 511174
+        },
+        {
+          "path": "data/processed/voer-dsa-chunking-r1-v0.1/validation.json",
+          "sha256": "ea3347843c64c1608cd919b3f440bcf829f52d282058e7af0f9413199b46937e",
+          "bytes": 3774
+        }
+      ]
+    },
+    {
+      "id": "RETRIEVAL-R2",
+      "root": "data/processed/voer-dsa-dense-r2-v0.1",
+      "label_authority": "silver_retrieval_diagnostic",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "dense retrieval on exposed dev, generation NOT RUN",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/processed/voer-dsa-dense-r2-v0.1/corpus.json",
+          "sha256": "8a48c3de1bd6eead24015f77e36c629e8867ce5fc8d2323eae096126f23157c6",
+          "bytes": 419470
+        },
+        {
+          "path": "data/processed/voer-dsa-dense-r2-v0.1/results.json",
+          "sha256": "4b2fe66c25678cb7aa737008fd5a98455e4f412e8c2fd424ecd9584776ad8172",
+          "bytes": 134681
+        },
+        {
+          "path": "data/processed/voer-dsa-dense-r2-v0.1/validation.json",
+          "sha256": "10dd5931b041cdc029cc3b36df71e26d8ba48eac44f72869cb591a112d54b581",
+          "bytes": 183
+        },
+        {
+          "path": "data/processed/voer-dsa-dense-r2-v0.1/vectors.npz",
+          "sha256": "dce16aae0a4eba2a345f23a653e7071b6428178550ebd6394f4f79a22243d8ed",
+          "bytes": 843800
+        }
+      ]
+    },
+    {
+      "id": "RETRIEVAL-R3",
+      "root": "data/processed/voer-dsa-retrieval-r3-v0.1",
+      "label_authority": "silver_retrieval_diagnostic",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "hybrid/rerank/packing historical scorer; generation NOT RUN",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/processed/voer-dsa-retrieval-r3-v0.1/hybrid-results.json",
+          "sha256": "b10e0da6007f9b24706218bd90cf8d38f4596bfbd7bb0736c5ba2c4835dfdbe2",
+          "bytes": 2108734
+        },
+        {
+          "path": "data/processed/voer-dsa-retrieval-r3-v0.1/packing-results.json",
+          "sha256": "49ea92ff32194c1864e397790dd3d8d0c9468ba1e4d16b455a57d86b8129dc00",
+          "bytes": 1435544
+        },
+        {
+          "path": "data/processed/voer-dsa-retrieval-r3-v0.1/reranker-results.json",
+          "sha256": "df894cbb083a321ab1fd61512b2a3a8fb754e573b14df8b3a6421d8150a2c5f0",
+          "bytes": 1526338
+        },
+        {
+          "path": "data/processed/voer-dsa-retrieval-r3-v0.1/validation.json",
+          "sha256": "24431d479115892c889312da5676610f38204809e7f7f84bb6e8131c084797c7",
+          "bytes": 597
+        }
+      ]
+    },
+    {
+      "id": "RETRIEVAL-R4",
+      "root": "data/processed/voer-dsa-retrieval-r4-v0.1",
+      "label_authority": "silver_retrieval_diagnostic",
+      "source_snapshot": "voer-2026-09-04-r1",
+      "rights": "local_reference_no_training",
+      "permitted_claim": "dependency/comparison stability diagnostic with documented defects",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "data/processed/voer-dsa-retrieval-r4-v0.1/code-prologue-results.json",
+          "sha256": "7db74bac46c081c010e422dda12beed85b771140b707b5b16a75ee01b4dc0b08",
+          "bytes": 412441
+        },
+        {
+          "path": "data/processed/voer-dsa-retrieval-r4-v0.1/comparison-branches.json",
+          "sha256": "e94439ee8559bacf51f66d3b89d531a4f9f17d19d2b948d59e18ef072d17eb08",
+          "bytes": 60244
+        },
+        {
+          "path": "data/processed/voer-dsa-retrieval-r4-v0.1/comparison-results.json",
+          "sha256": "8aed470128e616d8023a452c7530221cfd3846c31b26a37401496527ecec99b7",
+          "bytes": 328422
+        },
+        {
+          "path": "data/processed/voer-dsa-retrieval-r4-v0.1/stability-results.json",
+          "sha256": "7e4f17dae208e85b5d01a995603ff2745a8506dcf48a49e4c528ede016a962b7",
+          "bytes": 46500
+        },
+        {
+          "path": "data/processed/voer-dsa-retrieval-r4-v0.1/validation.json",
+          "sha256": "1e502357cbd048f791192e5ca505be9239fca5e46607b44cb7de6c5c969eb4bd",
+          "bytes": 717
+        }
+      ]
+    },
+    {
+      "id": "CONTEXT-REPAIR",
+      "root": "ai-core/experiments/context-integrity-v0.1",
+      "label_authority": "synthetic_expected",
+      "source_snapshot": "context-integrity-v0.1",
+      "rights": "synthetic_local_dev_no_serving",
+      "permitted_claim": "23 test methods; not the 21 RC integration cases",
+      "eligibility": "integrity/diagnostics only; metric-specific labels required",
+      "files": [
+        {
+          "path": "ai-core/experiments/context-integrity-v0.1/context_integrity.py",
+          "sha256": "99afaff53f8aff98e4a9b9cd43f77cae0b54fc370bf2b01161cb85714f7bce54",
+          "bytes": 9814
+        },
+        {
+          "path": "ai-core/experiments/context-integrity-v0.1/README.md",
+          "sha256": "d87fdc577aea2517df9c29b5388c310c58f487bae71ed45aa81480b7c485d8c8",
+          "bytes": 2920
+        },
+        {
+          "path": "ai-core/experiments/context-integrity-v0.1/test_context_integrity.py",
+          "sha256": "9b3e0eb9e96f2840b44b44449343d9f502df1476cf79cddb1613d099c4a0838d",
+          "bytes": 10017
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "path": "ai-core/evaluation/profiles/technical-pilot-v0.1.json",
+      "sha256": "5f074c850d6b1025252047fa1bebea5cdb25c50121d2cda3253e5944ca4abc31",
+      "bytes": 2990
+    },
+    {
+      "path": "data/raw/pdf-pilot/manifest.json",
+      "sha256": "e57994a8e88b1c2784116facc677c5258219cfbd9ab6a3a349355868d701be5d",
+      "bytes": 26839
+    },
+    {
+      "path": "data/raw/pdf-pilot/SOURCE-NOTICE.md",
+      "sha256": "7c49bbfb27a3684ba90d8c5142490892d4c054fd88cc2db71b66ca3b6f12e55f",
+      "bytes": 3905
+    },
+    {
+      "path": "data/raw/voer/SOURCE-NOTICE.md",
+      "sha256": "57231b74a00ed3b8919898920a59642b87447ad2676a3432712f5f48bbfba70b",
+      "bytes": 2325
+    },
+    {
+      "path": "docs/architecture/08-controlled-workflow-decision-v0.1.md",
+      "sha256": "ee0007119c8a2858c088b7960ce0ee5f94541bc079d596e43425e706ff70a9a4",
+      "bytes": 10295
+    },
+    {
+      "path": "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md",
+      "sha256": "af825cf7f31d46775449c95ac513e83f4d7fc46eeb4bd26bcb9fe3e87382f9dc",
+      "bytes": 17044
+    },
+    {
+      "path": "docs/harness/MODEL-NEUTRAL-TASK.md",
+      "sha256": "49fe8f38dc4f2bfd0d734f3e223206fef55d26c711b02ab2f3c4ec6fb51ad776",
+      "bytes": 9501
+    }
+  ],
+  "specification_only": [
+    {
+      "id": "RC-01..21",
+      "path": "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md",
+      "status": "integration_NOT_RUN",
+      "partial_coverage": "RC-14 basic synthetic projection only"
+    },
+    {
+      "id": "ARCH-C01..13",
+      "path": "docs/architecture/08-controlled-workflow-decision-v0.1.md",
+      "status": "model_NOT_RUN"
+    },
+    {
+      "id": "HARNESS-B01..13",
+      "path": "docs/harness/MODEL-NEUTRAL-TASK.md",
+      "status": "model_NOT_RUN",
+      "namespace_note": "not product metric B-01..03"
+    }
+  ],
+  "external_catalog": {
+    "path": "docs/evaluation/02-dataset-catalog.md",
+    "status": "reference_candidates_not_imported_by_this_task",
+    "license_and_revision": "must verify per selected release before use"
+  },
+  "limitations": [
+    "Existing on-disk files are current snapshots, not proof every historical intermediate can be reconstructed.",
+    "Hash pins are metadata only; raw source integrity and content semantics are distinct checks.",
+    "No frozen/hidden or human-gold pack established by this inventory.",
+    "Source checkout may omit data; missing local artifacts must be reported, not silently dropped."
+  ]
+}

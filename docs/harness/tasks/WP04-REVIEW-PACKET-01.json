@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "WP04-REVIEW-PACKET-01",
+  "work_package": "WP-04",
+  "objective": "Prepare a review-only AI Core workflow packet with boundaries, failure semantics, budgets, dependency candidates, test mapping and Astra review instructions; no product implementation.",
+  "request_basis": "User confirmed manual Academic text-first visual-limited scope and preparation of WP04/Astra packet, then requested continue 2026-09-07. ASTRA announcement made; review and explicit product GO still pending.",
+  "kind": "research",
+  "actions": ["documentation", "public_web_research"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/architecture/08-controlled-workflow-decision-v0.1.md", "docs/architecture/09-multimodal-readiness-v0.1.md", "docs/evaluation/32-scorer-specification-v0.1.md", "docs/evaluation/35-wp02-decision-review-v0.1.md", "docs/evaluation/36-wp02-review-handoff-v0.1.md", "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md", "docs/workflows/01-grounded-qa-pilot.md", "contracts/ai-core.md", "contracts/authorization-context.md", "contracts/evidence-packet.md", "contracts/content-unit-index.md", "contracts/quarantine-manifest.md", "contracts/http-api.md", "docs/governance/05-secure-upload-quarantine-deduplication-v0.1.md"],
+  "allowed_files": ["docs/architecture/10-ai-core-workflow-review-packet-v0.1.md", "docs/evaluation/37-wp04-behavior-security-review-v0.1.md", "docs/roadmap/04-astra-review-guide-v0.1.md", "docs/evaluation/38-wp04-review-packet-handoff-v0.1.md", "docs/evaluation/36-wp02-review-handoff-v0.1.md", "docs/README.md"],
+  "required_outputs": ["docs/architecture/10-ai-core-workflow-review-packet-v0.1.md", "docs/evaluation/37-wp04-behavior-security-review-v0.1.md", "docs/roadmap/04-astra-review-guide-v0.1.md", "docs/evaluation/38-wp04-review-packet-handoff-v0.1.md"],
+  "acceptance": ["Cover every WP04 packet requirement with explicit review proposals, mandatory invariants and unresolved decisions; keep original contracts authoritative and explain conflicts.", "Separate admission/index lifecycle from the first manual QA fake-adapter slice; preserve per-claim multimodal context and current per-resource authorization.", "Specify bounded failure/retry/cancel/idempotency and fenced release requirements without claiming implementation or freezing production numeric budgets.", "Map behavior/security and metrics to owner, test level, evidence status and checkpoints; all new case specs NOT RUN.", "Supply a usable Astra read-only review prompt and findings template; no fabricated reviewer output, product GO, code, dependency install, model calls or external source processing."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 6,
+  "handoff": "docs/evaluation/38-wp04-review-packet-handoff-v0.1.md"
+}

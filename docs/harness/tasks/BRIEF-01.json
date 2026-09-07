@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "BRIEF-01",
+  "work_package": "HARNESS-01",
+  "objective": "Clarify the product problem, goals, scope and success criteria, with a compact model-neutral brief and portable task instructions.",
+  "request_basis": "2026-09-06: user asks to clarify the problem, objectives and scope first so many small models, not only named model families, can read and follow. Documentation and harness onboarding only.",
+  "kind": "maintenance",
+  "actions": ["documentation"],
+  "read_first": ["AGENTS.md", "docs/harness/README.md", "docs/01-project-charter.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/evaluation/08-metric-contract-v0.2.md", "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md", "docs/harness/HARNESS-01-handoff.md"],
+  "allowed_files": ["docs/01-project-charter.md", "docs/00-project-brief.md", "docs/harness/MODEL-NEUTRAL-TASK.md", "docs/harness/BRIEF-01-handoff.md", "AGENTS.md", "docs/README.md", "README.md", "docs/harness/README.md", "docs/harness/tasks/WP03-01.json"],
+  "required_outputs": ["docs/01-project-charter.md", "docs/00-project-brief.md", "docs/harness/MODEL-NEUTRAL-TASK.md", "docs/harness/BRIEF-01-handoff.md"],
+  "acceptance": [
+    "Distinguish product vision, first vertical slice, current research work and the development harness; no model-family dependency.",
+    "Define users, problem, inputs/outputs, goals, scope/non-goals, success/failure, ownership, assumptions and unresolved decisions without inventing stakeholder approval.",
+    "Preserve GAP eligibility, safety hard gates, partial/comparison evidence semantics, quarantine, label limits and ASTRA-01; do not change plan or thresholds.",
+    "Provide a compact entry brief plus task-specific reading and a portable task template for repository or read-only chat use; do not promise every small model will succeed.",
+    "Document proposed comprehension probes and model capability limits, not fabricated model evaluation results."
+  ],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 9,
+  "handoff": "docs/harness/BRIEF-01-handoff.md"
+}

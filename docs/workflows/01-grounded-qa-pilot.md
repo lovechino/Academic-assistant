@@ -4,6 +4,8 @@ Ngày: 2026-09-04. Trạng thái: **đặc tả trên giấy, chưa có runtime 
 
 Cập nhật: đã chạy [vòng mô phỏng synthetic đầu tiên](02-tabletop-simulation-v0.1.md) với trace từng bước. Đây là chương trình offline riêng, không biến đặc tả bên dưới thành runtime hoặc API đã chạy; các quyết định vẫn chờ review.
 
+Bổ sung 2026-09-06: người dùng chọn [ARCH-02](../architecture/08-controlled-workflow-decision-v0.1.md): controlled multi-step + một vai trò suy luận chính + rules cho case rõ ràng. Các bước bên dưới không phải các agents độc lập. Manual Academic mode vẫn là slice đầu; chưa thêm router đa mode/state machine triển khai. Router không là authority; lời chào kèm câu học thuật không bị trả lời chào rồi bỏ câu hỏi; no-hit/timeout không thành out-of-scope. Các counterexamples mới là review cases NOT RUN, không thay kết quả mô phỏng cũ hoặc ASTRA-01.
+
 ## 1. Hai luồng không được nhập làm một
 
 Research hiện tại: người thực hiện đọc snapshot có quyền nghiên cứu, kiểm tra nhãn/provenance và mô phỏng trạng thái trên giấy. Không cần giả lập nguồn đã được giảng viên duyệt để làm việc này.

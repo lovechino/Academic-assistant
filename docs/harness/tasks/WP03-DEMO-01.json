@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "WP03-DEMO-01",
+  "work_package": "WP-03",
+  "objective": "Demonstrate one bounded harness task: inventory evidence in the WP-01.1 repair report without rerunning experiments or claiming product accuracy.",
+  "request_basis": "User asks: Ban thu chay mot task cho toi xem. Run one small real task using the current assistant and local harness, not an external model benchmark or a new academic runtime.",
+  "kind": "research",
+  "actions": ["documentation"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md", "ai-core/experiments/context-integrity-v0.1/README.md", "ai-core/experiments/context-integrity-v0.1/test_context_integrity.py"],
+  "allowed_files": ["docs/evaluation/demos/wp03-demo-01-evidence-inventory.md", "docs/evaluation/demos/wp03-demo-01-handoff.md"],
+  "required_outputs": ["docs/evaluation/demos/wp03-demo-01-evidence-inventory.md", "docs/evaluation/demos/wp03-demo-01-handoff.md"],
+  "acceptance": [
+    "Record exact input paths and SHA-256 hashes; identify report and metric profile versions and preserve historical files.",
+    "Classify historical regression results, structural checks, contract acceptance cases and metric definitions with source locators, authority, exposure, eligibility and permitted claims.",
+    "Statically verify 23 test methods, 9 finding IDs and 21 unique RC case IDs without treating static counts as executed behavior tests.",
+    "Explicitly preserve RC-14 basic-projection versus NOT RUN integration distinction; do not sum incompatible denominators or invent human gold, model accuracy or approvals.",
+    "Show step outcomes and source-grounded self-review; run existing harness/structure checks and keep independent review/model comparison NOT RUN."
+  ],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 2,
+  "handoff": "docs/evaluation/demos/wp03-demo-01-handoff.md"
+}

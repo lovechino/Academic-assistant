@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "WP02-DECISION-REVIEW-01",
+  "work_package": "WP-02",
+  "objective": "Review WP02/WP03 unresolved decisions and risks, distinguish phase-specific blockers, and prepare bounded inputs for a future WP04 review packet without implementation-grade workflow.",
+  "request_basis": "2026-09-06 user says continue; current state and handoff resolve this to WP02 decision review, not new OCR research or product implementation.",
+  "kind": "research",
+  "actions": ["documentation"],
+  "read_first": [
+    "AGENTS.md",
+    "docs/00-project-brief.md",
+    "docs/harness/README.md",
+    "docs/roadmap/03-master-plan-v0.2.md",
+    "docs/architecture/08-controlled-workflow-decision-v0.1.md",
+    "docs/architecture/09-multimodal-readiness-v0.1.md",
+    "docs/evaluation/32-scorer-specification-v0.1.md",
+    "docs/evaluation/33-multimodal-probe-protocol-v0.1.md",
+    "docs/evaluation/34-wp02-readiness-handoff-v0.1.md",
+    "ai-core/experiments/evaluation-scoring-v0.1/scoring.py"
+  ],
+  "allowed_files": [
+    "docs/evaluation/35-wp02-decision-review-v0.1.md",
+    "docs/evaluation/36-wp02-review-handoff-v0.1.md",
+    "docs/evaluation/34-wp02-readiness-handoff-v0.1.md",
+    "docs/README.md"
+  ],
+  "required_outputs": [
+    "docs/evaluation/35-wp02-decision-review-v0.1.md",
+    "docs/evaluation/36-wp02-review-handoff-v0.1.md"
+  ],
+  "acceptance": [
+    "Ground review findings in current artifacts and distinguish documented prototype limitations from observed product failures.",
+    "Give each open decision a proposed disposition, responsible role and latest required checkpoint; do not treat missing runtime tests as a pre-code impossibility.",
+    "Keep text-first scope proposed, rights/labels/budgets pending, ARCH02 unchanged and ASTRA01 pending explicit review and GO.",
+    "Provide WP04 input checklist and future acceptance cases without runtime code, orchestration implementation, new source processing, state changes or historical regeneration."
+  ],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 4,
+  "handoff": "docs/evaluation/36-wp02-review-handoff-v0.1.md"
+}

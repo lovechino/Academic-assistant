@@ -2,6 +2,8 @@
 
 Các khảo sát offline trước production. Runtime trong `src/` không import từ đây.
 
+Review repair 2026-09-06: [context-integrity-v0.1](context-integrity-v0.1/README.md) sửa mất sub/sup trong model-text projection và atomic required-dependency packing bằng profile riêng. 23 synthetic regression methods; R2–R4 scripts/artifacts lịch sử giữ nguyên. Không tiếp tục dùng legacy stripping làm model evidence hoặc coi resolver-only 6/6 là post-pack completeness.
+
 Hiện có [PDF pilot](pdf-pilot/README.md): hai helper được chuyển từ thư mục `research/pdf-pilot/` cũ, thuật toán giữ nguyên. Data/annotations/results vẫn ở `data/` tại root.
 
 Bổ sung [evidence mapping audit](evidence-mapping/README.md): kiểm tra hash/offset của 22 spans và AND/OR của nhóm bằng chứng; không chạy model/retrieval, không tái ghi dữ liệu.
@@ -21,3 +23,5 @@ Bổ sung [context review audit](context-review/README.md): kiểm tra annotatio
 Đã chạy [chunking R1 boundary-only](chunking-r1/README.md): BGE-M3 tokenizer đã pin, cap 512/overlap 0, fixed và structure-aware nhìn cùng 4 module. Structure không cắt atom nhưng tạo nhiều chunks hơn và chưa giải quyết code/dependency; chưa retrieval/model.
 
 Đã chạy [retrieval R4 diagnostics](retrieval-r4/README.md): frozen F32/int8 stability probe, comparison branch coverage gate và source-only code-prologue expansion. F32 ổn định theo batch trên probe; int8 có 19 đảo cặp. X3 cứu 6/6 text dependencies nhưng match rộng và visual path vẫn chưa hỗ trợ; chưa generation/agent benchmark.
+
+Đã bổ sung [synthetic security PDF fixtures và duplicate candidate diagnostics](security-fixtures/README.md) cho upload quarantine, exact/near duplicate, visible/hidden/image/OCR markers, BGE-M3 local, E0.8 hard-negative routing và E0.9 equivalence/conflict triplets. Đây là offline evaluation helper; output local không vào content DB/serving index.

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "WP03-01",
+  "work_package": "WP-03",
+  "objective": "Inventory existing evaluation packs and specify scorer contracts; no new model run, dataset regeneration or product code.",
+  "request_basis": "Prepared from the master plan for a future user request to continue WP-03. This card is NOT evidence of a new user instruction or approval; match it against the active request before begin.",
+  "kind": "research",
+  "actions": ["documentation"],
+  "read_first": [
+    "AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md",
+    "docs/evaluation/02-dataset-catalog.md", "docs/evaluation/08-metric-contract-v0.2.md",
+    "docs/evaluation/17-measurement-architecture-v0.1.md",
+    "docs/architecture/08-controlled-workflow-decision-v0.1.md",
+    "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md"
+  ],
+  "allowed_files": ["docs/evaluation/30-evaluation-registry-inventory-v0.1.md", "docs/evaluation/31-wp03-inventory-handoff-v0.1.md", "docs/README.md"],
+  "required_outputs": ["docs/evaluation/30-evaluation-registry-inventory-v0.1.md", "docs/evaluation/31-wp03-inventory-handoff-v0.1.md"],
+  "acceptance": [
+    "Inventory each existing relevant pack with source/report paths, snapshot/version or explicit unknown, label authority, split/exposure, rights and eligibility.",
+    "Each mapped metric/scorer specification declares numerator, denominator, exclusions, N/A semantics, version, slice and permitted claim; no fabricated measurements.",
+    "Distinguish 23 context regression methods, 21 NOT RUN RC integration cases, historical security fixtures and assistant-silver retrieval diagnostics.",
+    "List missing scorers/oracles, contamination risks and next bounded scorer tests; do not report WP-03 closed on inventory alone.",
+    "Preserve quarantine, source checksums and historical results; no helper reruns or new generations.",
+    "Account for ARCH-02 option 2 measurement needs: routing/rule false blocks, mixed and follow-up intents, post-pack evidence, security and total operational cost. ARCH-C01..13 are exposed NOT RUN review specifications, not measured results or new runtime scope; preserve manual Academic first slice and ASTRA-01."
+  ],
+  "checks": ["harness", "structure", "context-integrity"],
+  "max_changed_files": 3,
+  "handoff": "docs/evaluation/31-wp03-inventory-handoff-v0.1.md"
+}

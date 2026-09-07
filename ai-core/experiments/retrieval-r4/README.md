@@ -29,3 +29,6 @@ Comparison coverage giữ đủ hai branch ngay top 2 trên hai dev case và v�
 X3 cứu `dep-02` và `dep-03`, đạt 6/6 text dependencies; visual `dep-07` vẫn unsupported. X3 match 62/216 text chunks, nên cần negative context labels trước khi bật mặc định. Budget 1.024 vẫn chỉ đủ 9/10 case; 2.048 đủ 10/10 trong dev run hiện tại.
 
 Xem [báo cáo R4](../../../docs/evaluation/16-retrieval-r4-stability-coverage-dependency.md). Không dùng các kết quả assistant-silver này để tuyên bố agent accuracy, chống hallucination hoặc production readiness.
+## Historical-profile notice (2026-09-06)
+
+R4's 6/6 dependency result is pre-pack resolver reachability, not budgeted packet completeness. Required context can be skipped after retaining an anchor. [Context-integrity-v0.1](../context-integrity-v0.1/README.md) tests an atomic-closure correction separately; the historical runner/config/results are preserved for before/after reproduction. No new corpus/model score or automatic dependency-discovery claim is made.

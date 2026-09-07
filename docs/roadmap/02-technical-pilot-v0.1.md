@@ -1,5 +1,7 @@
 # Pilot kỹ thuật 01: hỏi kiến thức và kiểm chứng nguồn
 
+> Status note 2026-09-05: artifact này giữ scope của vertical slice. Phase status và thứ tự triển khai hiện hành nằm ở [Master Plan v0.2](03-master-plan-v0.2.md); chưa được hiểu là authorization cho product code.
+
 Ngày: 2026-09-04. Trạng thái: **bản thiết kế đang làm việc**, chưa được stakeholder/chuyên gia phê duyệt, chưa triển khai hay chạy benchmark.
 
 ## 1. Problem trước, không bắt đầu bằng ba agents

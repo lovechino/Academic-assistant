@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "ARCH-02",
+  "work_package": "HARNESS-01",
+  "objective": "Record the user-selected option 2 conceptual architecture and propagate its constraints into project documentation and model-neutral harness guidance.",
+  "request_basis": "2026-09-06: user agrees with option 2 and asks to update files including the harness. This authorizes documentation maintenance, not implementation-grade orchestration, product GO or model runs.",
+  "kind": "maintenance",
+  "actions": ["documentation", "public_web_research"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/01-project-charter.md", "docs/harness/README.md", "docs/harness/MODEL-NEUTRAL-TASK.md", "docs/harness/HANDOFF-TEMPLATE.md", "docs/harness/tasks/WP03-01.json", "docs/roadmap/03-master-plan-v0.2.md", "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md", "docs/workflows/01-grounded-qa-pilot.md"],
+  "allowed_files": ["docs/architecture/08-controlled-workflow-decision-v0.1.md", "docs/00-project-brief.md", "docs/01-project-charter.md", "docs/workflows/01-grounded-qa-pilot.md", "docs/README.md", "AGENTS.md", "docs/harness/README.md", "docs/harness/MODEL-NEUTRAL-TASK.md", "docs/harness/HANDOFF-TEMPLATE.md", "docs/harness/tasks/WP03-01.json", "docs/harness/ARCH-02-handoff.md"],
+  "required_outputs": ["docs/architecture/08-controlled-workflow-decision-v0.1.md", "docs/harness/ARCH-02-handoff.md"],
+  "acceptance": [
+    "Record option 2 as user-selected direction: controlled multi-step workflow, one primary reasoning role, deterministic rules for clear cases; not a measured winner or implementation approval.",
+    "Preserve Academic manual-mode first slice, backend authorization, quarantine, post-pack evidence and ASTRA-01; no new runtime, stack, model run, plan/state advance or thresholds.",
+    "Specify conceptual routing counterexamples and measurement needs, distinguishing exposed NOT RUN review cases from executed tests and existing metric contracts.",
+    "Make the decision discoverable in brief/charter/workflow and harness; provide small-model comprehension/review checks and future WP03 reading/acceptance without claiming semantic machine enforcement.",
+    "Keep existing history and preexisting edits; report commands, limits, pending review and next WP in the handoff."
+  ],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 11,
+  "handoff": "docs/harness/ARCH-02-handoff.md"
+}

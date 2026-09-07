@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "WP02-HANDOFF-RECONCILE-01",
+  "work_package": "HARNESS-01",
+  "objective": "Record completed WP02 technical documentation and update recovery entrypoints to the latest handoff without advancing to WP04 or granting approval.",
+  "request_basis": "User requested WP03 and WP02. Both technical deliverables now exist with verified local checks; this final governance reconciliation prevents repeated work and preserves needs-review status.",
+  "kind": "maintenance",
+  "actions": [
+    "documentation",
+    "harness_maintenance"
+  ],
+  "read_first": [
+    "AGENTS.md",
+    "docs/harness/README.md",
+    "docs/harness/project-state.json",
+    "docs/roadmap/03-master-plan-v0.2.md",
+    "docs/evaluation/34-wp02-readiness-handoff-v0.1.md",
+    "docs/harness/WP03-WP02-reconciliation.md"
+  ],
+  "allowed_files": [
+    "docs/roadmap/03-master-plan-v0.2.md",
+    "docs/harness/project-state.json",
+    "docs/harness/README.md",
+    "docs/harness/WP02-handoff-reconciliation.md"
+  ],
+  "required_outputs": [
+    "docs/harness/WP02-handoff-reconciliation.md"
+  ],
+  "acceptance": [
+    "Update handoff/read recovery and plan progress; next WP remains WP02 for review, not automatic WP04.",
+    "Keep human/rights/calibration/runtime gaps and ASTRA status; record expected frozen-state verify rejection, exact scope/manual checks and new hash without overwriting baseline or changing checker."
+  ],
+  "checks": [
+    "harness",
+    "structure"
+  ],
+  "max_changed_files": 4,
+  "handoff": "docs/harness/WP02-handoff-reconciliation.md"
+}

@@ -1,5 +1,7 @@
 # Metadata dictionary v0.1
 
+> Status note (2026-09-05): tài liệu này giữ metadata vocabulary nghiên cứu ban đầu. Với boundary mới, `document_id`/`document_version` được hiểu lần lượt là `material_id`/immutable `material_version_id`; hash chỉ dùng cho integrity/derivation. Định danh representation, atom, retrieval unit, index projection và authorization filter snapshot được chuẩn hóa tại [Content Unit & Index Contract v0.1](../architecture/07-content-unit-index-contract-v0.1.md). Khi có schema runtime, không copy nguyên các access field cũ thành authorization authority.
+
 Ngày cập nhật: 2026-09-04
 
 ## 1. Thiết kế
@@ -117,4 +119,3 @@ Không cho phép chunk thiếu `document_id`, version hoặc page/slide đi vào
 - [Schema.org LearningResource](https://schema.org/LearningResource)
 - [Schema.org learningResourceType](https://schema.org/learningResourceType)
 - [1EdTech LTI Resource Search](https://www.1edtech.org/standards/lti-rs/intro)
-

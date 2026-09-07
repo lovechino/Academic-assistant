@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "id": "wp02-local-inspection-v0.1",
+  "date": "2026-09-06",
+  "source_snapshot": "vn-pdf-pilot-2026-09-04-v0.1",
+  "status": "assistant_local_visual_reinspection_not_gold",
+  "renderer": "pdftoppm 26.07.0",
+  "dpi": 120,
+  "render_mode": "full physical page, singlefile PNG; no crop, no explicit rotation override",
+  "scope": "six purposively selected pages in four existing PDFs; not representative sample",
+  "rights": "quarantine_local_inspection_only; scratch inherits source restrictions; not redistributed",
+  "pages": [
+    {
+      "id": "db-table-p002",
+      "source_path": "data/raw/pdf-pilot/quarantine/vnua-dbms/Bai1_ThietkeCSDL_Bang.pdf",
+      "physical_page_1based": 2,
+      "source_sha256": "3975e158c74bda58edef3dba2f73cb4adfd74aeb2557105b50738748391b3491",
+      "scratch_render_path": "tmp/pdfs/wp02-readiness-01/db-table-p002.png",
+      "render_sha256": "813abf46ccba5bd2ab53573fc1acda33ee78e1cfc87a4375e32f1b731b65b5a5",
+      "full_page_viewed": true,
+      "reviewer": "same_assistant",
+      "human_reviewed": false,
+      "observation": "Four separate slide panels with printed labels 5,6,7,8 on physical page 2; screenshots and callout arrows require region-level context. No claim of current software procedure.",
+      "render_warning": null
+    },
+    {
+      "id": "er-p004",
+      "source_path": "data/raw/pdf-pilot/quarantine/uet-db/06-erdiagram.pdf",
+      "physical_page_1based": 4,
+      "source_sha256": "20c45238d5aa5b14ed732b669c071dbf77f237e7686c4c638a7f40ee1a278bee",
+      "scratch_render_path": "tmp/pdfs/wp02-readiness-01/er-p004.png",
+      "render_sha256": "b91f564702432d8ad9c783b7f5df29cdf94775256fedb45fa26f729e9488f028",
+      "full_page_viewed": true,
+      "reviewer": "same_assistant",
+      "human_reviewed": false,
+      "observation": "Legend rows pair distinct outlines/shapes with labels; double outlines and dashed outline are visually meaningful, not recoverable from unordered label text alone.",
+      "render_warning": null
+    },
+    {
+      "id": "micro-p032",
+      "source_path": "data/raw/pdf-pilot/quarantine/hcmuaf-micro/KT_vi_mo_Ch2_cung_cau.pdf",
+      "physical_page_1based": 32,
+      "source_sha256": "f88f1a8feabd36fe712336419ec453fa7a4c45ba3d277b2840fd718b9f5257a8",
+      "scratch_render_path": "tmp/pdfs/wp02-readiness-01/micro-p032.png",
+      "render_sha256": "43994bca82abbf75b175c1301ff0b90429114a92ee73cb6010ea4fc79b80eb21",
+      "full_page_viewed": true,
+      "reviewer": "same_assistant",
+      "human_reviewed": false,
+      "observation": "Table includes unit-bearing headers and a question-mark/blank exercise column. Observed blank cells are not zeros or filled answers.",
+      "render_warning": "Poppler reported no display font Symbol/ArialUnicode; render exited 0; no new cross-renderer verification"
+    },
+    {
+      "id": "micro-p033",
+      "source_path": "data/raw/pdf-pilot/quarantine/hcmuaf-micro/KT_vi_mo_Ch2_cung_cau.pdf",
+      "physical_page_1based": 33,
+      "source_sha256": "f88f1a8feabd36fe712336419ec453fa7a4c45ba3d277b2840fd718b9f5257a8",
+      "scratch_render_path": "tmp/pdfs/wp02-readiness-01/micro-p033.png",
+      "render_sha256": "9da3d98e13a9353cf1b34106fc949c53d807c52394ca4b9c7e07a051d04f2826",
+      "full_page_viewed": true,
+      "reviewer": "same_assistant",
+      "human_reviewed": false,
+      "observation": "Chart contains crossing lines, ticks and spatial annotations; graph must remain linked to unit evidence from preceding page when verified. No newly certified OCR transcript.",
+      "render_warning": "Poppler reported no display font Symbol/ArialUnicode; render exited 0; no new cross-renderer verification"
+    },
+    {
+      "id": "syllabus-p003",
+      "source_path": "data/raw/pdf-pilot/quarantine/vnua-dsa/PTH02003_CauTrucDuLieuVaGiaiThuat.pdf",
+      "physical_page_1based": 3,
+      "source_sha256": "bc51fcc022b1c093bd92d5caad35c271fec43bd9253e98967090e036163666af",
+      "scratch_render_path": "tmp/pdfs/wp02-readiness-01/syllabus-p003.png",
+      "render_sha256": "678c0442b99325e3fa35f4a84e01c752161b1112adebb13313f3b8fc67d2f873",
+      "full_page_viewed": true,
+      "reviewer": "same_assistant",
+      "human_reviewed": false,
+      "observation": "Six-column table ends with a row fragment at bottom of page; source identity and column alignment must survive a cross-page continuation.",
+      "render_warning": "Poppler reported no display font Symbol/ArialUnicode; render exited 0; no new cross-renderer verification"
+    },
+    {
+      "id": "syllabus-p004",
+      "source_path": "data/raw/pdf-pilot/quarantine/vnua-dsa/PTH02003_CauTrucDuLieuVaGiaiThuat.pdf",
+      "physical_page_1based": 4,
+      "source_sha256": "bc51fcc022b1c093bd92d5caad35c271fec43bd9253e98967090e036163666af",
+      "scratch_render_path": "tmp/pdfs/wp02-readiness-01/syllabus-p004.png",
+      "render_sha256": "3da48d82f81e66d2f7821931fb359790f464063444f9c67cd5b99e1b3e924133",
+      "full_page_viewed": true,
+      "reviewer": "same_assistant",
+      "human_reviewed": false,
+      "observation": "Top is a continuation fragment and table, lower portion is a separate practical table with different header/columns. Must not collapse them into one table.",
+      "render_warning": "Poppler reported no display font Symbol/ArialUnicode; render exited 0; no new cross-renderer verification"
+    }
+  ],
+  "not_run": [
+    "OCR/VLM",
+    "parser comparison",
+    "retrieval/generation",
+    "gold box/transcript adjudication",
+    "current cross-renderer comparison"
+  ],
+  "limitations": [
+    "Exit 0 and visible content do not certify every glyph or render fidelity.",
+    "No source PDF, historical annotation or result modified.",
+    "Scratch PNGs are ignored by harness and retained locally for this inspection; source hashes checked separately."
+  ]
+}

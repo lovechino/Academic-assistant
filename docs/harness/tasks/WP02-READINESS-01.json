@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "id": "WP02-READINESS-01",
+  "work_package": "WP-02",
+  "objective": "Prepare multimodal ingestion/OCR readiness decision table and evidence-preserving probe protocol, with bounded local visual reinspection of existing pilot pages.",
+  "request_basis": "2026-09-06 user requests WP-03 and WP-02. WP03 technical inputs delivered, explicit plan/state reconciliation permits WP02 readiness documentation only; rights, human calibration and product gates remain pending.",
+  "kind": "research",
+  "actions": [
+    "documentation"
+  ],
+  "read_first": [
+    "AGENTS.md",
+    "docs/00-project-brief.md",
+    "docs/harness/README.md",
+    "docs/roadmap/03-master-plan-v0.2.md",
+    "docs/evaluation/31-wp03-inventory-handoff-v0.1.md",
+    "docs/evaluation/32-scorer-specification-v0.1.md",
+    "docs/data/06-pdf-pilot-audit.md",
+    "docs/data/07-ocr-scan-source-review.md",
+    "docs/evaluation/06-visual-pdf-evaluation.md",
+    "docs/evaluation/07-parser-diagnostic-round0.md",
+    "data/raw/pdf-pilot/SOURCE-NOTICE.md",
+    "docs/governance/05-secure-upload-quarantine-deduplication-v0.1.md"
+  ],
+  "allowed_files": [
+    "docs/architecture/09-multimodal-readiness-v0.1.md",
+    "docs/evaluation/33-multimodal-probe-protocol-v0.1.md",
+    "docs/evaluation/34-wp02-readiness-handoff-v0.1.md",
+    "docs/evaluation/wp02-inspection-record-v0.1.json",
+    "docs/README.md"
+  ],
+  "required_outputs": [
+    "docs/architecture/09-multimodal-readiness-v0.1.md",
+    "docs/evaluation/33-multimodal-probe-protocol-v0.1.md",
+    "docs/evaluation/34-wp02-readiness-handoff-v0.1.md",
+    "docs/evaluation/wp02-inspection-record-v0.1.json"
+  ],
+  "acceptance": [
+    "Distinguish born-digital, scan/mixed, logical slides, tables/formula/vector/raster evidence and per-region readiness; no silent text-only fallback.",
+    "Specify preservation vs detection, annotation and metrics/eligibility with local-only rights and controlled future probes; no unsupported model/parser winner or threshold.",
+    "Reinspect six exact physical pages locally at declared renderer/DPI with hashes and full-page visual observations; scratch PNGs only under ignored tmp/pdfs/wp02-readiness-01, inherited quarantine, no source edits or external OCR/VLM.",
+    "Keep WP03 pending human/M0/calibration and WP02 OCR/runtime NOT RUN; no implementation-grade orchestration or product GO."
+  ],
+  "checks": [
+    "harness",
+    "structure"
+  ],
+  "max_changed_files": 5,
+  "handoff": "docs/evaluation/34-wp02-readiness-handoff-v0.1.md"
+}

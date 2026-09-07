@@ -1,5 +1,7 @@
 # Metric contract v0.2: problem -> phép đo -> quyết định
 
+> Clarification profile 2026-09-06: [review regression/metrics](29-review-regression-and-metric-clarifications-v0.1.md) tách V-03a (locator đúng tại delivery) khỏi V-03b (current viewer authorization), và yêu cầu report riêng macro/micro recall. Các định nghĩa dưới giữ lịch sử v0.2; run mới phải ghi profile clarification, không chấm lại artifacts cũ ngầm.
+
 Ngày: 2026-09-04. Trạng thái: **working draft, chưa có reviewer chuyên môn phê duyệt**. Không có kết quả benchmark mới.
 
 ## 1. Sửa mâu thuẫn trước khi chấm

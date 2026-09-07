@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "WP02-WP04-RECONCILE-01",
+  "work_package": "HARNESS-01",
+  "objective": "Record user acceptance of text-first visual-limited scope and explicitly reconcile WP02 review checkpoint to WP04 review-packet preparation, preserving ASTRA and data/evaluation gates.",
+  "request_basis": "User answered Tôi đồng ý to text-first scope and preparation of WP04/Astra packet, then requested Tiếp tục on 2026-09-07. This authorizes documentation preparation, not product GO.",
+  "kind": "maintenance",
+  "actions": ["documentation", "harness_maintenance"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/evaluation/36-wp02-review-handoff-v0.1.md", "docs/harness/WP02-handoff-reconciliation.md"],
+  "allowed_files": ["docs/00-project-brief.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/project-state.json", "docs/harness/README.md", "docs/harness/WP02-WP04-reconciliation.md"],
+  "required_outputs": ["docs/harness/WP02-WP04-reconciliation.md"],
+  "acceptance": ["Record actual scope acceptance without human gold, source promotion or product approval.", "Update plan, snapshot hash, recovery handoff and next package coherently; document expected frozen-state rejection and independent exact-scope checks, without checker edits or rebaseline."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 5,
+  "handoff": "docs/harness/WP02-WP04-reconciliation.md"
+}

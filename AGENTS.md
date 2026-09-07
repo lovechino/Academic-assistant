@@ -2,7 +2,11 @@
 
 ## Current stage
 
+Start with `docs/00-project-brief.md` for the model-neutral problem, objectives, scope and non-goals. `docs/01-project-charter.md` defines the problem; the master plan defines sequence/progress. The brief is a summary, not permission to implement the product. Do not assume a model working on this repo is the model used inside the academic product.
+
 The repository has a three-component source scaffold and research artifacts, not a running product. Follow the user's active request; do not treat a directory, draft contract or roadmap item as implemented behavior. Do not install a product stack, run paid models, deploy, or begin the next research phase merely because the scaffold exists.
+
+The user-selected product direction is option 2: controlled multi-step workflow, one primary reasoning role, deterministic rules for clear cases. Read `docs/architecture/08-controlled-workflow-decision-v0.1.md` for architecture/routing/evaluation tasks. Academic/Learning/Hub are capabilities, not automatically separate agents; first slice remains manual Academic QA. Router confidence never grants access; no retrieval hit is not out-of-scope. Do not silently switch to multi-agent or treat this decision as product GO. This is not an instruction to spawn development subagents.
 
 ## Ownership and dependencies
 
@@ -26,3 +30,17 @@ Dependency direction within each Python component: entrypoint/adapters -> applic
 ## Verification and handoff
 
 Use `python scripts/verify_structure.py` for the source scaffold. It checks paths, Python syntax and local source-document links; it is not a product test suite. Use `--require-local-data` when validating this workspace's existing pilot data. Report skipped checks and preserve unrelated edits. Add focused behavior tests when actual runtime code is introduced.
+
+## Model-independent work harness
+
+For repository work, first read `docs/harness/README.md`, run `python scripts/agent_harness.py status` (Python 3.11+), and read the referenced current plan/handoff. The harness is development tooling, not academic-agent runtime or a security sandbox. Do not assume changing models preserves chat context; recover the task card and existing run baseline before continuing.
+
+For small-context or non-repository models, use `docs/harness/MODEL-NEUTRAL-TASK.md`: supply applicable rules + brief + one bounded task + necessary source content explicitly. Briefly confirm objective/output/scope/unknowns before action. Do not load all historical research by default, but never omit required task contracts or safety rules; split the task if they do not fit. Without repository/tool access, produce a read-only draft and report checks as NOT RUN, never claim edits or execution.
+
+For changes, match the active user request to one bounded task card, run `check-task` and `begin` before editing outputs, stay within its exact-file scope, then run `verify` and write an evidence-backed handoff. Use `--require-local-data` in this workspace. Read-only review/status requests do not authorize a card/run or edits. A generic continue resolves to the current next work package, not an automatic new experiment. Prepared cards are not user authority.
+
+Never silently rebaseline, widen scope, edit state/approval to make a check pass, or revert concurrent user edits. Reconcile a stale roadmap/state explicitly. Check success is not semantic acceptance, human sign-off, label promotion or permission to advance phases. Follow the active request and higher-priority instructions; ask only for genuinely missing authority/choices. Preserve pending decisions and NOT RUN results in every handoff. The harness has no product-approval switch; ASTRA-01 below remains mandatory.
+
+## Mandatory AI Core workflow review gate
+
+Before adding product runtime logic under `ai-core/src/academic_ai/`, product package/entrypoint dependencies, an index writer, or an implementation-grade AI Core orchestration/state machine, stop and tell the user: `Đã tới ASTRA-01: cần review AI Core workflow`. Prepare the review packet defined in `docs/roadmap/03-master-plan-v0.2.md`, but do not begin product implementation until the user has reviewed the workflow with Astra and explicitly confirms GO. Documentation/contracts and bounded offline experiments do not by themselves trigger or satisfy this gate.

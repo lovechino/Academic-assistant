@@ -19,6 +19,10 @@ Owner của xử lý học liệu và ba trợ lý Academic Assistant, Learning 
 
 Tên thư mục thành phần là `ai-core`; tên namespace Python dự kiến là `academic_ai`. Chưa khai báo package hay dependency manifest vì chưa chọn runtime qua thử nghiệm.
 
+## Product-code review gate
+
+[Master Plan v0.2 ASTRA-01](../docs/roadmap/03-master-plan-v0.2.md) là gate bắt buộc trước khi thêm runtime logic vào `src/academic_ai/`, product entrypoint/dependencies, index writer hoặc agent/application state machine. Khi tới gate, Codex phải dừng và báo người dùng để workflow được Astra review; chỉ triển khai sau explicit GO. Docs/contracts và scripts trong `experiments/` không tự động vượt qua gate này.
+
 AI core không sở hữu đăng nhập, API công khai, quyền phê duyệt hoặc UI. Nhận scope đã được backend xác thực, giữ scope qua search, parent expansion và fetch ảnh. Trả lời qua [boundary contract](../contracts/ai-core.md), không trả provider payload/raw prompt cho frontend.
 
-Tài liệu nền: [chunking](../docs/architecture/01-context-preserving-chunking.md), [indexing](../docs/architecture/02-indexing-retrieval-design.md), [PDF có hình](../docs/architecture/03-visual-pdf-retrieval.md), [parser diagnostic](../docs/evaluation/07-parser-diagnostic-round0.md).
+Tài liệu nền: [chunking](../docs/architecture/01-context-preserving-chunking.md), [indexing](../docs/architecture/02-indexing-retrieval-design.md), [Content Unit & Index Contract v0.1](../docs/architecture/07-content-unit-index-contract-v0.1.md), [PDF có hình](../docs/architecture/03-visual-pdf-retrieval.md), [parser diagnostic](../docs/evaluation/07-parser-diagnostic-round0.md).

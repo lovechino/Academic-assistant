@@ -12,7 +12,7 @@ Owner của API và nghiệp vụ ứng dụng. Hiện chỉ có khung source; c
 | `migrations/` | Migration nghiệp vụ backend về sau |
 | `tests/` | Unit/integration/auth/contract tests về sau |
 
-Backend xác định user/course scope từ session đáng tin cậy, kiểm tra quyền và gọi AI qua [AI contract](../contracts/ai-core.md). Frontend dùng [HTTP contract](../contracts/http-api.md). Không chuyển thẳng request tự khai quyền của user vào AI.
+Backend xác định identity/active tenant/action/resource từ session và policy authority đáng tin cậy, rồi gọi AI bằng [authorization context/capability hẹp](../contracts/authorization-context.md) qua [AI contract](../contracts/ai-core.md). Frontend dùng [HTTP contract](../contracts/http-api.md). Role, tenant, course hoặc resource do client/model tự khai chỉ là selector không tin cậy.
 
 Backend sở hữu quyết định approve/revoke nguồn. AI core sở hữu cách tạo chunks/index; quyền publish đến từ backend, adapter AI không tự thay review state. File/image citation được backend kiểm tra lại quyền khi mở, kể cả sau khi nguồn bị thu hồi.
 

@@ -2,6 +2,8 @@
 
 Ngày cập nhật: 2026-09-04
 
+Phạm vi: bảng role/action khởi đầu cho một trường/course. Với multi-tenant, external organization, free user và agent capability, tài liệu này phải được đọc cùng [kiến trúc phân quyền Zero Trust đa tổ chức v0.1](03-multi-tenant-zero-trust-authorization.md) và [authorization context contract](../../contracts/authorization-context.md). RBAC trong bảng dưới không đứng một mình để cấp quyền runtime.
+
 ## 1. Nguyên tắc
 
 - Default deny: thiếu rule cho phép thì từ chối.
@@ -43,9 +45,9 @@ Ký hiệu: `Y` cho phép, `S` chỉ trong scope được giao, `N` không cho p
 
 ## 4. Resource scope
 
-Quyền hiệu lực là giao của các điều kiện:
+Quyền hiệu lực là giao của các điều kiện; trong kiến trúc multi-tenant còn bắt buộc active tenant, resource relation, action, purpose, policy revision và agent/tool capability:
 
-`role ∩ course ∩ term ∩ cohort ∩ document status ∩ sensitivity ∩ explicit exception`.
+`tenant ∩ role ∩ relation ∩ action ∩ purpose ∩ course ∩ term ∩ cohort ∩ document status ∩ sensitivity ∩ current capability`, sau đó áp `explicit deny`.
 
 Ví dụ: Student có role hợp lệ nhưng không thuộc course của tài liệu vẫn không được retrieve chunk. Giảng viên thuộc course nhưng tài liệu assessment confidential vẫn cần quyền đặc biệt.
 
@@ -79,4 +81,3 @@ Thiết kế role-permission tham khảo mô hình RBAC của NIST, trong đó q
 
 - [NIST Role-Based Access Control](https://csrc.nist.gov/Projects/role-based-access-control/faqs)
 - [A Revised Model for Role-Based Access Control](https://www.nist.gov/publications/revised-model-role-based-access-control)
-

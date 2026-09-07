@@ -1,5 +1,7 @@
 # Roadmap giai đoạn không viết code
 
+> Status note 2026-09-05: tài liệu này giữ lịch sử N0–N5. Trạng thái và thứ tự hiện hành nằm ở [Master Plan v0.2](03-master-plan-v0.2.md), bao gồm gate ASTRA-01 trước product code.
+
 ## Mục tiêu
 
 Hoàn tất các quyết định có ảnh hưởng lớn trước khi chọn framework hoặc triển khai agent.

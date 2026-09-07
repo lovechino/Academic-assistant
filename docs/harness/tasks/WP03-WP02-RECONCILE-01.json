@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "WP03-WP02-RECONCILE-01",
+  "work_package": "HARNESS-01",
+  "objective": "Reconcile plan and state after verified WP03 technical preparation so the explicitly requested WP02 readiness documentation can run, preserving pending reviews and ASTRA.",
+  "request_basis": "2026-09-06 user explicitly requested both WP03 and WP02. WP03 technical inventory/specification and bounded tests are verified; human/calibration/product gates remain pending. This is a separately recorded governance transaction, not a checker bypass.",
+  "kind": "maintenance",
+  "actions": [
+    "documentation",
+    "harness_maintenance"
+  ],
+  "read_first": [
+    "AGENTS.md",
+    "docs/harness/README.md",
+    "docs/harness/project-state.json",
+    "docs/roadmap/03-master-plan-v0.2.md",
+    "docs/evaluation/31-wp03-inventory-handoff-v0.1.md"
+  ],
+  "allowed_files": [
+    "docs/roadmap/03-master-plan-v0.2.md",
+    "docs/harness/project-state.json",
+    "docs/harness/WP03-WP02-reconciliation.md"
+  ],
+  "required_outputs": [
+    "docs/harness/WP03-WP02-reconciliation.md"
+  ],
+  "acceptance": [
+    "Record technical research progress without claiming M0/human acceptance, all scorers calibrated or product GO.",
+    "Change next WP to WP02 solely for requested readiness documentation and pin exact new plan hash; preserve ASTRA status/sequence and evidence limits.",
+    "Explicitly record that v0.1 freezes state in every run: expected stale-run rejection for this control transaction is not a successful verify. Independently check exact changed paths against original baseline, status/hash, structure and fixed tests; never overwrite baseline or weaken checker."
+  ],
+  "checks": [
+    "harness",
+    "structure"
+  ],
+  "max_changed_files": 3,
+  "handoff": "docs/harness/WP03-WP02-reconciliation.md"
+}

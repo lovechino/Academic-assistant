@@ -47,6 +47,8 @@ Nguồn:
 
 Không nên dịch tự động toàn bộ benchmark tiếng Anh rồi xem đó là benchmark tiếng Việt. Chỉ nên dịch một subset, sau đó để người Việt có chuyên môn sửa và gắn nhãn lại.
 
+Đối với upload dedup/data-poisoning, dự án có [synthetic duplicate mini-set v0.1](22-duplicate-detection-labeled-mini-set-v0.1.md) gồm 26 pairs exact/near/revision/variant/unrelated và 8 poisoned deltas. E0.4–[E0.6](25-deterministic-dedup-baselines-e0.6.md) hiện thực hóa 36 relation PDFs; [E0.7](26-bge-m3-duplicate-ablation-e0.7.md) thêm BGE-M3; [E0.8](27-hard-negative-routing-e0.8.md) thêm 24 hard negatives; [E0.9](28-equivalence-conflict-triplets-e0.9.md) thêm 12 triplet/36 PDF để tách candidate coverage khỏi semantic equivalence. Pool hiện có 96 PDF/100 trang. Đây là development seed cho metric UPL-04..07 và claim-conflict gates, không phải public benchmark, production detector result hoặc hidden test.
+
 ## 4. Nhóm Learning Assistant và pedagogy
 
 | Dataset/benchmark | Nội dung | Giá trị cho dự án | Quyết định |
@@ -90,6 +92,8 @@ Nguồn:
 - Dữ liệu tổng hợp hoàn toàn bằng LLM có thể mở rộng coverage nhưng không được thay nhãn của giảng viên.
 - Benchmark công khai có nguy cơ xuất hiện trong dữ liệu huấn luyện của model; chỉ nên dùng làm external sanity check.
 
+Security authorization không dùng public QA benchmark làm oracle. Dự án có [synthetic authorization pack v0.1](../../data/evaluation/synthetic/authorization-v0.1/README.md) với hai tenant giả, free user, roles, agent/workload và expected checkpoint decisions. Pack này đo policy/enforcement theo [protocol riêng](18-authorization-security-evaluation-protocol-v0.1.md); không chứa tài liệu/người dùng thật và không được gộp với RAG quality score.
+
 ## 7. Ma trận áp dụng đề xuất
 
 | Năng lực | Public reference | Local evaluation bắt buộc |
@@ -106,4 +110,3 @@ Nguồn:
 ## 8. Kiểm tra pháp lý trước khi tải dữ liệu
 
 Trước khi đưa dataset vào repository hoặc pipeline CI cần xác nhận lại license tại phiên bản cụ thể, yêu cầu attribution, điều kiện non-commercial và quyền phân phối lại. Với tài liệu nội bộ, chỉ lưu metadata/evidence theo chính sách dữ liệu của trung tâm; không đưa nội dung riêng tư vào public repository.
-

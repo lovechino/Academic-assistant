@@ -4,7 +4,7 @@ Trạng thái: thiết kế, chưa triển khai endpoint/OpenAPI. Backend sở h
 
 Luồng ưu tiên hiện tại: [grounded QA pilot](../docs/workflows/01-grounded-qa-pilot.md). Chưa đóng routes/DTO/SSE schema; phải thể hiện riêng thiếu evidence, access denied và dependency failure.
 
-Xem [evidence packet/public citation draft](evidence-packet.md) cho projection và locator invariants. HTML text spans không có số trang PDF; frontend không áp offsets lên representation/version khác. Source reference không tự cấp quyền mở tài liệu.
+Xem [evidence packet/public citation draft](evidence-packet.md) cho projection/locator invariants và [authorization context draft](authorization-context.md) cho active tenant, action/purpose, capability và revocation. HTML text spans không có số trang PDF; frontend không áp offsets lên representation/version khác. Source reference không tự cấp quyền mở tài liệu.
 
 ## Nhóm use case dự kiến
 

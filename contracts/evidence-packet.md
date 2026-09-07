@@ -1,6 +1,6 @@
-# Evidence packet boundary — draft v0.1
+# Evidence packet boundary — draft v0.1.1
 
-Trạng thái: đặc tả để review, không phải OpenAPI/JSON Schema hoặc DTO đã freeze. [Mô hình nguồn và ví dụ](../docs/architecture/05-evidence-pipeline-contract.md) là tài liệu đồng hành.
+Trạng thái: đặc tả để review, không phải OpenAPI/JSON Schema hoặc DTO đã freeze. [Mô hình nguồn và ví dụ](../docs/architecture/05-evidence-pipeline-contract.md) là tài liệu đồng hành; định danh và index lineage tuân theo [Content Unit & Index Boundary v0.1](content-unit-index.md).
 
 ## 1. Tách ba vùng dữ liệu
 
@@ -20,29 +20,34 @@ Tên field còn có thể đổi khi đóng schema. Các kiểu ở đây là m�
 |---|---|---|
 | `packet_id` | Nonempty string | Identity của đúng lần đóng context; repack tạo revision/identity mới |
 | `request_id` | Nonempty string, ở request envelope | Correlate các bước; không phải quyền truy cập |
-| `document_ref` trên item | ID + source version/hash + representation ID/hash | Gắn evidence vào snapshot xác định |
+| `material_ref` trên item | `material_id` + immutable `material_version_id` + `source_snapshot_id` | Gắn evidence vào đúng học liệu/phiên bản; hash không thay thế public identity |
 | `items` | Ordered array | Chỉ các fragments thực sự được serialize để dùng; ghi thứ tự và đối tượng visual nếu áp dụng |
 | `item_id` | Unique within packet | Claim/citation trỏ tới item này, không trỏ candidate đã bị bỏ |
-| `origin_ref` | Chunk hoặc context-window reference | Lineage để debug retrieval/expansion; không thay source locator |
+| `origin_ref` | `retrieval_unit_id`, `context_unit_id` và dependency-edge references | Lineage để debug retrieval/expansion; không thay source locator |
 | `span` / `source_locators` | Text spans hoặc locators đúng format | Có hệ tọa độ, bounds, source content/asset reference và checksum |
 | `context_header` | Text + origin + `citable=false` trong profile này | Metadata/context giúp đọc; không được dùng thay evidence |
 | `quality_flags`, dependency availability | Theo item/packet, nullable khi chưa đo | Tách text validity, reading order, thiếu ảnh/bảng/định nghĩa; unknown không phải pass |
+| `conflict_assessment` | not_assessed/partial/completed_no_conflict_observed/unresolved/resolved + method/version + assessed scope/version set + omissions | Internal assessment; thiếu record/top-K không chứng minh không có conflict. Model chỉ nhận cảnh báo an toàn đã lọc existence |
 | `integrity_state` | Pending/validated/rejected theo verifier và version | Chỉ structural integrity, không đồng nghĩa answerability |
 | `answerability_assessment` | Status + method/version + reasons nếu đã chạy | Chưa assessment phải là not_assessed; không gán complete từ gold qrels |
 | `budget` | Measurement state, tokenizer/accounting profile, limits, actual/estimated usage | Phải tính serialized input thật; không suy token từ codepoint |
 
-Scope/capability từ Backend và các lần recheck quyền nằm trong trusted execution context; ví dụ local chỉ có `serving_authorized=false`, không phải credential. Production cần current policy/admission trước retrieval, expansion, model input, delivery và source view theo threat model; packet fields không tự bảo đảm điều đó.
+Scope/capability từ Backend và các lần recheck quyền nằm trong trusted execution context theo [authorization context draft](authorization-context.md); ví dụ local chỉ có `serving_authorized=false`, không phải credential. Production cần current policy/admission trước retrieval, expansion, model input, delivery và source view theo threat model; packet fields không tự bảo đảm điều đó.
+
+Các field bảng trên thuộc internal evidence envelope; không serialize nguyên object đó cho model. Adapter chỉ gửi allowlisted `model_input` projection: question/history được phép, packet-local item/citation IDs, nội dung nguồn/locator được phép, header đánh dấu và safe quality/completeness warnings. Authorization decision/capability, tenant/subject/share ID nội bộ, storage path/hash và evaluator labels nằm ngoài projection. Internal envelope lưu exact model-input hash, serialization profile và budget; evaluator sidecar vẫn độc lập. Safe warning không nêu tên/số lượng/sự tồn tại của nguồn bị deny.
 
 ## 3. Invariants bắt buộc khi triển khai
 
 1. Text/asset phải khớp source locator và representation. Nếu rút ngắn fragment, cập nhật locator, content hash và omission trace; không giả gửi đủ span gốc.
-2. Element → chunk → parent/window → packet phải cùng document version và provenance. Nhiều tài liệu chỉ được kết hợp ở packet bằng các item riêng, không nén thành một chunk mất identity.
+2. Atom/block → retrieval unit → context unit → packet phải cùng material version, effective scope và provenance. Nhiều tài liệu chỉ được kết hợp ở packet bằng các item riêng, không nén thành một unit mất identity.
 3. Một claim có thể cần nhiều citations. Citation chỉ hợp lệ khi gắn item đã được dùng, hỗ trợ claim và còn truy cập đúng version; không chỉ có ID tồn tại.
 4. Contiguous spans có thể hợp lại để cover một evidence requirement. Việc serialize/join phải giữ reading order và không chèn header làm đứt nội dung; không bắt một chunk chứa trọn mọi ý.
 5. Source/hash/representation đổi phải remap; JavaScript UTF-16 index không được áp trực tiếp thay Unicode codepoint offset. PDF/page/bbox là nhánh riêng, không ép lên HTML.
 6. Budget unknown không cho phép kết luận fit. Header/tool/history/ảnh/output reserve cũng chiếm ngân sách ngoài text nguồn.
 7. Public source reference là opaque lookup handle, không phải raw path, bearer credential vô thời hạn hoặc quyền mở nguồn. Viewer/backend phải kiểm tra lại.
 8. Instructions trong source là dữ liệu không đáng tin cậy. Tách field không tự giải quyết prompt injection; cần policy/tool constraints và tests riêng.
+9. Similarity chỉ sinh candidate. Packet phải giữ riêng các claim xung đột và không được collapse chúng thành một nguồn hoặc một kết luận.
+10. Required dependency phải còn đủ sau packing và serialization; nếu không fit, bỏ bundle hoặc mark dependent claims incomplete. Optional context không được chiếm budget của required closure. Phép chấm resolver trước packing không thay phép chấm packet cuối.
 
 ## 4. Result và failure semantics
 

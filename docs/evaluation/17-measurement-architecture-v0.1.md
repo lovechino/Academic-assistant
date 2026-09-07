@@ -1,5 +1,7 @@
 # Measurement architecture v0.1 — đo trước khi mở rộng hệ thống
 
+> Clarification 2026-09-06: [review metric registry v0.1.1](29-review-regression-and-metric-clarifications-v0.1.md) bổ sung stage-aware lineage, post-pack dependency/fidelity, public/share/inspection semantics và tách V-03a/b, IX-07a/b. Historical runs giữ scorer cũ; full WP-03 inventory/calibration chưa hoàn tất.
+
 Ngày: 2026-09-05. Trạng thái: **planning-only, chờ review**. Tài liệu này tạm dừng việc đi sâu vào runtime sau R4 và dựng bản đồ đo lường cho toàn bộ Academic Assistant. Không cài RAGAS, không chọn generation model, không chạy thêm index/model và không biến các kết quả silver thành KPI nghiệm thu.
 
 ## 1. Quyết định trung tâm
@@ -132,7 +134,8 @@ Chạy `G-01 Oracle` trước `G-02 End-to-end`. Nếu oracle cũng sai thì kh�
 |---|---|---|---|
 | V-01 | Citation support precision | Claim-citation links thực sự hỗ trợ claim / links được phát | Case pass yêu cầu 100% phần áp dụng |
 | V-02 | Citation coverage | Factual claims cần nguồn có đủ tập citation hỗ trợ / claims cần nguồn | Thiếu citation không được N/A |
-| V-03 | Locator validity | Citation mở đúng source/version/region và còn quyền / citations phát ra | Hard gate 100% |
+| V-03a | Locator integrity at delivery | Issued citations có mapping đúng exact source/version/region tại delivery / issued citations | Hard gate 100%; viewer access chấm riêng |
+| V-03b | Current viewer authorization | Viewer attempts enforce đúng current expected decision / tested attempts | False allow = 0; revoke sau delivery không làm V-03a cũ fail |
 | V-04 | Citation completeness | Required claims có đủ mọi citation/evidence group cần thiết / required claims | Quan trọng với multi-source comparison |
 | V-05 | Citation contradiction | Citation chứa nội dung mâu thuẫn với claim mà không được xử lý / links | Lower is better; critical = fail |
 | V-06 | Viewer success | Authorized citation mở đúng artifact/locator / authorized open attempts | Backend/frontend integration |
@@ -174,6 +177,10 @@ RAGAS hiện có Topic Adherence, Tool Call Accuracy/F1 và Agent Goal Accuracy.
 | B-01 | Time-to-evidence | Thời gian từ query đến lúc mở đúng source | Chỉ đo khi có người dùng |
 | B-02 | Task success | Người học hoàn thành task kiểm chứng / user-study tasks | Không suy ra từ RAGAS |
 | B-03 | Learning gain | Pre/post hoặc control/treatment có thiết kế | Chờ nghiên cứu người học |
+
+`S-01` là metric tổng hợp, không đủ để debug hoặc nghiệm thu phân quyền đa tenant. [Authorization security registry AUTH-01..14](../governance/03-multi-tenant-zero-trust-authorization.md#14-metrics-và-hard-gates) tách false allow xuyên tenant, checkpoint coverage, retrieval prefilter, stale decision, cache isolation, agent/tool bypass, secret admission, audit, revocation latency và enumeration leakage. Các gate này dùng synthetic tenant fixtures và authorization trace; **không dùng RAGAS/LLM judge** và không được gộp trung bình với quality metrics.
+
+Upload có registry riêng [UPL-01..12](../governance/05-secure-upload-quarantine-deduplication-v0.1.md#12-metrics-và-gates): đo bypass từ upload sang serving, quarantine visibility, poisoned delta, exact/near duplicate, false merge, provenance, concurrency và cross-tenant existence leakage. Upload/duplicate gate không được gộp với parser/retrieval quality hoặc dùng similarity score như quyền publish.
 
 ## 4. Metric debt phải xử lý trước run tiếp theo
 
@@ -233,6 +240,8 @@ Group theo tài liệu/chủ đề/source family trước khi split. Không đ�
 | 7 dependency candidates | Dependency recall trên text/visual eligibility | Resolver precision khi thiếu negative labels |
 | 8 visual QA + 13 page audits silver | Parser/visual protocol review | Multimodal answer accuracy |
 | 11 tabletop scenarios | State/permission invariants synthetic | Runtime RBAC reliability |
+| 102 authorization cases / 110 checkpoints | Policy coverage và expected ALLOW/DENY | Runtime enforcement reliability |
+| 26 duplicate pairs + 96 PDF/100 trang | Duplicate/security denominator, candidate load, dual conflict coverage và equivalence-preference counterexamples | Production precision/recall, teacher gold, hidden test, OCR/vision hoặc threshold |
 | Chưa có teacher/reviewer | Hash, schema, deterministic controls, assistant-silver iteration | Gold score, learning gain, academic acceptance |
 
 Ưu tiên annotation tiếp theo không phải sinh hàng loạt câu hỏi mới, mà là:

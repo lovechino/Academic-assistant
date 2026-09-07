@@ -2,6 +2,17 @@
 
 Script tại đây chỉ phục vụ vận hành repo, không chứa logic AI hoặc nghiệp vụ backend.
 
+## Agent work harness
+
+[Hướng dẫn và giới hạn](../docs/harness/README.md): `agent_harness.py` kiểm tra state/task, snapshot Git-visible bytes trước sửa, phát hiện scope drift và chạy fixed local checks. Không gọi model, không tự phê duyệt hoặc chuyển phase.
+
+```powershell
+py -3.11 -B scripts/agent_harness.py status
+py -3.11 -B -m unittest discover -s scripts/tests -p test_agent_harness.py -v
+```
+
+Tests này là repo-tooling tests trên synthetic temporary Git repositories, không phải runtime/integration tests của ba component.
+
 ## Kiểm tra cấu trúc không sửa dữ liệu
 
 ```powershell

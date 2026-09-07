@@ -4,6 +4,8 @@ Ngày cập nhật: 2026-09-04
 
 Trạng thái: proposed; lựa chọn cuối phải dựa trên evaluation.
 
+Clarification 2026-09-06: vendor/options ở đây là research history. Identity, authorization, generation projection và activation hiện hành theo [content/index boundary v0.1.1](../../contracts/content-unit-index.md), không copy payload-role filters cũ thành authorization authority. Candidate dedup không được collapse conflicting versions.
+
 [Evidence pipeline contract](05-evidence-pipeline-contract.md) bổ sung lineage và versioning trước implementation. Index chưa được xây; Qdrant/model names bên dưới vẫn là phương án nghiên cứu, không phải stack đã chọn. Page fields trong payload áp dụng cho PDF, HTML dùng locator theo representation; permission payload không thay authority/currentness checks của Backend.
 
 Phạm vi dưới đây là **text-path baseline**. Với PDF có đồ thị/sơ đồ/handout, đọc thêm [dual-path visual retrieval](03-visual-pdf-retrieval.md). `late` trong thiết kế text không tự động tương đương visual embedding. Các nhánh phải có representation/profile riêng, normalize về candidate group trước fusion và kế thừa ACL cả khi fetch ảnh/parent.
@@ -58,12 +60,11 @@ Authorization context được backend xác định từ session, không lấy t
 Filter tối thiểu:
 
 ```text
-rights_status = clear
-AND lifecycle_status = published
-AND allowed_roles contains authenticated_role
-AND allowed_courses intersects enrolled_or_owned_courses
-AND term is permitted
-AND sensitivity <= role_clearance
+resource_owner_partition belongs to exact PDP-issued resource bindings
+AND resource/version is eligible for requested action and purpose
+AND current tenant relation OR exact current public/share binding is allowed by PDP
+AND applicable rights/lifecycle/sensitivity/term constraints pass
+AND no explicit deny
 ```
 
 Không retrieve rộng rồi mới xóa tài liệu unauthorized sau reranking. Qdrant hỗ trợ partition/filter theo payload và tenant field cho isolation; xem [Qdrant multitenancy](https://qdrant.tech/documentation/manage-data/multitenancy/).
@@ -157,7 +158,7 @@ corpus snapshot
 ## 7. Update và deletion
 
 - `chunk_id` sinh quyết định từ document version + element range + chunker profile.
-- Upsert chỉ các chunk bị ảnh hưởng khi document đổi.
+- Có thể reuse derived bytes của chunk không đổi, nhưng version mới phải có projection/manifest binding riêng; không upsert in-place active snapshot. Activation theo một serving snapshot cho tất cả surfaces.
 - Tài liệu archived/revoked phải biến mất khỏi retrieval ngay qua lifecycle filter, sau đó mới xóa vật lý theo retention policy.
 - Re-embedding không thay đổi `source_text` hoặc provenance.
 - Lưu tombstone/changelog để evaluation snapshot cũ còn tái lập được.

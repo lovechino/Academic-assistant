@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-01",
+  "work_package": "HARNESS-01",
+  "objective": "Create a model-independent repository work harness, not an academic-agent product runtime.",
+  "request_basis": "2026-09-06: user requests a harness so work remains aligned with the plan when using Sol or Terra; no product implementation requested.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation", "public_web_research"],
+  "read_first": ["AGENTS.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md"],
+  "allowed_files": [
+    "AGENTS.md", "README.md", "docs/README.md", "scripts/README.md",
+    "scripts/agent_harness.py", "scripts/tests/test_agent_harness.py",
+    "docs/harness/README.md", "docs/harness/HANDOFF-TEMPLATE.md",
+    "docs/harness/tasks/WP03-01.json", "docs/harness/HARNESS-01-handoff.md"
+  ],
+  "required_outputs": ["scripts/agent_harness.py", "scripts/tests/test_agent_harness.py", "docs/harness/README.md", "docs/harness/HANDOFF-TEMPLATE.md", "docs/harness/tasks/WP03-01.json", "docs/harness/HARNESS-01-handoff.md"],
+  "acceptance": [
+    "State and next work package match the current master plan; ASTRA remains locked.",
+    "Tests cover scope drift, dirty tracked/untracked files, protected paths, stale task/state/roadmap, missing output, and unsupported actions.",
+    "Verification invokes only fixed local checks, not model providers or historical generators.",
+    "Document limitations and bootstrap baseline timing; do not claim model reliability or sandbox enforcement.",
+    "Provide a scoped next WP-03 task and handoff without executing that research phase."
+  ],
+  "checks": ["harness", "structure", "context-integrity"],
+  "max_changed_files": 10,
+  "handoff": "docs/harness/HARNESS-01-handoff.md"
+}

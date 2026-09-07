@@ -2,6 +2,8 @@
 
 Dự án xây dựng bộ trợ lý học thuật dựa trên kho tài liệu được phê duyệt. Source được chia rõ thành **AI core, Backend, Frontend**. Giai đoạn hiện tại có khung tổ chức source, tài liệu và nghiên cứu dữ liệu; **chưa có ứng dụng/model/index chạy thật**.
 
+Bắt đầu bằng [bài toán và phạm vi bản ngắn](docs/00-project-brief.md), đọc [charter đầy đủ](docs/01-project-charter.md) khi cần mục tiêu/tiêu chí/điều chưa chốt. Model bất kỳ có thể nhận [task packet](docs/harness/MODEL-NEUTRAL-TASK.md); không cần biết lịch sử chat, nhưng vẫn phải được cấp đủ input và công cụ cho task. Chưa có bảo đảm mọi model nhỏ đều đủ năng lực thực hiện.
+
 ## Cấu trúc dự án
 
 ```text
@@ -35,6 +37,10 @@ Chưa có lệnh chạy backend/frontend, package manifest, Docker service hay b
 
 ## Luồng đang làm
 
+[Agent work harness](docs/harness/README.md) giúp các model dùng chung state/card, kiểm tra scope theo baseline và bàn giao bằng chứng. Đây là tooling phát hiện lệch quy trình, không phải agent runtime hoặc security sandbox. Bắt đầu bằng `py -3.11 -B scripts/agent_harness.py status`.
+
+[Master Plan v0.2](docs/roadmap/03-master-plan-v0.2.md) là nguồn trạng thái hiện hành: [WP-01.1 review repair](docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md) đã sửa chín findings ở mức draft/contracts và bounded regression; còn human sign-off/runtime validation. Bước kế tiếp là WP-03 evaluation inventory/scorers, rồi WP-02 multimodal/OCR readiness. Trước khi sửa runtime `ai-core/src`, thêm product entrypoint/dependencies/index writer hoặc đóng orchestration state machine, dự án phải dừng tại **ASTRA-01** để người dùng review AI Core workflow bằng Astra và xác nhận GO.
+
 [Technical pilot 01](docs/roadmap/02-technical-pilot-v0.1.md): tạm chọn CTDL & Giải thuật, hỏi kiến thức -> giải thích có citation -> mở đúng nguồn. Đã có [metric contract v0.2](docs/evaluation/08-metric-contract-v0.2.md), [workflow xuyên ba component](docs/workflows/01-grounded-qa-pilot.md) và profile tham chiếu 14 case silver có sẵn.
 
 [Mapping evidence đầu tiên](docs/evaluation/09-evidence-mapping-voer-dsa.md) đã nối 10 answerable case với 30 claims, 25 nhóm và 22 đoạn nguồn định vị bằng hash/offset. Vẫn là silver, chưa chạy benchmark. Đã chạy [11 tình huống workflow synthetic](docs/workflows/02-tabletop-simulation-v0.1.md), ghi từng bước và thử 9 lần cố ý bỏ guard; tiếp theo cần người dùng review quy tắc xử lý và các nhãn còn mở, chưa code sản phẩm.
@@ -58,6 +64,12 @@ Cập nhật mới nhất: đã [chạy serializer bảo toàn nguồn trên 29 
 Đã [chạy R4 stability + comparison coverage + code-prologue](docs/evaluation/16-retrieval-r4-stability-coverage-dependency.md). F32 giữ nguyên ranking giữa batch 1/4 trên frozen probe, còn dynamic-int8 tạo 19 đảo cặp nên không dùng raw score làm threshold. Comparison route giữ đủ hai nhánh ở top 2 nhưng không cải thiện relevance tổng thể. X3 cứu `dep-03` và đạt 6/6 text dependencies; do match 62/216 chunks và chưa có negative-context gold, nó vẫn chỉ là candidate resolver. Visual path và generation chưa chạy.
 
 Theo quyết định tạm dừng đi sâu vào code, dự án đã chuyển sang [measurement architecture v0.1](docs/evaluation/17-measurement-architecture-v0.1.md): vẽ toàn pipeline, định nghĩa metric/mẫu số/gate cho source → parser → chunking → retrieval → packing → generation → citation → agents → delivery, và đặt RAGAS ở vai trò automated diagnostic cần calibration. Chưa cài RAGAS hoặc mở generation run.
+
+Để chuẩn bị mở rộng đa trường/tổ chức và free user, đã thiết kế [phân quyền Zero Trust đa tổ chức v0.1](docs/governance/03-multi-tenant-zero-trust-authorization.md) cùng [authorization context/agent capability](contracts/authorization-context.md). Blueprint kết hợp RBAC + quan hệ tài nguyên + thuộc tính/purpose; kiểm tra quyền trước retrieval, từng dependency/tool, model input, cache, delivery và source viewer. [Chỉ mục authorization](docs/governance/00-authorization-program-index.md) hiện nối blueprint với [policy decision table 102 case/110 checkpoint](docs/governance/04-authorization-policy-decision-table-v0.1.md), [secure upload/quarantine/dedup](docs/governance/05-secure-upload-quarantine-deduplication-v0.1.md), AUTH-01..14 và UPL-01..12. Đây là thiết kế/fixtures, chưa phải runtime authorization đã triển khai hay chứng nhận an toàn.
+
+Upload policy U-01..U-12 đã được người dùng chấp thuận và freeze làm candidate v0.1: raw file chỉ vào tenant quarantine, không vào content DB/serving index; exact/near duplicate giữ provenance và cần resolution riêng. [Mini-set duplicate E0.3](docs/evaluation/22-duplicate-detection-labeled-mini-set-v0.1.md) có 26 synthetic pairs để review labels. E0.4–E0.8 xây 60 PDF/64 trang và chốt exact-first candidate routing; [E0.9 equivalence/conflict triplets](docs/evaluation/28-equivalence-conflict-triplets-e0.9.md) thêm 36 PDF, đưa pool lên 96 PDF/100 trang. Char5, MinHash và BGE-M3 đều lấy đủ equivalent+conflict ở K=2 nhưng xếp bản sai claim ở rank 1 cho 12/12 triplet. Vì vậy similarity chỉ sinh candidate; không được collapse index, auto-merge hoặc chọn truth.
+
+[Content Unit & Index Contract v0.1.1](docs/architecture/07-content-unit-index-contract-v0.1.md) chuẩn hóa blob → submission/snapshot → quarantine representation → approved promotion binding → material/version → serving units/projections. Internal evidence envelope có model-input projection riêng. Contract giữ content truth, similarity/conflict và authorization truth độc lập; serving snapshot được activate qua guarded publish boundary, revoke chặn bằng current policy trước khi purge index hoàn tất. Đây là corrected draft, chưa có runtime enforcement.
 
 ## Nguyên tắc quyết định
 

@@ -27,3 +27,6 @@ Reranker score 800 pairs trong 593,579 giây, không pair nào bị truncation. 
 Packet 1.024 token chỉ giữ đủ 9/10 case; 2.048 token giữ 10/10 với ranking hiện tại. Section-lead expansion chỉ tăng dependency coverage text-path từ 4/6 lên 5/6; cue-neighbor không tăng. Một visual dependency không eligible cho text path.
 
 Xem [báo cáo R3](../../../docs/evaluation/15-retrieval-r3-hybrid-rerank-packing.md) để đọc metric và failure analysis. Không dùng kết quả dev silver này làm production threshold.
+## Historical-profile notice (2026-09-06)
+
+This runner reproduces frozen R3. Anchor-first packing can drop required context under budget, and resolver diagnostics do not measure final packet dependency closure. New work uses the bounded [context-integrity repair profile](../context-integrity-v0.1/README.md) as the correction candidate. Historical scripts/config/results remain unchanged; do not reuse their model-text projection or interpret pre-pack coverage as answerability.

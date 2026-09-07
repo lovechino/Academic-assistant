@@ -32,3 +32,6 @@ Run hiện tại encode 216 chunks trong 192,932 giây và 10 queries trong 1,39
 | 20 | 100% | 100% | 100% | 100% |
 
 Chi tiết và cách diễn giải: [R2 report](../../../docs/evaluation/14-dense-retrieval-r2-bge-m3.md). Đây là diagnostic trên dev silver, không phải agent/answer accuracy.
+## Historical-profile notice (2026-09-06)
+
+This runner reproduces the frozen R2 baseline. Its legacy plain-text projection can collapse sub/sup and other rich semantics; do not use it as new generator evidence. The versioned repair and regression tests are in [context-integrity-v0.1](../context-integrity-v0.1/README.md). Existing config/input/vector/result hashes and implementation remain unchanged; no corrected retrieval score is claimed.

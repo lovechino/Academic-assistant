@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "WP03-REGISTRY-01",
+  "work_package": "WP-03",
+  "objective": "Normalize existing evaluation evidence inventory and scorer specifications, with bounded synthetic arithmetic regression tests; prepare measured readiness inputs for WP-02.",
+  "request_basis": "2026-09-06 user explicitly requests WP-03 and WP-02. Execute WP-03 first, without product code, model runs, dataset regeneration, external processing or threshold approval.",
+  "kind": "research",
+  "actions": [
+    "documentation",
+    "offline_synthetic",
+    "public_web_research"
+  ],
+  "read_first": [
+    "AGENTS.md",
+    "docs/00-project-brief.md",
+    "docs/harness/README.md",
+    "docs/roadmap/03-master-plan-v0.2.md",
+    "docs/evaluation/02-dataset-catalog.md",
+    "docs/evaluation/08-metric-contract-v0.2.md",
+    "docs/evaluation/17-measurement-architecture-v0.1.md",
+    "docs/evaluation/29-review-regression-and-metric-clarifications-v0.1.md",
+    "docs/architecture/08-controlled-workflow-decision-v0.1.md"
+  ],
+  "allowed_files": [
+    "docs/evaluation/30-evaluation-registry-inventory-v0.1.md",
+    "docs/evaluation/31-wp03-inventory-handoff-v0.1.md",
+    "docs/evaluation/32-scorer-specification-v0.1.md",
+    "docs/evaluation/registry-v0.1.json",
+    "ai-core/experiments/evaluation-scoring-v0.1/README.md",
+    "ai-core/experiments/evaluation-scoring-v0.1/scoring.py",
+    "ai-core/experiments/evaluation-scoring-v0.1/test_scoring.py",
+    "docs/README.md"
+  ],
+  "required_outputs": [
+    "docs/evaluation/30-evaluation-registry-inventory-v0.1.md",
+    "docs/evaluation/31-wp03-inventory-handoff-v0.1.md",
+    "docs/evaluation/32-scorer-specification-v0.1.md",
+    "docs/evaluation/registry-v0.1.json",
+    "ai-core/experiments/evaluation-scoring-v0.1/README.md",
+    "ai-core/experiments/evaluation-scoring-v0.1/scoring.py",
+    "ai-core/experiments/evaluation-scoring-v0.1/test_scoring.py"
+  ],
+  "acceptance": [
+    "Inventory current packs/report references with exact local hashes, authority, exposure, rights, eligibility and permitted claims; public references are not downloaded benchmarks.",
+    "Specify versioned metric formulas/denominators/exclusions/N-A and pending/not-run semantics, post-pack scoring and ARCH-02 routing needs; preserve existing threshold decisions as pending.",
+    "Run bounded synthetic scorer tests including AND-OR evidence, macro/micro, zero denominator, missing output, packing loss, false refusal separation and OCR edit distance; no product or model behavior claims.",
+    "Preserve all historical source/results and existing edits. Report gaps including human review/calibration/security integration and distinguish technical research handoff from M0 or product acceptance."
+  ],
+  "checks": [
+    "harness",
+    "structure",
+    "context-integrity"
+  ],
+  "max_changed_files": 8,
+  "handoff": "docs/evaluation/31-wp03-inventory-handoff-v0.1.md"
+}
