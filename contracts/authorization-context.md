@@ -91,7 +91,7 @@ Không quy định transport/service split. Dù in-process hay networked, semant
 - không giữ capability nội bộ AI hoặc credential datastore;
 - tenant/course/resource ID chỉ là selector;
 - không suy role, ẩn UI hoặc opaque ID là enforcement;
-- đổi tenant phải bỏ state/cached content của tenant trước.
+- đổi tenant/conversation/logout/login phải invalidate client view/session generation và bỏ state/cached content trước; mọi callback/event kiểm request + conversation + generation trước khi render/ghi cache/history theo [HTTP request/view binding](http-api.md). Client fencing không cấp quyền và không thay current Backend checks.
 
 ### Backend
 
@@ -162,6 +162,8 @@ Cache hit vẫn phải recheck trước hydrate/delivery. Semantic similarity kh
 - decision và enforcement trace đủ 100% protected actions.
 
 ## 10. Chưa quyết định
+
+Clarification 2026-09-07: accidental deletion recovery dùng các action riêng `inspect_trash_metadata`, `soft_delete`, `restore_to_review`, `purge` theo [material recovery contract](material-recovery.md). Upload/view/share hoặc platform-admin role không mặc định cấp chúng. Restore không khôi phục grants, approval hay epoch cũ; current lifecycle deny chi phối mọi serving checkpoint. Retained trash content chỉ được exact assigned restricted inspection, không cấp generic model-use qua restore.
 
 - token/envelope encoding, signature/MAC/key rotation;
 - policy engine/relation store/vendor và topology;

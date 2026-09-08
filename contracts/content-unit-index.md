@@ -219,6 +219,8 @@ The authorization boundary MUST define an authoritative ordering point for prote
 
 ## 11. Evidence packet handoff
 
+Clarification 2026-09-07: [material recovery](material-recovery.md) applies the same revoke ordering to soft-delete. Retention state is independent of historical publication status. Restore creates a nonserving recovery revision; republication requires a new immutable material-version/promotion binding, current approval and complete atomic serving snapshot. Never rewind epochs/ACLs or reactivate old jobs, caches, shares or backup aliases. Blob reuse must retain separate ownership/provenance and fenced reachability/purge semantics; indexes remain rebuildable projections.
+
 Before generation, each evidence item MUST reference:
 
 - material and immutable material version;

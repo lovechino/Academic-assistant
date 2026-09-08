@@ -1,6 +1,6 @@
 # Vòng đời tài liệu v0.1
 
-Ngày cập nhật: 2026-09-06 — clarification v0.1.1
+Ngày cập nhật: 2026-09-07 — clarification v0.1.2, bổ sung recovery draft; chưa runtime.
 
 ## 1. Trạng thái
 
@@ -15,6 +15,8 @@ Ngày cập nhật: 2026-09-06 — clarification v0.1.1
 | quarantined | Có nghi vấn quyền, bảo mật hoặc chất lượng | Không với mọi retrieval thông thường |
 
 ## 2. Luồng chính
+
+Publication states ở §1 độc lập với retention/deletion state. Soft-deleted/purge-claimed/purged không được retrieval thông thường dù status lịch sử là published. [Recovery policy](06-material-deletion-recovery-v0.1.md) định nghĩa overlay này; restore luôn nonserving trước current review, không thêm đường tắt Published.
 
 `Draft -> In review -> Published -> Archived`
 
@@ -52,7 +54,7 @@ Chỉ sau `approved_for_staging` mới tạo một immutable material version ho
 - Không ghi đè file đã dùng trong một corpus snapshot.
 - Phiên bản mới chỉ thay phiên bản cũ sau khi publish thành công.
 - Gold case phải trỏ tới version cụ thể; nếu source đổi, case cần review lại.
-- Khi rollback, khôi phục một version đã duyệt thay vì tái sử dụng index không rõ nguồn.
+- Khi rollback nội dung, dùng nguồn bất biến của version cũ làm căn cứ cho version/promotion mới, kiểm current rights/security/content approval rồi staging/atomic activation riêng. Đã từng duyệt không là quyền publish hiện tại; không tái sử dụng index/ACL/epoch cũ như authority.
 - Hai tenant hoặc hai owner có cùng bytes vẫn có submission, material, approval và quyền riêng; storage dedup nội bộ nếu có không được merge lifecycle.
 
 ## 5. Tài liệu mâu thuẫn
@@ -71,6 +73,8 @@ Khi hai nguồn khác nhau:
 - Archive phải loại khỏi active retrieval và invalidate cache liên quan.
 - Xóa vật lý chỉ khi có policy retention và người có thẩm quyền phê duyệt.
 - Audit metadata về quyết định archive/delete được giữ theo chính sách của trung tâm.
+
+Xóa nhầm dùng soft-delete/thùng rác theo [material recovery contract](../../contracts/material-recovery.md): immediate current-policy deny, giữ restricted immutable artifacts trong hạn nếu policy cho phép, restore-to-review tạo revision mới; không khôi phục grants/shares cũ. Retention duration và role assignments chưa chốt. Restore/purge cần ordering/reservation chống race, bảo vệ shared blobs và chống backup resurrect tombstone; xem REC cases. Đây là future lifecycle lane, không first-code QA scope.
 
 ### Serving index activation và revoke
 

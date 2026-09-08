@@ -8,31 +8,17 @@ import json
 from pathlib import Path
 import re
 from urllib.parse import unquote
+import subprocess
+
+from verify_source_layout import SCAFFOLD_FILES, check_layout
 
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_PATHS = (
     "AGENTS.md", "README.md", ".gitignore", ".gitattributes",
-    "ai-core/README.md", "backend/README.md", "frontend/README.md",
-    "ai-core/src/academic_ai/domain/README.md",
-    "ai-core/src/academic_ai/application/README.md",
-    "ai-core/src/academic_ai/ingestion/README.md",
-    "ai-core/src/academic_ai/retrieval/README.md",
-    "ai-core/src/academic_ai/agents/README.md",
-    "ai-core/src/academic_ai/infrastructure/README.md",
-    "ai-core/prompts/README.md", "ai-core/evaluation/README.md",
-    "ai-core/experiments/README.md", "ai-core/tests/README.md",
-    "backend/src/academic_backend/api/README.md",
-    "backend/src/academic_backend/application/README.md",
-    "backend/src/academic_backend/domain/README.md",
-    "backend/src/academic_backend/infrastructure/README.md",
-    "backend/src/academic_backend/workers/README.md",
-    "backend/migrations/README.md", "backend/tests/README.md",
-    "frontend/src/app/README.md", "frontend/src/features/README.md",
-    "frontend/src/components/README.md", "frontend/src/lib/README.md",
-    "frontend/public/README.md", "frontend/tests/README.md",
+    *SCAFFOLD_FILES,
     "contracts/README.md", "contracts/ai-core.md", "contracts/http-api.md",
-    "infra/README.md", "tests/README.md", "scripts/README.md",
+    "scripts/README.md", "scripts/verify_source_layout.py",
     "docs/README.md", "docs/architecture/04-source-layout.md",
     "data/README.md",
 )
@@ -69,6 +55,13 @@ def main() -> int:
 
     for relative in (*REQUIRED_PATHS, *HELPERS):
         check((ROOT / relative).is_file(), f"Missing scaffold file: {relative}")
+
+    try:
+        source_layout = check_layout(ROOT)
+        check(source_layout["status"] == "passed", "Pre-product source placement failed")
+    except (OSError, ValueError, subprocess.SubprocessError):
+        source_layout = {"status": "failed", "failures": ["Cannot inspect Git-visible source layout"]}
+        check(False, "Pre-product source placement unavailable; Git checkout required")
 
     python_files = source_files(".py")
     parsed: dict[Path, ast.Module] = {}
@@ -143,6 +136,7 @@ def main() -> int:
         "checks": checks, "passed": checks - len(failures),
         "python_files_syntax_checked": len(parsed),
         "pdf_source_hashes_verified": verified_sources,
+        "source_layout": source_layout,
         "skipped": skipped, "failures": failures,
     }, ensure_ascii=False, indent=2))
     return 1 if failures else 0

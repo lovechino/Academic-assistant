@@ -1,5 +1,7 @@
 # Giao việc độc lập model — task packet v0.1
 
+Patch-only proposal 2026-09-07: [design](PATCH-ONLY-DESIGN.md) specifies future controller-supplied input bytes and separately enforced worker permissions. It is not implemented; packet delivery/hash does not prove model comprehension, and this template does not grant repository writes. Existing task/card/baseline procedure below still applies to current authorized repository work.
+
 2026-09-06. Hướng dẫn chuẩn bị đầu vào cho model nhỏ/lớn, local/hosted, chat/tool-enabled. Không yêu cầu một hãng, SDK, tokenizer hay chức năng tự đọc AGENTS. **Chưa chạy thử model nào theo protocol này.** Không đưa nguồn private/quarantine cho hosted model chỉ để kiểm tra instruction following.
 
 ## 1. Chuẩn bị đầu vào theo lớp

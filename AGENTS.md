@@ -10,6 +10,8 @@ The user-selected product direction is option 2: controlled multi-step workflow,
 
 ## Ownership and dependencies
 
+Before proposing or changing source placement, read `docs/architecture/11-source-placement-blueprint-v0.1.md` and use `docs/harness/SOURCE-TASK-TEMPLATE.md`. Search existing implementation/callers/tests with `rg` before creating another module; record reuse/extend/new and the canonical owner in task acceptance/handoff. Do not create competing root source trees or duplicate a use case in application/agents/workers/UI. Placement examples are reserved addresses, not authorization to add product runtime. The pre-product layout check is mechanical, not semantic duplicate/import enforcement. Existing component README wording is clarified by this placement map; report contract conflicts rather than silently changing authority or gates.
+
 - `ai-core/`: academic reasoning, ingestion/chunking, retrieval, grounding, agent workflows, prompts and AI evaluation. Keep exploratory scripts in `ai-core/experiments/`, outside runtime source.
 - `backend/`: HTTP boundary, authenticated identity, authoritative permissions, courses/material lifecycle, review actions, persistence and jobs. AI must not grant itself access or approve source publication.
 - `frontend/`: presentation and backend API consumption. No direct model/vector-store/storage credentials or independent authorization decisions.

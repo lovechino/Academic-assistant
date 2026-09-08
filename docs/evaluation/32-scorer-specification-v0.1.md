@@ -1,4 +1,6 @@
-# WP-03 scorer specification v0.1
+# WP-03 scorer specification v0.1.1
+
+Correction 2026-09-07 — WP04-F02: tách C-04 resolver khỏi CI-02b post-pack. Áp dụng definition revision mới cho future runs; không sửa scores/configs/scorers lịch sử.
 
 2026-09-06. Draft chuẩn hóa cho future runs; synthetic arithmetic implementation giới hạn ở experiment riêng. Không thay thresholds, current labels hoặc historical scores. Authority definitions: [metric contract v0.2](08-metric-contract-v0.2.md), [measurement map](17-measurement-architecture-v0.1.md), [clarification v0.1.1](29-review-regression-and-metric-clarifications-v0.1.md). Khi có mâu thuẫn với draft cũ, clarification mới có ưu tiên; vấn đề chưa quyết định giữ pending.
 
@@ -25,7 +27,8 @@ Các rows dùng common rules trên cho version/exclusions/N/A. `expected` là t�
 | K-01 | R-01a/b trên evidence thật trong serialized model input | Không dùng retrieved-but-omitted IDs; actual payload projection còn cần integration |
 | K-03 | Required groups hit trước nhưng mất sau / required groups hit trước | So cùng query/group ID; không lấy net count khi nhóm khác được bù; toy scorer có |
 | CI-02a | Retained anchors có đủ declared required closure / retained anchors | Báo attempted/retained/omitted; graph declaration chưa là truth; bounded repair tests có |
-| CI-02b, C-04 | Reference required dependencies được giữ / reference dependencies của selected anchors | Omitted anchor/undeclared edge vẫn có denominator; visual availability không xóa requirement; full resolver scorer pending |
+| C-04 / resolver output, pre-pack | Reference dependency requirements được resolver lấy đủ cùng anchor / predeclared eligible reference requirements của selected evaluation anchors tại resolver entry | AI resolver/eval; universe không lấy từ edges dự đoán. Pinned resolver profile có thể exclude unsupported modality trước run, ghi IDs/reasons và intake counts; không exclude do resolver miss/timeout/undeclared edge. Full scorer pending |
+| CI-02b / exact serialized post-pack | Reference required dependencies được giữ cùng anchor trong payload / all reference required dependencies của selected evaluation anchors | AI packing/eval; selected set chốt trước resolver/packing outcome. Omitted anchor/undeclared edge vẫn trong denominator; required unsupported visual không được exclude theo C-04. Full payload/reference scorer pending |
 | G-01/G-02 GAP | Eligible Academic Q pass tất cả applicable claim/evidence/citation/mode/policy gates / toàn Q đã chốt | U/S/security riêng; partial Q phải nêu giới hạn; no output fail. Boolean conjunction toy có, semantic adjudication pending |
 | G-03/G-04/G-05 | Correct required claims / required; incorrect issued / issued; unsupported issued / issued | Claim segmentation/matching phải được review; no issued claims không cứu G-03/GAP. Scorer semantic pending |
 | G-09/G-10/G-11, S-04 | Correct abstentions/U; false refusals/eligible Q hoặc benign S; correct partial/partial Q | Báo refusal riêng timeout/no-hit; toy false-refusal denominator có; semantic labels pending |
@@ -38,6 +41,17 @@ Các rows dùng common rules trên cho version/exclusions/N/A. `expected` là t�
 | E-02..06 | Human/judge confusion matrix, kappa, false-pass/critical human fails, repeated-score variance/flips, claim segmentation agreement | Dual-reviewed labels, pinned judge/protocol; NOT RUN, không gọi self-review là human agreement |
 
 CER/WER có thể >1 do insertions; không clamp như tỷ lệ hit. Reference rỗng: CER/WER N/A nhưng vẫn báo insertion/edit count và empty-reference samples. Empty OCR trên reference không rỗng là deletion errors, không bỏ sample. CER aggregate dùng sum edits/sum ref length; report macro riêng nếu thêm. Bbox IoU/TEDS/math-equivalence chỉ chấm khi có reviewed region/grid/semantic matching; exact string không chứng minh công thức tương đương.
+
+### 2.1 Stage separation counterexamples — WP04-F02, NOT RUN
+
+C-04 và CI-02b dùng evaluator-only reference requirement identities gắn anchor/version, không đếm số cạnh graph dự đoán. Pin required alternatives/parts và matching rule trước run; một requirement hit chỉ khi đủ ALL parts trong một accepted alternative cùng anchor. Dedupe requirement IDs, không dedupe theo similarity. Chưa có reference/matching đủ → pending_review, thiếu observation → not_measured/invalid_run theo nguyên nhân, không tự tạo zero score.
+
+- Resolver lấy đủ d1,d2; pack rơi d2: expected C-04 = 2/2, CI-02b = 1/2. Đây là phép tính minh họa, không kết quả đã chạy.
+- Resolver không khai báo d2: d2 vẫn trong reference denominator. Pack bỏ anchor: cả dependency requirements của anchor không được credit dù fragments lẻ còn ở payload.
+- Reference có text d1 và required visual d2; pinned text-only resolver profile exclude d2: C-04 có thể 1/1 với một exclusion công khai trong evaluator report. CI-02b vẫn 1/2 nếu visual thiếu; không pass full answer và không lộ denied-resource metadata cho model/UI.
+- Không có requirements theo oracle hợp lệ → N/A/null. Không có oracle khác với oracle rỗng. C-04 tốt không chứng minh post-pack coverage hoặc safe answer; report hai records/stages riêng, không average chúng.
+
+Coverage semantic của source (đặc biệt visual/negation) còn cần reviewer; expected test cases WPT-10/12/24 không tự là gold. C-04 eligibility không được mở rộng/hạ xuống sau khi nhìn run để né failure. Historical R4 vẫn giữ definition/profile cũ.
 
 ## 3. Các family còn lại: giữ definition và nêu rõ chưa có scorer
 

@@ -37,13 +37,15 @@ Ký hiệu: `Y` cho phép, `S` chỉ trong scope được giao, `N` không cho p
 | Gửi tài liệu đi review | N | S | S | S | N |
 | Approve/publish | N | N | S | S theo assignment | N |
 | Reject/request changes | N | N | S | S theo assignment | N |
-| Archive/restore | N | N | S | S | N |
+| Archive / tạo draft mới từ archived để review | N | N | S | S | N |
 | Xem assessment confidential | N | A | S | A | A |
 | Quản lý user-role assignment | N | N | N | N | Y |
 | Thay đổi policy hệ thống | N | N | N | N | Y |
 | Xem audit nghiệp vụ | N | S của bản thân | S theo course | S | Y metadata kỹ thuật |
 
 ## 4. Resource scope
+
+Clarification 2026-09-07: hàng archive không cấp trash restore, purge hoặc republish trực tiếp. [Recovery actions](../../contracts/material-recovery.md) tách `inspect_trash_metadata`, `soft_delete`, `restore_to_review`, `purge`; role assignments là proposal pending, default deny khi chưa có explicit current assignment. Không suy uploader/system admin hoặc share recipient có các quyền này. Trạng thái soft-deleted/purge-claimed/purged chặn serving dù publication status cũ là published.
 
 Quyền hiệu lực là giao của các điều kiện; trong kiến trúc multi-tenant còn bắt buộc active tenant, resource relation, action, purpose, policy revision và agent/tool capability:
 

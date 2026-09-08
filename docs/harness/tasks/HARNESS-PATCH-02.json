@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-PATCH-02",
+  "work_package": "HARNESS-01",
+  "objective": "Implement HPC-1 as a bounded pure in-memory UTF-8 changeset validator with immutable typed outputs and synthetic regression tests, without filesystem apply or execution of proposed content.",
+  "request_basis": "User requested continue after the HARNESS-PATCH-01 handoff proposed the next bounded HPC-1 prototype: validate UTF-8 changesets against synthetic context in memory only. This is permission for that tooling prototype, not full design signoff, OS enforcement, a privileged applier or product GO.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/harness/HARNESS-PATCH-01-handoff.md", "docs/harness/PATCH-ONLY-DESIGN.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/architecture/11-source-placement-blueprint-v0.1.md", "docs/harness/SOURCE-TASK-TEMPLATE.md", "scripts/agent_harness.py", "scripts/verify_source_layout.py"],
+  "allowed_files": ["scripts/harness_patch_validator.py", "scripts/tests/test_agent_harness_patch_validator.py", "docs/harness/PATCH-VALIDATOR.md", "docs/harness/HARNESS-PATCH-02-handoff.md", "docs/harness/PATCH-ONLY-DESIGN.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/README.md", "scripts/README.md"],
+  "required_outputs": ["scripts/harness_patch_validator.py", "scripts/tests/test_agent_harness_patch_validator.py", "docs/harness/PATCH-VALIDATOR.md", "docs/harness/HARNESS-PATCH-02-handoff.md", "docs/harness/PATCH-ONLY-DESIGN.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/README.md", "scripts/README.md"],
+  "acceptance": ["Strict bounded JSON UTF-8 envelope; reject duplicate/unknown keys, invalid numeric types, unsupported operations, malformed hashes, invalid text and excessive size/depth/structure before unbounded processing.", "Validate exact docs-note fixture path/action scope, lexical Windows hazards and collisions with baseline; create/update before-byte preconditions and job/generation/base identity come from separate immutable caller context, never payload authority.", "Return immutable typed candidate or safe error code without source content logging; no file/Git/DB/network reads/writes, imports or execution of candidate content by validator. Optional demo uses built-in synthetic inputs only.", "Focused standard-library tests cover positive/negative/limit boundaries, no mutation and deterministic digests; map only covered HPC-1 portions and keep packet, real host isolation, race/promotion/review and model claims NOT RUN.", "Reuse existing fixed test discovery/structure profiles unchanged. Preserve unrelated edits, state/master plan/checkers/core harness/journal/source/data and ASTRA; report skipped/unimplemented hard deadlines and trust boundary limits honestly."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 8,
+  "handoff": "docs/harness/HARNESS-PATCH-02-handoff.md"
+}

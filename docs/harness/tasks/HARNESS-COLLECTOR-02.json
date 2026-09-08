@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-COLLECTOR-02",
+  "work_package": "HARNESS-01",
+  "objective": "Repair pure collector control/data quota coupling and model start-in-flight cancellation with regression tests, extending the existing scripts owner only.",
+  "request_basis": "User requested quick fixes following collector review. Implement bounded in-memory tooling corrections; real watchdog, Docker adapter, container execution and product runtime remain outside this repair.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/architecture/11-source-placement-blueprint-v0.1.md", "docs/harness/SOURCE-TASK-TEMPLATE.md", "docs/harness/COLLECTOR.md", "docs/harness/HARNESS-COLLECTOR-01-handoff.md", "scripts/harness_collector.py", "scripts/tests/test_agent_harness_collector.py"],
+  "allowed_files": ["scripts/harness_collector.py", "scripts/tests/test_agent_harness_collector.py", "docs/harness/COLLECTOR.md", "docs/harness/README.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/HARNESS-COLLECTOR-02-handoff.md"],
+  "required_outputs": ["scripts/harness_collector.py", "scripts/tests/test_agent_harness_collector.py", "docs/harness/COLLECTOR.md", "docs/harness/README.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/HARNESS-COLLECTOR-02-handoff.md"],
+  "acceptance": ["Extend canonical scripts/harness_collector.py; rg existing callers/tests and use source placement packet in handoff; no competing module/checker changes.", "Remove tick/control competition with data caps; accept arbitrary nonempty fragmentation within byte bounds, reject empty data events, preserve byte caps and stop acknowledgment after overflow.", "Require start_requested before start; cancel/disconnect/deadline while start is in flight requires stop/reconcile even without start acknowledgment, and late callbacks cannot resurrect output.", "Regression tests reproduce review counterexamples and new lifecycle boundaries; report real watchdog/adapter/cleanup as pending rather than claiming all findings fully implemented.", "Verify six-file exact scope with fixed harness/structure and local data integrity; no Docker/WSL/model/PDF processing, product gate or state changes."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 6,
+  "handoff": "docs/harness/HARNESS-COLLECTOR-02-handoff.md"
+}

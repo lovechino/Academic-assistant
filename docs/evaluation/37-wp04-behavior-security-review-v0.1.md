@@ -34,7 +34,7 @@ Positive controls đi cùng negative để đo false block; các expected là re
 | WPT-15 / evidence contract | Citation trỏ ID có thật nhưng không support, sai version/region, omitted packet item; valid AND citations positive. Chặn draft sai; không tự chuyển source version | AI + Backend / D,B,E | V-01/02/03a/04, G |
 | WPT-16 / RC-12,19 | Revoke trước model-submit admission, giữa generation/delivery, trước viewer; grant/revoke ordering permutations. Không phát operation ordered sau revoke; evidence đã gửi trước ghi đúng giới hạn | Backend / B,I schedules | IX-04, AUTH-05/10 |
 | WPT-17 / RC-15 | Citation đúng lúc delivery, revoke trước click; positive vẫn authorized nhưng asset missing. Correct deny không làm locator cũ sai; missing asset là availability | Backend + frontend / B,I | V-03a/03b, V-06 |
-| WPT-18 / RC-12, IX-10 | Same text/request key ở hai users/tenants, scope switch, stale history/result. Không replay/hydrate chéo; recheck full influence set ngay cả item không được cite | Backend + AI / D,B,I | IX-10, AUTH, history provenance |
+| WPT-18 / RC-12, IX-10 | Same text/request key ở hai users/tenants, scope switch, stale history/result. Không replay/hydrate chéo; recheck full influence set ngay cả item không được cite; UI late-response generation checks theo §2.1 | Backend + AI + Frontend / D,B,I | IX-10, AUTH, history provenance và stale UI sinks |
 | WPT-19 / RC-16..18 | Mixed lexical/dense/graph generations, incomplete build, stale publish worker, rollback revoked version. One manifest atomic activation; unrelated membership change không rebuild vectors vô ích | Backend + index / B,I future activation | IX-03/08, UPL-01 |
 | WPT-20 / retry semantics | Duplicate concurrent requests; same key different payload; completion unknown/provider timeout. One logical op/no blind regenerate; no exactly-once claim without durable evidence | Backend + AI / D,B,I | Duplicate effects, calls/cost/O |
 | WPT-21 / cancel semantics | Cancel trước dispatch, in-flight, đua final release; late callback sau new attempt. Không resurrect terminal hoặc phát draft sau cancel thắng fence; already-delivered không hứa recall | Backend + AI / D,B,I | Operation ordering, late-release count |
@@ -43,6 +43,33 @@ Positive controls đi cùng negative để đo false block; các expected là re
 | WPT-24 / first-causal-failure | Parser mất unit rồi retrieval/answer sai; packing mất unit khác fixture; concurrent events/missing trace. Root cause theo evidence DAG hoặc unknown, không gán mọi lỗi cho model | AI eval + observability / D,B,I | Trace completeness, first causal failure, incident dedup |
 | WPT-25 / ARCH-C12 | Graded full-answer request vs concept help/code practice; user tự nhận teacher. Hỗ trợ phần hợp lệ, không làm hộ/confidential answer, không keyword blanket refusal | AI + policy owner / D,B,E | G-09/10/11, S-04, integrity policy |
 | WPT-26 / HTTP boundary | Model/source HTML/script/unsafe links trong answer/title/viewer; provider raw error và audit sink failure. Inert sanitized rendering, no auto outbound link fetch; no secrets in logs/error; fail protected release nếu thiếu mandatory audit | Frontend + Backend / B,I | XSS/content egress, S/AUTH, audit |
+
+## 2.1 Repair variants — 2026-09-07, NOT RUN
+
+Giữ 26 base WPT IDs; các variants sau mở rộng requirements, không là test methods đã thực thi. WP04-F01..03 là findings từ review trong hội thoại, không trùng namespace F-01..09 của WP-01.1.
+
+| Ref | Event schedule / negative và positive assertions | Owner / level / checkpoint |
+|---|---|---|
+| WPT-15/26, WP04-F01 | Validate candidate A rồi thay answer/citation/limitation/asset hoặc ghép verdict với draft B/packet khác/attempt cũ → reject trước release. Canonical math `x²` bị flatten thành `x2`, mất negation/units/table structure → new candidate + revalidation hoặc block. Escape an toàn giữ nghĩa + đúng bindings → allow nếu current auth. Renderer/profile đổi cần fidelity assertions, không chỉ hash-equal | AI validator + Backend projection/release + Frontend renderer / D,B,I,E; contract trước first implementation, rendered fidelity trước UI integration |
+| WPT-10/12/24, WP04-F02 | Resolver d1,d2 đủ nhưng pack chỉ d1: expected C-04 2/2 và CI-02b 1/2. Undeclared d2 vẫn denominator; omitted anchor không credit. Required unsupported visual có thể excluded ở pinned resolver profile nhưng không ở CI-02b. Oracle missing → pending, oracle valid empty → N/A, không đổi mẫu số sau run | AI resolver/packing/eval / D,E; trước scorer implementation hoặc config comparison theo metrics này |
+| WPT-18/21/26, WP04-F03 | Backend release A hợp lệ → UI switch tenant/conversation/logout-login → response/event/viewer callback A đến muộn: không render/cache/store/history append ở view mới, không raw log body. Test A→B→A generation không tái dùng; abort thất bại vẫn drop. Still-current positive render đúng; server persist đúng authenticated conversation gốc khi policy cho, replay khác conversation reject | Frontend + Backend + AI history / D,B,I; contract trước frontend, scheduled callbacks trước integration |
+
+## 2.2 Future deletion/recovery cases — REC-01..08, NOT RUN
+
+[Recovery contract](../../contracts/material-recovery.md) là subject draft. Tất cả cases thuộc future lifecycle/storage lane; không yêu cầu code upload/delete để hoàn tất first fake QA slice. Fixture profiles cần retention/clock/budget/revisions hữu hạn; chưa chọn giá trị production.
+
+| ID | Scenario / expected invariants | Owner / level |
+|---|---|---|
+| REC-01 | Explicit restore assignment positive; uploader/view-only recipient/system-admin role alone/forged source authority negative. Deny không lộ title/hash/existence, metadata permission không cấp bytes/model use | Backend policy + Frontend / D,B,I |
+| REC-02 | Delete thắng trước model admission/release/viewer/history replay: deny và discard influenced draft; cleanup chậm không mở quyền. Already released trước delete không giả recall. Old index publish/late job bị fence | Backend + AI + index / B,I schedules |
+| REC-03 | Restore trong hạn, bytes/provenance còn đủ → nonserving review revision; membership/share đã revoke hoặc rights/secret changed vẫn chặn. Không reviewer → pending; separate newly approved publication positive. Không hồi public/share bindings hoặc auto-source-version substitution | Backend lifecycle + review + index / D,B,I |
+| REC-04 | Restore-reservation thắng purge vs irreversible purge-claim thắng restore; stale lease/restart/partial cleanup/new delete đua callback. Không partial serving/double success, failure giữ tombstone; late purge không xóa restored live refs | Backend + storage / D,B,I controlled interleavings |
+| REC-05 | Hai submissions cùng bytes; xóa/purge A không phá B hoặc lộ B. New reference/restore pin đua last-ref purge phải serialize; policy/hold ngăn crypto-erasure. Near variant không merge/delete | Backend + storage / B,I |
+| REC-06 | Duplicate delete không reset deadline; same key changed target/revision/action conflict hoặc namespace riêng; stale restore replay sau delete mới không resurrect. Expired/purge-claimed unavailable, hold không tự cấp restore. Audit failure không commit thiếu evidence | Backend ledger/audit / D,B,I |
+| REC-07 | Backup chứa published trước delete/revoke/purge: isolated restore + current journal reconciliation, không active old ACL/aliases. Journal thiếu/stale → nonserving. Derivative/cache/crop copies và partial purge được inventory, không falsely claim complete | Backend operations + storage / I disaster-recovery drill |
+| REC-08 | Material-wide vs version-only; preview stale vì thêm version; parent deleted/child restored; parent restored/child independently deleted; required image dependency thiếu; newer active version tồn tại. Không broaden target, auto-restore dependencies, supersede current hoặc full-answer thiếu context. UI callback cũ bị drop | Backend lifecycle + AI + Frontend / D,B,I,E context |
+
+Mỗi REC cần positive control, current action/target/purpose oracle, forbidden sinks (serving index/model/public UI/log), actual state/audit/call observations và pinned event order. Critical unauthorized mutation/resurrection báo riêng unique incidents; unavailable/pending/expired không giả successful recovery. Retention/role/holds/purge design cần review trước implementation lane này, real storage/PDP/drill evidence trước onboarding dữ liệu. Không cộng 8 REC rows hoặc repair variants vào gold/harness test count.
 
 ## 3. Đo theo tầng, không một điểm tổng che lỗi
 
@@ -53,6 +80,7 @@ Nguồn definition: [scorer spec 32](32-scorer-specification-v0.1.md) và clarif
 | Intake/parse | selected/eligible/pending/unsupported theo modality; fidelity/locator; OCR CER/WER khi có transcription reviewed; preservation và detection riêng | Parse exit 0/JSON đúng schema không là đủ nghĩa; OCR chưa chạy không là CER=0 |
 | Retrieve | R-01a macro và R-01b micro, all-evidence; expected groups không prediction-derived; scope/snapshot thống nhất | Top-K tốt không chứng minh answer hoặc conflict complete |
 | Pack | Exact payload K-01/02/03, CI-02a declared closure **và** CI-02b reference recall, retained/omitted anchors, false expansion | Bỏ mọi anchor không làm hệ đạt chất lượng; net count không che thay group |
+| Resolver, trước pack | C-04 reference requirements tại resolver output, selected anchors/eligible/excluded IDs và pinned modality profile | Không alias CI-02b; resolver đủ không chứng minh serialization giữ context |
 | Answer/citation | GAP all applicable gates trên eligible predeclared Q; full required claims và false refusal/partial riêng; citation issued/required coverage/version | Partial đúng phần A không tự pass full comparison; local ID validity không là semantic entailment |
 | Security | Forbidden exposure/effect counts theo checkpoint, attempts, unique incident IDs; false allow và false deny riêng | 0 incident trong finite set không chứng minh zero risk; RAGAS/latency không bù critical fail |
 | Operations | End-to-end/stage latency với N, attempts, failure/cancel/cost/usage và missing telemetry | Chỉ đo success path hoặc median không thay p95/timeout picture |

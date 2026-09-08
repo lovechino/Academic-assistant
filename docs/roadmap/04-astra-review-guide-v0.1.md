@@ -1,6 +1,6 @@
 # ASTRA-01 — Bộ đầu vào và lời giao review
 
-2026-09-07. Packet đã được chuẩn bị để người dùng giao Astra review. **Chưa có kết quả Astra, chưa GO.** Không tự tạo task, đổi model hoặc gọi reviewer. Scope user đã đồng ý: manual Academic QA, structured text-first/visual-limited; giữ missing-context và quyền chặt chẽ.
+2026-09-07, repair revision v0.1.1. Đã có ba findings từ lượt read-only review trong hội thoại và người dùng giao sửa; [record 39](../evaluation/39-wp04-repair-recovery-handoff-v0.1.md) ghi disposition và affected-scope self-review. Reviewer model/settings độc lập chưa được xác nhận; không tự nhận external Astra acceptance. **Chưa explicit product GO.** Không tự tạo task, đổi model hoặc gọi reviewer. Scope user đã đồng ý: manual Academic QA, structured text-first/visual-limited.
 
 ## 1. Đọc gì và theo thứ tự nào?
 
@@ -10,6 +10,7 @@
 4. [Behavior/security map](../evaluation/37-wp04-behavior-security-review-v0.1.md): 26 WPT specifications, tất cả NOT RUN.
 5. Contracts gốc: [authorization](../../contracts/authorization-context.md), [content-unit/index](../../contracts/content-unit-index.md), [evidence packet](../../contracts/evidence-packet.md), [AI facade](../../contracts/ai-core.md), [HTTP](../../contracts/http-api.md), [quarantine](../../contracts/quarantine-manifest.md). Đọc contract liên quan đầy đủ trước kết luận về boundary đó.
 6. [Clarification 29](../evaluation/29-review-regression-and-metric-clarifications-v0.1.md), [scorer spec 32](../evaluation/32-scorer-specification-v0.1.md), [readiness 09](../architecture/09-multimodal-readiness-v0.1.md), [decision gaps 35](../evaluation/35-wp02-decision-review-v0.1.md), [handoff mới](../evaluation/38-wp04-review-packet-handoff-v0.1.md) để phân biệt đã chạy với đang đề xuất.
+7. Vòng repair: [handoff/re-review 39](../evaluation/39-wp04-repair-recovery-handoff-v0.1.md), evidence §4.1, HTTP request/view binding, scorer 32 stage separation, test map §2.1. Bổ sung [recovery policy](../governance/06-material-deletion-recovery-v0.1.md), [recovery contract](../../contracts/material-recovery.md), lifecycle/permission clarifications và REC-01..08 cho future lane; không kéo recovery vào exact fake QA slice.
 
 Với reviewer không đọc được repo, người dùng/runner cung cấp **nội dung thực** những mục cần thiết, không chỉ file paths. Nếu context không đủ, chia review authority/concurrency, evidence/metrics và UX/budgets thành các vòng; không kết luận toàn hệ sau một phần. Không cần đính kèm PDF quarantine, source raw, credentials hoặc private telemetry để review thiết kế này.
 
@@ -56,13 +57,15 @@ người dùng cân nhắc GO cho exact fake-adapter slice. Reviewer không tự
 Không nói production ready chỉ vì packet hợp lý hoặc không tìm thấy P0/P1.
 ```
 
-## 3. Findings record — chưa có reviewer output
+## 3. Findings record — conversation review và repair
 
-Không điền nhận xét giả vào bảng. Khi người dùng cung cấp review, ghi actual reviewer/model/settings nếu biết, timestamp, exact files/revisions/hashes được đọc và source message; unknown thì ghi unknown. Handoff pin ba artifact trọng tâm; contracts phải snapshot lại khi review diễn ra vì worktree có sửa dở.
+Không điền nhận xét giả vào bảng. Với mỗi vòng review, ghi actual reviewer/model/settings nếu biết, timestamp, exact files/revisions/hashes được đọc và source message; unknown thì ghi unknown. Handoff 38 pin revision lịch sử, handoff 39 pin repair revision; contracts và input set phải snapshot lại lúc reviewer bắt đầu, không áp verdict cũ lên file đã đổi.
 
 | Finding ID | Severity | File/section và bằng chứng | Counterexample/impact | Disposition/fix owner | Required test/checkpoint | Reviewer resolution |
 |---|---|---|---|---|---|---|
-| Chưa có | N/A | Astra review NOT RUN | N/A | Pending actual review | Không tự code | Chưa ký |
+| WP04-F01 | P1 design gap | evidence §4 / workflow Q7–Q9: verdict không bind exact final public content | Sanitize `x²` thành `x2` hoặc verdict A đi với draft B | Corrected draft: evidence §4.1, workflow/public HTTP profile | WPT-15/26; trước validation-release implementation | Same-assistant re-review, không independent sign-off |
+| WP04-F02 | P1 design contradiction | scorer 32 gộp C-04 và CI-02b, trái clarification 29 | Resolver 2/2 nhưng pack 1/2 bị cùng metric | Corrected draft: tách stages/universe ở 17/32 | WPT-10/12/24; trước scorer/config-selection theo metrics | Historical scores unchanged; full scorer NOT RUN |
+| WP04-F03 | P2 design gap | auth Frontend chỉ clear state; HTTP/test map thiếu late response binding | Released tenant A → switch B → late A render/cache tại B | Corrected draft: request/conversation/view generation + original server persistence target | WPT-18/21/26; trước frontend integration | UI enforcement NOT RUN |
 
 Severity dùng để ưu tiên: P0 = critical disclosure/bypass/destructive effect có đường khả thi; P1 = mất invariants correctness/security hoặc đo sai quyết định quan trọng; P2 = design gap có phạm vi/mitigation; P3 = clarity/maintenance. Đây là review rubric, không yêu cầu reviewer tìm đủ mọi mức hoặc nâng một TBD hợp lý thành P0.
 
@@ -74,4 +77,4 @@ Severity dùng để ưu tiên: P0 = critical disclosure/bypass/destructive effe
 4. Trước runtime phải có work harness profile/task phù hợp với authority đó; v0.1 hiện cố ý chặn product work. Không đổi action thành documentation hoặc sửa baseline để code lọt qua.
 5. First code nếu được phép chỉ domain/application + fake adapters + focused D/B tests; chưa source serving/model/index writer thật. Real adapter/provider/data promotion phải đáp ứng các mốc riêng trong test map và review decision.
 
-Điểm dừng hiện tại: **đợi Astra review**, không yêu cầu người dùng GO khi chưa xem findings. Không dùng việc đổi model phát triển làm bằng chứng học thuật hoặc reviewer độc lập tự động.
+Điểm dừng hiện tại: **người dùng review repair revision/dispositions**, và review độc lập theo ASTRA-01 nếu chưa được xác nhận. Không coi yêu cầu sửa docs/thêm recovery là GO. Không dùng việc đổi model phát triển làm bằng chứng học thuật hoặc reviewer độc lập tự động.

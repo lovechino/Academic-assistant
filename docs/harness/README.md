@@ -1,5 +1,33 @@
 # Agent work harness v0.1
 
+Supervisor update 2026-09-08: [real synthetic runner and limits](SUPERVISOR.md),
+[execution handoff](HARNESS-SUPERVISOR-01-handoff.md). Pinned image acquired;
+bounded happy/fake-PASS/overflow/hang/cancel containers exercised and exact IDs
+removed. Independent observer hit a permission denial; full HB acceptance,
+parent-death recovery, real worker-only access and accept/rollback remain OPEN.
+Not a general coding-agent launcher; no product GO. Older no-Docker/no-adapter
+statements below describe their historical slices, not this latest execution.
+
+Collector repair 2026-09-08: [v0.2 API/limits](COLLECTOR.md), [repair handoff](HARNESS-COLLECTOR-02-handoff.md). Removes shared event quota, requires start_requested before start, preserves stop/reconcile requirement for unconfirmed starts. Synthetic-only; no real watchdog, Docker adapter or host-test acceptance. The original 23-test slice below is historical.
+
+Collector synthetic slice 2026-09-08: [usage/limits](COLLECTOR.md), [handoff](HARNESS-COLLECTOR-01-handoff.md). Pure single-attempt capture with fake transport/clock tests; no real runner, Docker, wall-clock watchdog or authenticated fence. New tests are included by existing discovery. Capture is not validation/approval; HB host probes remain NOT RUN. Next checkpoint is prototype review before real adapter integration.
+
+Preflight 2026-09-08: [daemon + image candidate](HPC2-PREFLIGHT.md), [handoff](HARNESS-PREFLIGHT-01-handoff.md). Daemon identified as Canonical Docker Snap; Python 3.11 slim-bookworm Linux/amd64 candidate has registry-reported pins, not local content/security verification. No pull/start or HB execution. Next proposal: separately scoped fake-transport collector/controller tooling before real smoke; existing product gates unchanged.
+
+Docker profile draft 2026-09-08: [minimal synthetic profile](HPC2-DOCKER-PROFILE.md), [handoff](HARNESS-DOCKER-01-handoff.md). Khảo sát lịch sử xác nhận Docker trong Ubuntu WSL truy vấn được, có hai container đang chạy; chưa nghiệm thu môi trường. Profile đề xuất no host mounts/socket, network none và bounded channels. Chưa create/start/pull/build, chưa launcher/host probes; bước kế là review và read-only image/provenance preflight, không tự provisioning khi generic continue. Đoạn boundary bên dưới là checkpoint lịch sử trước khảo sát.
+
+HPC-2 boundary draft 2026-09-08: [actor/quyền/kênh dữ liệu và host evidence](HPC2-BOUNDARY-CONTRACT.md), [handoff](HARNESS-BOUNDARY-01-handoff.md). Bước nối tiếp review HPC-1: requirements trước lựa chọn môi trường, 8 host probes NOT RUN. Chưa chọn/cài sandbox, cấp host quyền, chạy worker/model hay thêm applier. Điểm tiếp theo là comparison/prerequisites read-only; không coi draft hoặc generic continue là quyền provisioning.
+
+HPC-1 update 2026-09-08: [pure synthetic validator + usage](PATCH-VALIDATOR.md), [execution coverage](PATCH-ONLY-TEST-MAP.md), [handoff](HARNESS-PATCH-02-handoff.md). Có parser/path/scope/hash/byte-cap tests trong bộ nhớ; chưa có file apply, protected runner, 10s hard deadline, model/packet delivery hoặc OS enforcement. Dùng `py -3.11 -B scripts/harness_patch_validator.py --demo` để xem valid/reject synthetic, không thay quy trình task/baseline/verify. Update này thay riêng trạng thái “chưa parser” bên dưới, không thay product gate.
+
+Patch-only design update 2026-09-07: [permission-boundary design](PATCH-ONLY-DESIGN.md), [40 proposed adversarial cases](PATCH-ONLY-TEST-MAP.md), [handoff](HARNESS-PATCH-01-handoff.md). Design only: current CLI remains voluntary/local, not an enforced runner. No launcher/apply/accept command, OS isolation, authenticated approval or product GO has been added. First proposed implementation is a separately scoped in-memory synthetic validator after design review.
+
+Source-base update 2026-09-07: [canonical placement map](../architecture/11-source-placement-blueprint-v0.1.md), [source task template](SOURCE-TASK-TEMPLATE.md), [handoff](SOURCE-BASE-01-handoff.md). Before adding a module, search existing owners/callers/tests and record reuse/extend/new. The structure profile also checks Git-visible pre-product layout; no runtime allowance, import/semantic duplicate detector or product GO is added. Existing source README markers remain unchanged.
+
+Finding lifecycle update: [CLI rules and examples](FINDING-LIFECYCLE.md), [handoff](HARNESS-FINDING-01-handoff.md). Explicit evidence transitions only; tests cannot auto-close a finding and reviewer labels are not authenticated authority. Source/DB contents never supply approval or commands.
+
+Update 2026-09-07: optional [local SQLite journal CLI](LOCAL-JOURNAL.md) records exact declared scope, fixed-check observations and evidence-linked reported findings; `suggest` proposes review/regressions only. [Tooling handoff](HARNESS-JOURNAL-01-handoff.md) records the user's review-read acknowledgment and this maintenance scope. No product GO, auto-repair, database authority or continuous monitoring added. Existing CLI remains available without DB writes; the fixed harness test profile now includes `test_agent_harness*.py` (core + journal tests).
+
 Ngày: 2026-09-06. Đây là **công cụ kiểm soát công việc trong repo**, không phải Academic/Learning/Knowledge Hub agent, không gọi model và không khởi động P5/P6.
 
 Mục tiêu: khi đổi Sol/Terra/model khác hoặc mất lịch sử chat, agent vẫn tìm được đúng kế hoạch, giới hạn công việc, bằng chứng và điểm dừng. Không hứa “gần như không sai” trước khi đo hành vi của từng model. Test checker chỉ chứng minh những quy tắc máy đang kiểm tra.

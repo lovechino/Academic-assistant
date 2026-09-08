@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-PATCH-01",
+  "work_package": "HARNESS-01",
+  "objective": "Design a bounded patch-only development harness with distinct worker, trusted validation, sandboxed test and human-controlled acceptance boundaries, including adversarial test specifications and rollout decisions.",
+  "request_basis": "User requested proceeding after the proposal to design patch-only operation and permission boundaries first, because coding agents may ignore Markdown instructions. This scope is documentation and verification of that design, not OS configuration or implementation of a patch applier.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation", "public_web_research"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/harness/SOURCE-BASE-01-handoff.md", "docs/harness/LOCAL-JOURNAL.md", "docs/harness/MODEL-NEUTRAL-TASK.md", "docs/harness/SOURCE-TASK-TEMPLATE.md", "docs/architecture/11-source-placement-blueprint-v0.1.md", "scripts/agent_harness.py", "scripts/verify_source_layout.py"],
+  "allowed_files": ["docs/harness/PATCH-ONLY-DESIGN.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/HARNESS-PATCH-01-handoff.md", "docs/harness/README.md", "docs/harness/MODEL-NEUTRAL-TASK.md"],
+  "required_outputs": ["docs/harness/PATCH-ONLY-DESIGN.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/HARNESS-PATCH-01-handoff.md", "docs/harness/README.md", "docs/harness/MODEL-NEUTRAL-TASK.md"],
+  "acceptance": ["Clearly distinguish current voluntary CLI checks from proposed enforcement; no 100-percent compliance, authenticated approval, active sandbox or product GO claims.", "Specify minimum-authority worker inputs/outputs, separate immutable policy/checker baselines and sandboxed candidate tests; no execution of patch/source instructions by a privileged controller.", "Bound the first candidate change format and define strict paths, bytes, operations, scope, snapshot binding, reviewer evidence, cancellation/replay and check-then-accept failure handling; preserve dirty user work and distinguish acceptance from checkout mutation and rollback.", "Provide uniquely identified positive/negative scenarios with expected evidence and honest NOT RUN status, plus checkpoint owners, budget limits and unresolved environment choices.", "Preserve all preexisting edits, runtime/source/data, core harness/journal/checkers and plan/state; no install, model call, sandbox/ACL/hook setup, promotion/ref write, historical generation or automatic follow-up task."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 5,
+  "handoff": "docs/harness/HARNESS-PATCH-01-handoff.md"
+}

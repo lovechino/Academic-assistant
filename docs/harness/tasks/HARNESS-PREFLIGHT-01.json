@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-PREFLIGHT-01",
+  "work_package": "HARNESS-01",
+  "objective": "Record read-only Docker daemon provenance and a metadata-pinned synthetic image candidate, with remaining preflight gates.",
+  "request_basis": "User requested proceed with image selection and daemon provenance after read-only preflight. Documentation and public metadata research only; no pull/build/create/start, privilege escalation, Docker configuration or product GO.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation", "public_web_research"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/harness/HPC2-DOCKER-PROFILE.md", "docs/harness/HARNESS-DOCKER-01-handoff.md"],
+  "allowed_files": ["docs/harness/HPC2-PREFLIGHT.md", "docs/harness/HARNESS-PREFLIGHT-01-handoff.md", "docs/harness/README.md"],
+  "required_outputs": ["docs/harness/HPC2-PREFLIGHT.md", "docs/harness/HARNESS-PREFLIGHT-01-handoff.md", "docs/harness/README.md"],
+  "acceptance": ["Distinguish historical survey from current Snap service observations and remaining binary provenance uncertainty.", "Record official image candidate, platform and registry metadata digests without claiming downloaded content, signature, vulnerability or runtime verification.", "Keep all HB probes NOT RUN and no provisioning/product GO; preserve existing workloads and unrelated edits.", "Verify exact three docs scope and fixed harness/structure checks with local data integrity."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 3,
+  "handoff": "docs/harness/HARNESS-PREFLIGHT-01-handoff.md"
+}

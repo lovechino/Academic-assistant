@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-DOCKER-01",
+  "work_package": "HARNESS-01",
+  "objective": "Draft a minimal Docker-on-Ubuntu-WSL HPC-2 profile for review, with per-job privileges, channels, mounts, limits, existing-workload protection and preflight gates, without executable deployment artifacts.",
+  "request_basis": "User requested proceed after Docker in Ubuntu was verified and a minimal profile review was proposed before any synthetic container execution. This authorizes documentation maintenance, not container create/start, image pull/build, Docker/WSL configuration, daemon restart, existing-workload modification or product GO.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation", "public_web_research"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/harness/HPC2-BOUNDARY-CONTRACT.md", "docs/harness/HARNESS-BOUNDARY-01-handoff.md", "docs/harness/PATCH-ONLY-TEST-MAP.md"],
+  "allowed_files": ["docs/harness/HPC2-DOCKER-PROFILE.md", "docs/harness/HARNESS-DOCKER-01-handoff.md", "docs/harness/HPC2-BOUNDARY-CONTRACT.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/README.md"],
+  "required_outputs": ["docs/harness/HPC2-DOCKER-PROFILE.md", "docs/harness/HARNESS-DOCKER-01-handoff.md", "docs/harness/HPC2-BOUNDARY-CONTRACT.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/README.md"],
+  "acceptance": ["Record prior Ubuntu/Docker survey with temporal and evidence limits; do not confuse Windows CLI discovery with Docker availability, systemd status with daemon reachability, or virtual disk capacity with physical free storage.", "Propose a non-root no-socket no-host-mount network-none bounded synthetic profile; map concrete Docker controls to contract requirements with authoritative documentation, marking unsupported/unknown controls.", "Separate packet/proposal/log channels and supervisor authority; account for hidden image defaults, mutable tags, daemon log growth, cgroup v1 limitations, termination and exact-ID cleanup without providing a runnable launcher.", "Protect existing workloads on the shared daemon; no restart/prune/stop existing containers or implicit upgrade; keep image/runtime provenance, independent observers and explicit execution review pending.", "Only five docs outputs change after baseline; preserve runtime/code/tests/state/plan/data and ASTRA, keep HB tests NOT RUN, and run fixed harness/structure checks with local data integrity."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 5,
+  "handoff": "docs/harness/HARNESS-DOCKER-01-handoff.md"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-OBSERVER-01",
+  "work_package": "HARNESS-01",
+  "objective": "Prepare the Windows-operated Ubuntu observer boundary: replace PID-only observation with bounded process handles and one-shot session binding, and document least-privilege activation/reaper gates.",
+  "request_basis": "User said proceed after choosing Windows editing with Ubuntu narrow helper and review before granting privileges. Implement and test tooling plus bounded unprivileged synthetic trials; do not install/activate privileged service, grant capabilities, run root, change daemon/WSL/accounts, run real models or apply product/source changes.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation", "public_web_research"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/architecture/11-source-placement-blueprint-v0.1.md", "docs/harness/SOURCE-TASK-TEMPLATE.md", "docs/harness/SUPERVISOR.md", "docs/harness/HARNESS-SUPERVISOR-01-handoff.md", "scripts/harness_supervisor.py", "scripts/tests/test_agent_harness_supervisor.py"],
+  "allowed_files": ["scripts/harness_observer.py", "scripts/harness_supervisor.py", "scripts/tests/test_agent_harness_observer.py", "scripts/tests/test_agent_harness_supervisor.py", "docs/harness/UBUNTU-OBSERVER.md", "docs/harness/HARNESS-OBSERVER-01-handoff.md", "docs/harness/SUPERVISOR.md", "docs/harness/README.md", "docs/harness/PATCH-ONLY-TEST-MAP.md"],
+  "required_outputs": ["scripts/harness_observer.py", "scripts/harness_supervisor.py", "scripts/tests/test_agent_harness_observer.py", "scripts/tests/test_agent_harness_supervisor.py", "docs/harness/UBUNTU-OBSERVER.md", "docs/harness/HARNESS-OBSERVER-01-handoff.md", "docs/harness/SUPERVISOR.md", "docs/harness/README.md", "docs/harness/PATCH-ONLY-TEST-MAP.md"],
+  "acceptance": ["New observer owns bounded process observation only under scripts; supervisor delegates instead of maintaining a second observer. Preserve validator/collector. Record placement search and exact owners in handoff.", "Use pidfd and held proc directory with before/after liveness/identity checks, exact Docker ID/PID/start binding and cgroup membership; no worker-supplied path/command/PID authority.", "One-shot opaque session, finite deadline and field projection; stale/cancel/replay/missing/permission-denied cases cannot produce observation success. Partial process evidence never becomes full network/access acceptance.", "Focused unit/fake and unprivileged Linux child-process tests, then bounded current-image Docker observe/happy only after fresh preflight. Preserve actual blocked observation and cleanup records.", "Define Windows operator workflow and least-privilege helper/reaper activation scope with remaining review gates; no setcap on interpreter, sudo/root workaround, service install, full-shell coding-agent claim, product gate or model execution.", "Run fixed harness/structure with local data integrity and exact scope; preserve preexisting dirty work and report all skips/NOT RUN."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 9,
+  "handoff": "docs/harness/HARNESS-OBSERVER-01-handoff.md"
+}

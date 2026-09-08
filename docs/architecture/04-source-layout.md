@@ -2,6 +2,12 @@
 
 Ngày: 2026-09-04. Trạng thái: **đã tổ chức thư mục, chưa triển khai runtime sản phẩm**.
 
+Cập nhật 2026-09-07: [source placement blueprint](11-source-placement-blueprint-v0.1.md)
+là bản đồ đặt chức năng hiện hành, làm rõ application/retrieval/agents, worker/use case
+và feature/shared UI. Giữ khung vật lý dưới đây; địa chỉ source mẫu là dành trước sau
+explicit GO, không tạo thêm runtime. Các kết quả/ngày và điểm tiếp tục cũ bên dưới
+là lịch sử; tiến độ hiện hành lấy từ master plan/harness status.
+
 ## 1. Tham khảo P-122 như thế nào?
 
 Đã đọc `E:\P-122\ARCHITECTURE.md`, các phần ownership/dependency của `docs/CODEBASE.md`, quy tắc repo và cấu trúc `src/`, `frontend/src/`. P-122 có frontend riêng nhưng API/application/domain/agents/infrastructure chung trong root `src/`.

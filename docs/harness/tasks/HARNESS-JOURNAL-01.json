@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-JOURNAL-01",
+  "work_package": "HARNESS-01",
+  "objective": "Add a bounded local SQLite development-harness journal CLI for run scope snapshots, fixed-check observations, evidence-linked reported findings and read-only improvement proposals.",
+  "request_basis": "User states they read the review and explicitly requests harness updates, considering a local database CLI to record scope, trace bugs and improve gradually. Tooling only; no explicit product-runtime GO inferred.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/evaluation/39-wp04-repair-recovery-handoff-v0.1.md", "scripts/agent_harness.py", "scripts/tests/test_agent_harness.py"],
+  "allowed_files": ["scripts/harness_journal.py", "scripts/tests/test_agent_harness_journal.py", "scripts/agent_harness.py", "scripts/tests/test_agent_harness.py", "scripts/README.md", "docs/harness/README.md", "docs/harness/LOCAL-JOURNAL.md", "docs/harness/HARNESS-JOURNAL-01-handoff.md"],
+  "required_outputs": ["scripts/harness_journal.py", "scripts/tests/test_agent_harness_journal.py", "docs/harness/LOCAL-JOURNAL.md", "docs/harness/HARNESS-JOURNAL-01-handoff.md"],
+  "acceptance": ["SQLite is an ignored local diagnostic ledger, not authorization, product DB, immutable audit or replacement for baseline/plan; no raw source, model prompts, credentials or command execution from records.", "Explicit capture wraps only existing fixed check/verify paths; distinguish pending/interrupted/blocked/failed/passed observations, pin baseline/checker revisions, reject event-key conflicts and preserve nonzero outcomes.", "Read-only reporting and deterministic improvement suggestions never edit code, cards, scope, baseline, state or approvals and do not claim all bugs detected or reported findings confirmed.", "Focused tests cover SQLite persistence, read-only missing DB, wrong schema/repository, duplicate/concurrent event keys, stale baseline, safe projections and failure handling; old safety tests continue to pass.", "Preserve preexisting WP04 edits and ASTRA product gate; document limits, local journal creation/demo and evidence-backed handoff without product runtime or historical generator execution."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 8,
+  "handoff": "docs/harness/HARNESS-JOURNAL-01-handoff.md"
+}

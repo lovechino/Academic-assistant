@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "SOURCE-BASE-01",
+  "work_package": "HARNESS-01",
+  "objective": "Make the existing three-component source scaffold unambiguous for coding agents with canonical ownership, placement examples, a task template and bounded read-only layout checks.",
+  "request_basis": "User requested a base source template so different coding agents do not implement the same function in arbitrary folders. This authorizes source organization guidance and local development checks, not product runtime or gate relaxation.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/harness/HARNESS-FINDING-01-handoff.md", "docs/architecture/04-source-layout.md", "docs/architecture/08-controlled-workflow-decision-v0.1.md", "ai-core/README.md", "backend/README.md", "frontend/README.md", "scripts/agent_harness.py", "scripts/verify_structure.py"],
+  "allowed_files": ["AGENTS.md", "README.md", "docs/architecture/04-source-layout.md", "docs/architecture/11-source-placement-blueprint-v0.1.md", "docs/harness/SOURCE-TASK-TEMPLATE.md", "docs/harness/README.md", "scripts/verify_source_layout.py", "scripts/verify_structure.py", "scripts/tests/test_agent_harness_source_layout.py", "scripts/README.md", "docs/harness/SOURCE-BASE-01-handoff.md"],
+  "required_outputs": ["AGENTS.md", "README.md", "docs/architecture/04-source-layout.md", "docs/architecture/11-source-placement-blueprint-v0.1.md", "docs/harness/SOURCE-TASK-TEMPLATE.md", "docs/harness/README.md", "scripts/verify_source_layout.py", "scripts/verify_structure.py", "scripts/tests/test_agent_harness_source_layout.py", "scripts/README.md", "docs/harness/SOURCE-BASE-01-handoff.md"],
+  "acceptance": ["Retain existing physical scaffold; distinguish canonical layer/capability owners, examples reserved for after GO, and no competing implementations in agents/application or frontend shared components.", "Provide model-neutral placement/reuse checklist and handoff evidence without changing the task schema or treating a template as user authority.", "Add a read-only Git-visible pre-product layout checker with focused synthetic positive/negative tests; integrate into the existing structure profile without allowing product paths or changing core harness/state/plan.", "State that placement checks do not detect semantic duplication, validate imports/runtime security, inspect ignored files or authorize production; no imports/processing of historical experiments or source PDFs.", "Preserve preexisting edits, all source/data bytes, master plan/state and ASTRA explicit GO; verify with local data integrity and report exact checks, skips and NOT RUN honestly."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 11,
+  "handoff": "docs/harness/SOURCE-BASE-01-handoff.md"
+}

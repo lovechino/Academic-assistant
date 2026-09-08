@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-SUPERVISOR-01",
+  "work_package": "HARNESS-01",
+  "objective": "Build and exercise a bounded synthetic Docker supervisor outside the worker, preserving staged gates for host probes and acceptance/recovery.",
+  "request_basis": "User authorized execution after the proposed packages 1-5: tooling/tests/docs, verified pinned image pull, new task-owned synthetic containers and private scratch only. No changes to existing containers/daemon/WSL, secrets, real models, user checkout promotion or product runtime. Package 6 requires a later model/data/budget choice.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation", "public_web_research"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/architecture/11-source-placement-blueprint-v0.1.md", "docs/harness/SOURCE-TASK-TEMPLATE.md", "docs/harness/HPC2-BOUNDARY-CONTRACT.md", "docs/harness/HPC2-DOCKER-PROFILE.md", "docs/harness/HPC2-PREFLIGHT.md", "docs/harness/COLLECTOR.md", "scripts/harness_collector.py", "scripts/harness_patch_validator.py"],
+  "allowed_files": ["scripts/harness_supervisor.py", "scripts/tests/test_agent_harness_supervisor.py", "docs/harness/SUPERVISOR.md", "docs/harness/HARNESS-SUPERVISOR-01-handoff.md", "docs/harness/README.md", "docs/harness/PATCH-ONLY-TEST-MAP.md"],
+  "required_outputs": ["scripts/harness_supervisor.py", "scripts/tests/test_agent_harness_supervisor.py", "docs/harness/SUPERVISOR.md", "docs/harness/HARNESS-SUPERVISOR-01-handoff.md", "docs/harness/README.md", "docs/harness/PATCH-ONLY-TEST-MAP.md"],
+  "acceptance": ["New scripts/harness_supervisor.py owns real synthetic transport/lifecycle only; reuse collector and validator without duplicating them. Tests remain scripts/tests. Record placement search in handoff.", "No worker host mounts, credentials, Docker socket or network. Fixed synthetic fixture, pinned image/config and effective resource/security checks before start; no arbitrary host commands from data.", "Bound stream allocation, real wall deadline, independent parent supervision, exact-ID registration before start, zero retry and cleanup evidence; preserve unknown outcomes rather than report success.", "Run focused tests then harmless Docker smoke only after prerequisites; stage bounded negatives after effective caps. Report partial HB coverage honestly; full independent observers and authenticated acceptance may block later packages.", "Preserve unrelated dirty files, product gates, no historical regeneration or paid model. Document authorized next stages and unresolved safety gates instead of claiming universal enforcement."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 6,
+  "handoff": "docs/harness/HARNESS-SUPERVISOR-01-handoff.md"
+}

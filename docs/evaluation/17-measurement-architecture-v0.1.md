@@ -67,12 +67,14 @@ Mỗi metric khi được đưa vào run phải có: `metric_id`, stage, câu h�
 | C-01 | Atomic boundary cut rate | Atom code/table/formula/list bị cắt trái rule / atom annotated | Hard gate với atom bắt buộc |
 | C-02 | Evidence-group recoverability | Required groups còn một alternative hoàn chỉnh sau chunk / required groups | Chấm trước retrieval |
 | C-03 | Context fragmentation | Required alternative phải ghép nhiều chunks do boundary / alternatives | Diagnostic theo loại nội dung |
-| C-04 | Dependency recall | Dependency target được resolver lấy cùng anchor / eligible dependencies | Không tính visual unsupported |
+| C-04 | Resolver dependency recall, pre-pack | Reference requirements được resolver lấy đủ cùng anchor / predeclared eligible reference requirements tại resolver entry | Unsupported modality chỉ exclude theo pinned resolver profile trước run; không áp exclusion sang CI-02b |
 | C-05 | False-expansion rate | Expansion đưa context không cần hoặc gây nhiễu / expansions được review | Bắt buộc trước khi bật X3 |
 | C-06 | Orphan-reference rate | Chunk chứa back/forward/visual reference nhưng thiếu target / chunks có reference | Diagnostic |
 | C-07 | Chunk budget profile | P50/P95/max token; tỷ lệ vượt hard cap; số chunks/document | Capacity, không phải quality |
 
 `C-04` một mình không đủ chọn resolver. X3 của R4 đạt dependency recall 6/6 nhưng match 62/216 chunks; chưa có `C-05`, vì vậy chưa được bật mặc định.
+
+Correction 2026-09-07 (WP04-F02): C-04 đo resolver output; CI-02b đo exact serialized payload với mọi required reference dependency của selected evaluation anchors, kể cả omitted anchors/undeclared edges/required unsupported visual. [Scorer v0.1.1](32-scorer-specification-v0.1.md) tách formulas, observations và examples; không sửa con số R4 lịch sử phía trên hoặc coi nó là post-pack evidence.
 
 ### 3.3 Index, retrieval và reranking
 

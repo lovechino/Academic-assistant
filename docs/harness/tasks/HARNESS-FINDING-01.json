@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-FINDING-01",
+  "work_package": "HARNESS-01",
+  "objective": "Implement explicit evidence-linked finding lifecycle transitions in the local journal with immutable history, predecessor checks, scoped verification and recorded review, not automatic approval.",
+  "request_basis": "User agreed to evidence -> proposed regression -> authorized repair -> verification/review, then explicitly requested implementation of reported/reproduced/fix_proposed/verified_local/reviewed_closed finding lifecycle.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/HARNESS-JOURNAL-01-handoff.md", "docs/harness/LOCAL-JOURNAL.md", "scripts/harness_journal.py", "scripts/tests/test_agent_harness_journal.py"],
+  "allowed_files": ["scripts/harness_journal.py", "scripts/tests/test_agent_harness_journal.py", "docs/harness/LOCAL-JOURNAL.md", "docs/harness/FINDING-LIFECYCLE.md", "docs/harness/HARNESS-FINDING-01-handoff.md", "docs/harness/HARNESS-JOURNAL-01-handoff.md", "docs/harness/README.md"],
+  "required_outputs": ["scripts/harness_journal.py", "scripts/tests/test_agent_harness_journal.py", "docs/harness/FINDING-LIFECYCLE.md", "docs/harness/HARNESS-FINDING-01-handoff.md"],
+  "acceptance": ["Implement explicit forward lifecycle with append-only transition events and atomic expected-predecessor checks; preserve old v1 events without migration/reset or automatic promotion.", "Each transition pins evidence and acting run; verified_local requires same repair run successful verify and current source/checker fingerprints, reviewed_closed additionally requires recorded review; actor/reviewer labels are not authenticated signoff.", "Read-only history/report/suggestions show lifecycle separately from original reported outcome and do not auto-close from PASS; duplicate/conflicting/stale/concurrent calls do not overwrite history.", "Focused synthetic tests cover legal sequence, skipped states, stale predecessor/verification, evidence requirements, reviewer metadata, duplicates/concurrency and rollback on failure; no real finding is falsely closed for demonstration.", "Preserve unrelated edits, current plan/state and product gate; no new runtime, arbitrary commands, models, installations or historical generators."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 7,
+  "handoff": "docs/harness/HARNESS-FINDING-01-handoff.md"
+}

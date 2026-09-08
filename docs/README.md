@@ -33,6 +33,8 @@ Tài liệu ở đây là nguồn quyết định/phương pháp. Source triển
 
 ## Dữ liệu và quyền
 
+- [Đề xuất xóa nhầm/khôi phục: restricted trash, restore-to-review, purge/backup và quyết định còn mở](governance/06-material-deletion-recovery-v0.1.md)
+
 - [Chỉ mục chương trình phân quyền và bảo mật agent](governance/00-authorization-program-index.md)
 - [Tiêu chí chọn môn pilot](data/01-pilot-selection.md)
 - [Data catalog và phiếu kiểm kê](data/02-data-catalog.md)
@@ -53,6 +55,8 @@ Tài liệu ở đây là nguồn quyết định/phương pháp. Source triển
 - [Nguồn và hạn chế PDF pilot](../data/raw/pdf-pilot/SOURCE-NOTICE.md)
 
 ## Evaluation
+
+- [WP-04 repair/handoff: ba findings, affected-scope re-review và recovery tests NOT RUN](evaluation/39-wp04-repair-recovery-handoff-v0.1.md)
 
 - [WP-04 behavior/security map: 26 future case specifications NOT RUN](evaluation/37-wp04-behavior-security-review-v0.1.md)
 - [WP-04 handoff: packet để Astra review, kiểm chứng và điểm dừng](evaluation/38-wp04-review-packet-handoff-v0.1.md)

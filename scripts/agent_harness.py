@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STATE = "docs/harness/project-state.json"
 GATE = "Đã tới ASTRA-01: cần review AI Core workflow"
 CHECKS = {
-    "harness": ["-m", "unittest", "discover", "-s", "scripts/tests", "-p", "test_agent_harness.py", "-v"],
+    "harness": ["-m", "unittest", "discover", "-s", "scripts/tests", "-p", "test_agent_harness*.py", "-v"],
     "structure": ["scripts/verify_structure.py"],
     "context-integrity": ["-m", "unittest", "discover", "-s", "ai-core/experiments/context-integrity-v0.1", "-p", "test_*.py", "-v"],
 }
@@ -170,7 +170,7 @@ def validate_task(root: Path, task: dict, state: dict) -> None:
         require(name.startswith(("docs/", "contracts/", "scripts/", "ai-core/experiments/"))
                 or name in {"AGENTS.md", "README.md"}, f"Unsupported write surface: {name}")
         if task["kind"] == "research":
-            require(not (name in {"AGENTS.md", STATE, "scripts/agent_harness.py"}
+            require(not (name in {"AGENTS.md", STATE, "scripts/agent_harness.py", "scripts/harness_journal.py"}
                          or name.startswith(("docs/harness/", "scripts/tests/"))), "Research cannot change harness controls")
     require(set(task["required_outputs"]) <= set(task["allowed_files"]), "Outputs outside allowlist")
     require(task["handoff"] in task["required_outputs"], "Handoff must be a required output")

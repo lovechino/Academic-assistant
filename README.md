@@ -21,6 +21,7 @@ tmp/         Scratch local, không phải source
 
 - [AI core](ai-core/README.md), [Backend](backend/README.md), [Frontend](frontend/README.md).
 - [Source layout, ownership và những điểm tham khảo từ P-122](docs/architecture/04-source-layout.md).
+- [Bản đồ chức năng → nơi đặt source chuẩn](docs/architecture/11-source-placement-blueprint-v0.1.md), [mẫu giao việc tránh code trùng/lạc folder](docs/harness/SOURCE-TASK-TEMPLATE.md). Giữ scaffold hiện có; chưa product GO.
 - [Toàn bộ tài liệu nghiên cứu](docs/README.md), [data policy](data/README.md), [boundary contracts](contracts/README.md).
 
 Hai helper PDF đã chuyển vào `ai-core/experiments/pdf-pilot/`; `data/` và các snapshot giữ nguyên. Không copy source/secrets/dependencies từ P-122. Tách component không bắt buộc tách thành ba microservices.

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-COLLECTOR-01",
+  "work_package": "HARNESS-01",
+  "objective": "Implement a pure single-attempt synthetic stream collector in scripts/harness_collector.py, with fake transport tests for caps, lifecycle, logical deadlines and cancellation; no real runner or product runtime.",
+  "request_basis": "User requested continue after the proposed fake-transport controller/collector tooling slice. Scope is in-memory development tooling and tests only; no Docker, image acquisition, subprocess worker, model, database or file applier.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/architecture/11-source-placement-blueprint-v0.1.md", "docs/harness/SOURCE-TASK-TEMPLATE.md", "docs/harness/HPC2-BOUNDARY-CONTRACT.md", "docs/harness/HPC2-DOCKER-PROFILE.md", "docs/harness/HPC2-PREFLIGHT.md", "docs/harness/HARNESS-PREFLIGHT-01-handoff.md", "scripts/harness_patch_validator.py"],
+  "allowed_files": ["scripts/harness_collector.py", "scripts/tests/test_agent_harness_collector.py", "docs/harness/COLLECTOR.md", "docs/harness/HARNESS-COLLECTOR-01-handoff.md", "docs/harness/README.md", "docs/harness/PATCH-ONLY-TEST-MAP.md"],
+  "required_outputs": ["scripts/harness_collector.py", "scripts/tests/test_agent_harness_collector.py", "docs/harness/COLLECTOR.md", "docs/harness/HARNESS-COLLECTOR-01-handoff.md", "docs/harness/README.md", "docs/harness/PATCH-ONLY-TEST-MAP.md"],
+  "acceptance": ["Canonical owner scripts development tooling; search found no stream collector, reuse HPC1 validator through integration tests without copying parser or authorization rules.", "Bound retained stdout/stderr and event count before append, strict types and fixed errors; immutable capture bound to controller context, with no raw logs in summaries.", "Require attach/start, both EOFs, successful exit and stop observation before one-shot capture; logical deadline/cancel/disconnect/overflow fail closed; late events cannot resurrect or consume twice.", "Tests use in-memory fake transport/clock only, cover positive controls, exact caps, stale handles, UTF8 splits, duplicate and cancellation orderings; do not claim host timing, thread safety, authenticated grants, durable replay or cleanup enforcement.", "Keep Docker/image/model/PDF/DB/applier operations NOT RUN, all HB groups NOT RUN and ASTRA/product GO pending; verify six outputs and existing fixed checks with local data."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 6,
+  "handoff": "docs/harness/HARNESS-COLLECTOR-01-handoff.md"
+}

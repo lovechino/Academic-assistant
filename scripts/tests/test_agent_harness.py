@@ -129,7 +129,7 @@ class HarnessTests(unittest.TestCase):
                 self.assert_task_blocked(dict(self.task, allowed_files=[name]))
 
     def test_research_cannot_edit_controls(self):
-        for name in [h.STATE, "AGENTS.md", "scripts/agent_harness.py", "docs/harness/README.md", "scripts/tests/test_agent_harness.py"]:
+        for name in [h.STATE, "AGENTS.md", "scripts/agent_harness.py", "scripts/harness_journal.py", "docs/harness/README.md", "scripts/tests/test_agent_harness.py"]:
             with self.subTest(name=name):
                 self.assert_task_blocked(dict(self.task, allowed_files=[name]))
 

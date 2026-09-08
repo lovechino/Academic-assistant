@@ -1,4 +1,6 @@
-# Evidence packet boundary — draft v0.1.1
+# Evidence packet boundary — draft v0.1.2
+
+Clarification 2026-09-07: WP04-F01 binds semantic validation to the final public content; specification only, runtime tests NOT RUN.
 
 Trạng thái: đặc tả để review, không phải OpenAPI/JSON Schema hoặc DTO đã freeze. [Mô hình nguồn và ví dụ](../docs/architecture/05-evidence-pipeline-contract.md) là tài liệu đồng hành; định danh và index lineage tuân theo [Content Unit & Index Boundary v0.1](content-unit-index.md).
 
@@ -52,6 +54,18 @@ Các field bảng trên thuộc internal evidence envelope; không serialize ngu
 ## 4. Result và failure semantics
 
 AI core trả answer draft, claim-citation links, assessment/limitations và structured failure khi có. Backend quyết định projection được phép và currentness tại delivery; frontend không sửa citation sang bản hiện hành cho tiện.
+
+### 4.1 Immutable validated public result — WP04-F01
+
+Backend owns the public projection policy; AI owns claim/evidence validation. Before semantic validation, construct a safe, typed canonical public candidate under that policy (not executable source/model HTML). The candidate includes the answer, limitations/status that affect meaning, displayed source labels, claim-to-citation mapping and exact version/locator/asset references. Internal evidence and authorization records remain separate; creating this candidate does not authorize delivery.
+
+The internal validation record MUST bind the request/attempt generation, immutable draft and public-result revisions, exact packet/model-input digest, full influence-set digest, canonical public-content digest, claim-citation mapping and validation/projection/render-profile revisions. Digests include referenced immutable asset identities/content bindings; hashing only visible text is insufficient. These logical fields are not a frozen wire schema, credentials, or public hashes. The trusted validator records its verdict; a model/source cannot supply a trusted verdict or self-declared hash.
+
+Backend release MUST verify that the candidate and all bindings are exactly those accepted, plus independently enforce current authorization/obligations, cancellation, attempt fencing and audit. Any meaning-bearing content, citation, limitation, asset or binding change invalidates the verdict. Repack/regeneration, policy-driven redaction or semantic sanitization needs a new candidate revision and validation within the same finite budget; otherwise fail safely. Revoke of any influence item still discards the whole draft, not just its citation. A stale draft-A verdict MUST NOT release draft B under the same request ID.
+
+After validation only profile-defined, meaning-preserving transport encoding/escaping and rendering is permitted. If a profile cannot represent superscripts, subscripts, negation, units, tables or safe math faithfully, reject/prepare an explicit faithful representation before validation; do not silently strip it. Equality of hashes does not prove rendered semantic fidelity: frontend renderer/version and assets need boundary/visual assertions. Presentation-only correlation fields may be outside the content digest only under an explicit allowlist; no answer/claim/source field may use that exception. Changed renderer semantics require renewed profile validation, not reuse of an old verdict by assumption.
+
+See WPT-15/26 extensions in the [test map](../docs/evaluation/37-wp04-behavior-security-review-v0.1.md). Safe template/error paths also use reviewed public projection/render profiles, without pretending they received model semantic validation.
 
 Phải phân biệt:
 

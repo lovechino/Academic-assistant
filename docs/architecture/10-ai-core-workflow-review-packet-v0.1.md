@@ -1,6 +1,6 @@
 # WP-04 — AI Core workflow: ASTRA-01 review packet v0.1
 
-2026-09-07. **Review draft, chưa triển khai, chưa Astra review hoặc explicit product GO.** Người dùng đã đồng ý scope Academic QA manual, text có cấu trúc, visual-limited và giao chuẩn bị packet. [Scope record](../harness/WP02-WP04-reconciliation.md) không cấp quyền dùng nguồn, gọi model hoặc phát hành. Gate đã thông báo: `Đã tới ASTRA-01: cần review AI Core workflow`.
+2026-09-07, repair revision v0.1.1. **Review draft, chưa triển khai hoặc explicit product GO.** Ba findings của lượt read-only review trong hội thoại được xử lý ở [repair/handoff 39](../evaluation/39-wp04-repair-recovery-handoff-v0.1.md); re-review là cùng assistant, không tự chứng nhận reviewer độc lập/Astra acceptance. Người dùng đã đồng ý scope Academic QA manual, structured text-first/visual-limited. [Scope record](../harness/WP02-WP04-reconciliation.md) không cấp quyền dùng nguồn, gọi model hoặc phát hành. Gate đã thông báo: `Đã tới ASTRA-01: cần review AI Core workflow`.
 
 Đọc cùng [test map](../evaluation/37-wp04-behavior-security-review-v0.1.md) và [review guide](../roadmap/04-astra-review-guide-v0.1.md). Packet đề xuất orchestration để reviewer tìm lỗ hổng; không là schema đã freeze hoặc hướng dẫn bỏ qua gate.
 
@@ -28,7 +28,7 @@ flowchart TB
     BA --> R[AI retrieval through authorized broker]
     R --> K[Required dependencies / conflict / exact packing]
     K --> M[Use-model admission and bounded generation]
-    M --> V[Claim and citation validation]
+    M --> V[Safe public candidate and bound claim/citation validation]
     V --> D[Backend current-policy fenced release]
     D --> UI[Frontend safe answer rendering]
     UI --> SV[Backend rechecked exact-version source viewer]
@@ -55,9 +55,9 @@ Tên dưới đây là vocabulary review, **không enum/API freeze**. Một requ
 | Q4 Build evidence bundles | AI đánh giá dependencies/known authorized conflicts với resource checks từng target | Required closure đủ → bundle; thiếu/denied/cyclic/too-large → dependent claims incomplete. Repair chỉ trong scope/budget; không mở denied neighbor |
 | Q5 Serialize and assess | AI tạo exact model-input projection, đo accounting, xác nhận post-pack fidelity/closure | Unknown budget/invalid lineage → block; đủ cho full hoặc independent supported subset → Q6; không có claim đủ → safe limitation không cần generation |
 | Q6 Admit model use and generate | Backend/broker recheck `use_in_model_context` + processing/egress obligations cho mọi dependency; generator chỉ nhận allowlist projection | Draft chỉ ở internal buffer; timeout/cancel/error → không phát draft; không external provider fallback |
-| Q7 Validate draft | AI deterministic integrity/citation checks + semantic validation theo profile đã review | Accepted full/partial draft → Q8; invalid → bounded repair nếu profile cho, tái Q5–Q7; hết budget → validation failure, không phát bản lỗi |
-| Q8 Release | Backend kiểm current quyền và obligations trên **toàn evidence influence set**, không chỉ issued citations; fenced release admission | Mất quyền bất kỳ influence item → discard draft; muốn sinh lại phải new assessed packet trong quyền hiện tại. Không chỉ xóa citation rồi phát answer đã nhiễm |
-| Q9 Terminal and view | Backend commit terminal outcome; frontend safe render; viewer là request/action độc lập | Exact version/locator + current view rights; denied/missing khác nhau trong internal trace, public không lộ existence ngoài quyền |
+| Q7 Validate public candidate | Safe canonical candidate theo Backend-owned projection policy trước AI semantic/integrity/citation validation; verdict bind exact candidate/draft/packet/input/influence/profile revisions | Accepted full/partial candidate → Q8; mutation/sanitizer mất nghĩa → verdict invalid, sửa và revalidate trong budget; hết budget → validation failure |
+| Q8 Release | Backend kiểm exact verdict/content bindings và current quyền/obligations trên **toàn influence set**; fenced release admission | Mất quyền bất kỳ influence item → discard toàn draft; changed public content không được dùng verdict cũ. Muốn sinh lại cần new assessed packet và validation; không chỉ xóa citation |
+| Q9 Terminal and view | Backend commit terminal outcome; frontend kiểm request/conversation/view generation rồi faithful safe render; viewer là request/action độc lập | Callback view cũ không render/cache/history append; exact version/locator + current view rights. Public không lộ existence ngoài quyền |
 
 Evidence influence set gồm source items/history-derived protected context thực sự gửi model hoặc dùng trong draft; phải truy vết đầy đủ. Không truy được provenance của protected history thì bỏ/làm rõ, không tin text answer trước như nguồn mới. Public warnings không nêu ID/title/count/existence của denied resources.
 
@@ -82,10 +82,11 @@ sequenceDiagram
   BE-->>AI: Allow with obligations or deny
   AI->>GM: Allowlisted input, no credentials or evaluator labels
   GM-->>AI: Buffered untrusted draft
-  AI->>AI: Validate claims, citations, completeness and policy
-  AI->>BE: Validated draft and full influence lineage
-  BE->>BE: Current-policy fenced release or discard
-  BE-->>UI: Sanitized terminal result, no draft stream
+  AI->>AI: Build safe candidate under Backend projection policy, validate exact content
+  AI->>BE: Bound candidate/verdict/input/profile and full influence lineage
+  BE->>BE: Verify exact bindings and current-policy fenced release or discard
+  BE-->>UI: Exact validated public content, no meaning-changing post-validation edit
+  UI->>UI: Check request/conversation/view generation, faithful safe render
   UI->>BE: Open opaque source handle and exact locator
   BE->>BE: Recheck current view action and version
   BE-->>UI: Permitted safe view or generic failure
@@ -99,6 +100,8 @@ Network arrival không là ordering point; không thể thu hồi bytes đã g�
 
 ## 5. Public ports và ownership
 
+WP04-F01/F03 clarification: [evidence §4.1](../../contracts/evidence-packet.md) là contract exact validation-to-release binding; [HTTP request/view binding](../../contracts/http-api.md) chặn late response sau tenant/conversation/session switch. Hash không chứng minh quyền hoặc semantic render fidelity. Current obligations làm đổi nội dung phải new candidate/revalidate hoặc fail; không sửa sau verdict. Backend sở hữu projection policy và persistence target gốc, AI kiểm semantics, Frontend chỉ render profile bảo toàn nghĩa và drop stale callbacks.
+
 Các operation logic dưới đây không phải Python signatures hoặc network-service mandate. Entry/adapters → application → domain; infrastructure implements ports. Không private imports xuyên component.
 
 | Public boundary / port | Authority / producer | Input tối thiểu → output | Không được làm |
@@ -110,8 +113,8 @@ Các operation logic dưới đây không phải Python signatures hoặc networ
 | Dependency/conflict lookup | AI + scoped graph adapter | exact anchors/versions + bounded traversal → required/optional/unknown relations, safe missing reasons | Similarity/adjacency không tự thành required truth; relation không cấp quyền |
 | Serializer/accounting | AI | selected bundles + generator profile → exact input, internal hash/usage, omissions | Không lấy qrels vào input, không giữ ID rồi cắt mất content mà báo đủ |
 | Generator | AI adapter bị broker giới hạn | allowlisted model input + deadline/cancel/output constraints → untrusted buffered draft | Không direct DB credentials, publish/share/web/tool autonomy |
-| Validator | AI deterministic + semantic validation profile | exact packet/draft/citation mapping → decision + reasons/revision | ID tồn tại không chứng minh claim support; verifier agreement không là evidence độc lập |
-| Result/release ledger | Backend | scoped request attempt + validated draft/influence set → terminal record/release decision | Replay không bypass current auth; raw prompts không public |
+| Validator | AI deterministic + semantic validation profile | exact safe candidate/packet/draft/input/influence/citation/profile bindings → bound verdict + reasons/revision | Không lấy verdict model tự khai; ID/hash không chứng minh semantic support/render fidelity |
+| Result/release ledger | Backend | scoped request attempt + exact candidate/verdict/influence set → terminal record/release decision ở conversation gốc | Replay không bypass current auth hoặc dùng UI selector mới làm persistence target; raw prompts không public |
 | Citation viewer | Backend | opaque handle + user/session/current action → exact version/region safe view | Handle/URL không là credential; không chuyển version âm thầm |
 | Telemetry sink | Each component → restricted audit owner | minimal stage/decision references/counts → trace events | Không raw capability/source/PII/model reasoning trong public logs |
 
@@ -134,7 +137,7 @@ Các rules này áp dụng ở pack/query boundary, không tuyên bố đã có 
 | Tình huống | Semantics đề xuất |
 |---|---|
 | Same scoped request key, same canonical payload/profile | Backend ledger trả pending hoặc terminal operation identity; không tạo call kép. Trả body cũ phải recheck influence set/current policy; ledger không phải quyền đọc |
-| Same key nhưng question/mode/scope khác | Conflict/invalid request; không trả body của request trước. Key namespace bind subject + active tenant + action; fingerprints server-only, không global existence oracle |
+| Same key nhưng question/mode/scope/conversation khác | Conflict/invalid request; không trả body của request trước. Key namespace bind subject + active tenant + action; canonical payload bind conversation gốc; fingerprints server-only, không global existence oracle |
 | Client retry sau disconnect/timeout | Check operation status trước; nếu completion unknown, không tự tạo generation mới. Model nondeterminism không được gọi là exactly-once; invocation/effect IDs riêng |
 | Transient read failure | Chỉ retry nếu profile có finite attempts/time/resources còn lại, giữ snapshot và scope; mỗi attempt current auth. Không retry deny, invalid schema, missing rights, classified forbidden hoặc canceled work |
 | Missing context | Repair chỉ yêu cầu evidence cụ thể/authorized closure trong budget; không lặp retrieve/generate vô hạn hoặc nâng K qua prompt nguồn. Mỗi repack có identity/hash mới, tái validation |
@@ -187,10 +190,10 @@ URLs branch/main là upstream observations, không reproducible dependency lock.
 |---|---|---|
 | WPD-01 | Manual text-first scope đã đồng ý; no prevalidated token stream, no semantic cache, no autonomous tools và no automatic model retry ở fake slice là proposals | Trước scoped product GO |
 | WPD-02 | Required dependency discovery và runtime answerability không có gold leakage; unknown dependencies/semantics không tự complete | Fake fixtures kiểm contracts; real discovery/semantic gates trước model quality claims/real serving |
-| WPD-03 | Authoritative ordering/fences cho model submission, release, viewer, revoke và cancellation; full influence-set recheck | Fake event-order test trước adapter; real proof trước protected data |
-| WPD-04 | Schema của three projections, result axes, idempotency/ledger và safe error obligations | Trước implementation phần tương ứng; không lấy logical field names làm API frozen |
+| WPD-03 | Authoritative ordering/fences cho model submission, release, viewer, revoke/cancel; full influence set, exact verdict binding và client view generation | WP04-F01/F03 corrected draft; fake schedules trước adapter, real proof trước protected data |
+| WPD-04 | Three projections, validated public candidate/render fidelity, view/conversation binding, result axes và ledger | WP04-F01/F03 corrected draft; exact schema/profile cần chốt trước phần implementation tương ứng |
 | WPD-05 | Exact generator/validator/tokenizer, finite budget and retry profile, license/egress | Trước model/real adapter run; không chặn read-only review |
 | WPD-06 | Rights owners, reviewed sources, label authority/matching/calibration và graded-work policy | Trước sử dụng/claim tương ứng; chưa giáo viên thì không gold hoặc tự approve |
 | WPD-07 | Product work harness sau GO: profile hiện không authorize runtime | Cần separate reviewed maintenance task bound actual review/GO record; không thêm approved=true hoặc relabel runtime là research |
 
-DR-02..10 từ [review 35](../evaluation/35-wp02-decision-review-v0.1.md) tiếp tục mở; DR-01 chỉ đóng user scope choice. Packet đầy đủ mục review không có nghĩa đã trả lời mọi open question. Nếu Astra phát hiện P0/P1, sửa packet và review lại phần bị ảnh hưởng trước GO; chưa có reviewer output ở lượt này.
+DR-02..10 từ [review 35](../evaluation/35-wp02-decision-review-v0.1.md) tiếp tục mở; DR-01 chỉ đóng user scope choice. [Repair 39](../evaluation/39-wp04-repair-recovery-handoff-v0.1.md) ghi ba actual conversation findings và affected-scope self-review, không phải external reviewer acceptance. WP04-F02 tách C-04 resolver/CI-02b post-pack trong scorer/test map. [Recovery design](../governance/06-material-deletion-recovery-v0.1.md) bổ sung future lifecycle lane, không mở rộng exact first fake QA slice. User vẫn cần xem revision/dispositions và explicit scoped GO; tài liệu đầy đủ không giải quyết mọi open question.

@@ -1,5 +1,7 @@
 # WP-04 review packet handoff v0.1
 
+Follow-up 2026-09-07: [repair/recovery handoff 39](39-wp04-repair-recovery-handoff-v0.1.md) là điểm tiếp tục sau actual conversation review và user request sửa ba findings/thêm xóa nhầm. Các statuses, counts và fingerprints bên dưới là **snapshot lịch sử trước repair**, không hashes của các files hiện tại hoặc verdict cho revision mới. State/master plan không thay trong repair; explicit product GO vẫn thiếu.
+
 2026-09-07. Request: user đồng ý scope text-first/visual-limited và chuẩn bị WP-04/Astra, sau đó “Tiếp tục”. Status: verified_local cho kiểm tra cơ học, needs_Astra_review cho workflow. ASTRA đã thông báo trong hội thoại; **chưa có review output hoặc explicit product GO**.
 
 ## Scope và baseline

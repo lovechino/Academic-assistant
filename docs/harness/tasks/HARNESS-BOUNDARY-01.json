@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "HARNESS-BOUNDARY-01",
+  "work_package": "HARNESS-01",
+  "objective": "Document the HPC-2 development-harness trust boundary, actor/resource permissions, data channels, admission and independent evidence requirements before environment selection.",
+  "request_basis": "User requested continue after the read-only HPC-1 review proposed an HPC-2 boundary contract before choosing isolation technology. Authorizes bounded documentation maintenance only, not OS configuration, installation, worker execution, model calls, materialization, acceptance or product GO.",
+  "kind": "maintenance",
+  "actions": ["harness_maintenance", "documentation"],
+  "read_first": ["AGENTS.md", "docs/00-project-brief.md", "docs/harness/README.md", "docs/roadmap/03-master-plan-v0.2.md", "docs/harness/WP02-WP04-reconciliation.md", "docs/harness/PATCH-ONLY-DESIGN.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/PATCH-VALIDATOR.md", "docs/harness/HARNESS-PATCH-02-handoff.md"],
+  "allowed_files": ["docs/harness/HPC2-BOUNDARY-CONTRACT.md", "docs/harness/HARNESS-BOUNDARY-01-handoff.md", "docs/harness/PATCH-ONLY-DESIGN.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/README.md"],
+  "required_outputs": ["docs/harness/HPC2-BOUNDARY-CONTRACT.md", "docs/harness/HARNESS-BOUNDARY-01-handoff.md", "docs/harness/PATCH-ONLY-DESIGN.md", "docs/harness/PATCH-ONLY-TEST-MAP.md", "docs/harness/README.md"],
+  "acceptance": ["Separate present pure-validator behavior from proposed host guarantees and preserve the previous read-only review as historical evidence, not checkpoint acceptance.", "Define least-privilege actors, resource/action scope, controlled channels, immutable snapshot admission and independent evidence ownership without prescribing or configuring an OS technology.", "Address forged context, unsafe materialization, candidate-as-approval confusion, packet incompleteness, quota and rendering risks; map proposed host tests and positive controls with all executions NOT RUN.", "Keep acceptance/replay/recovery at HPC-3/4, no checkout writes or product GO; list concrete selection prerequisites and pending owner choices.", "Only five documentation outputs change after baseline; preserve code/tests/checkers/state/plan/data and unrelated edits; run existing harness and structure checks with local data integrity."],
+  "checks": ["harness", "structure"],
+  "max_changed_files": 5,
+  "handoff": "docs/harness/HARNESS-BOUNDARY-01-handoff.md"
+}
